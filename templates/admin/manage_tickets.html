@@ -1,0 +1,300 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Manage Event Tickets') }} - {{ event.title }}{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1>{{ _('Manage Event Tickets') }} - {{ event.title }}</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <button type="button" class="btn btn-danger" onclick="bulkDelete()">{{ _('Delete Selected') }}</button>
+                        <button type="button" class="btn btn-success" onclick="bulkMarkUsed()">{{ _('Mark Selected as Used') }}</button>
+                        <button type="button" class="btn btn-warning" onclick="bulkMarkUnused()">{{ _('Mark Selected as Unused') }}</button>
+                        <a href="{{ url_for('export_tickets', event_id=event.id) }}" class="btn btn-primary">{{ _('Export All') }}</a>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="select-all"></th>
+                                <th>{{ _('Ticket Code') }}</th>
+                                <th>{{ _('Name') }}</th>
+                                <th>{{ _('Email') }}</th>
+                                <th>{{ _('Issue Date (UTC)') }}</th>
+                                <th>{{ _('Status') }}</th>
+                                <th>{{ _('Actions') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ticket in tickets %}
+                            <tr>
+                                <td><input type="checkbox" class="ticket-checkbox" value="{{ ticket.id }}"></td>
+                                <td>{{ ticket.ticket_code }}</td>
+                                <td>{{ ticket.name or '' }}</td>
+                                <td>{{ ticket.email or '' }}</td>
+                                <td>{{ ticket.issue_date.strftime('%Y-%m-%d %H:%M') }}</td>
+                                <td>
+                                    <span class="badge {% if ticket.is_used %}bg-success{% else %}bg-warning{% endif %}" onclick="toggleTicketStatus({{ ticket.id }})" style="cursor: pointer;">
+                                        {% if ticket.is_used %}{{ _('Used') }}{% else %}{{ _('Unused') }}{% endif %}
+                                    </span>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-info view-ticket" data-ticket-id="{{ ticket.id }}">{{ _('View Details') }}</button>
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="deleteTicket({{ ticket.id }})">{{ _('Delete') }}</button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- View Ticket Modal -->
+<div class="modal fade" id="viewTicketModal" tabindex="-1" aria-labelledby="viewTicketModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="viewTicketModalLabel">{{ _('Ticket Details') }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="ticketDetails">
+                <!-- Ticket details will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ _('Close') }}</button>
+                <button type="button" class="btn btn-primary" id="printTicket">{{ _('Print Ticket') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('select-all').addEventListener('change', function() {
+    document.querySelectorAll('.ticket-checkbox').forEach(checkbox => {
+        checkbox.checked = this.checked;
+    });
+});
+
+function getSelectedTickets() {
+    return Array.from(document.querySelectorAll('.ticket-checkbox:checked')).map(checkbox => checkbox.value);
+}
+
+function bulkDelete() {
+    const selectedTickets = getSelectedTickets();
+    if (selectedTickets.length === 0) {
+        alert('{{ _("No tickets selected") }}');
+        return;
+    }
+    
+    if (confirm('{{ _("Are you sure you want to delete these tickets? This action cannot be undone.") }}')) {
+        fetch('{{ url_for("bulk_delete_tickets") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ ticket_ids: selectedTickets })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.reload();
+            } else {
+                alert(data.message || '{{ _("Error deleting tickets") }}');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('{{ _("Error deleting tickets") }}');
+        });
+    }
+}
+
+function bulkMarkUsed() {
+    const selectedTickets = getSelectedTickets();
+    if (selectedTickets.length === 0) {
+        alert('{{ _("No tickets selected") }}');
+        return;
+    }
+    
+    fetch('{{ url_for("bulk_mark_used") }}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({ ticket_ids: selectedTickets })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.reload();
+        } else {
+            alert(data.message || '{{ _("Error marking tickets as used") }}');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('{{ _("Error marking tickets as used") }}');
+    });
+}
+
+function bulkMarkUnused() {
+    const selectedTickets = getSelectedTickets();
+    if (selectedTickets.length === 0) {
+        alert('{{ _("No tickets selected") }}');
+        return;
+    }
+    
+    fetch('{{ url_for("bulk_mark_unused") }}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({ ticket_ids: selectedTickets })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.reload();
+        } else {
+            alert(data.message || '{{ _("Error marking tickets as unused") }}');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('{{ _("Error marking tickets as unused") }}');
+    });
+}
+
+function toggleTicketStatus(ticketId) {
+    fetch(`/admin/tickets/${ticketId}/toggle-status`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token() }}'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Find the badge element for this ticket
+            const row = document.querySelector(`input.ticket-checkbox[value="${ticketId}"]`).closest('tr');
+            const badgeElement = row.querySelector('.badge');
+            
+            // Update the badge based on the new status
+            if (data.is_used) {
+                badgeElement.textContent = '{{ _("Used") }}';
+                badgeElement.classList.remove('bg-warning');
+                badgeElement.classList.add('bg-success');
+            } else {
+                badgeElement.textContent = '{{ _("Unused") }}';
+                badgeElement.classList.remove('bg-success');
+                badgeElement.classList.add('bg-warning');
+            }
+        } else {
+            console.error('Error:', data.message);
+            alert(data.message || '{{ _("Error toggling ticket status") }}');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('{{ _("Error toggling ticket status") }}');
+    });
+}
+
+function deleteTicket(ticketId) {
+    if (confirm('{{ _("Are you sure you want to delete this ticket? This action cannot be undone.") }}')) {
+        fetch(`/admin/tickets/${ticketId}/delete-ticket`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token() }}'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.reload();
+            } else {
+                alert(data.message || '{{ _("Error deleting ticket") }}');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('{{ _("Error deleting ticket") }}');
+        });
+    }
+}
+
+// View ticket details
+document.addEventListener('DOMContentLoaded', function() {
+    const csrfToken = '{{ csrf_token() }}';
+    
+    document.querySelectorAll('.view-ticket').forEach(button => {
+        button.addEventListener('click', function() {
+            const ticketId = this.dataset.ticketId;
+            const modal = new bootstrap.Modal(document.getElementById('viewTicketModal'));
+            
+            fetch(`{{ url_for('admin_get_ticket_details', event_id=event.id) }}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify({
+                    ticket_id: ticketId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('ticketDetails').innerHTML = data.html;
+                    modal.show();
+                } else {
+                    alert(data.message || "{{ _('An error occurred while retrieving ticket details.') }}");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("{{ _('An error occurred while processing your request.') }}");
+            });
+        });
+    });
+    
+    // Print ticket
+    document.getElementById('printTicket').addEventListener('click', function() {
+        const printContent = document.getElementById('ticketDetails').innerHTML;
+        const originalContent = document.body.innerHTML;
+        
+        document.body.innerHTML = `
+            <div class="container mt-4">
+                <div class="ticket-print">
+                    ${printContent}
+                </div>
+            </div>
+        `;
+        
+        window.print();
+        document.body.innerHTML = originalContent;
+        
+        // Reattach event listeners after restoring content
+        location.reload();
+    });
+});
+</script>
+{% endblock %} 

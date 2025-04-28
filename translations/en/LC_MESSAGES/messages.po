@@ -1,0 +1,286 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: e-kiosque\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-20 12:00+0000\n"
+"PO-Revision-Date: 2024-03-20 12:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Manage Tickets"
+msgstr "Manage Tickets"
+
+msgid "Ticket Code"
+msgstr "Ticket Code"
+
+msgid "Event"
+msgstr "Event"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Issue Date (UTC)"
+msgstr "Issue Date (UTC)"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "Used"
+msgstr "Used"
+
+msgid "Unused"
+msgstr "Unused"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid ""
+"Are you sure you want to delete this ticket? This action cannot be undone."
+msgstr ""
+"Are you sure you want to delete this ticket? This action cannot be undone."
+
+msgid "Details"
+msgstr "Details"
+
+msgid "Timezone"
+msgstr "Timezone"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Registration Period"
+msgstr "Registration Period"
+
+msgid "Start:"
+msgstr "Start:"
+
+msgid "End:"
+msgstr "End:"
+
+msgid "Optional"
+msgstr "Optional"
+
+msgid "CAPTCHA"
+msgstr "CAPTCHA"
+
+msgid "Reserve Ticket"
+msgstr "Reserve Ticket"
+
+msgid "No tickets available."
+msgstr "No tickets available."
+
+msgid "Available Events"
+msgstr "Available Events"
+
+msgid "View Details"
+msgstr "View Details"
+
+msgid "No events are currently available. Please check back later."
+msgstr "No events are currently available. Please check back later."
+
+msgid "Your Ticket"
+msgstr "Your Ticket"
+
+msgid "Ticket Details"
+msgstr "Ticket Details"
+
+msgid "Event:"
+msgstr "Event:"
+
+msgid "Ticket Code:"
+msgstr "Ticket Code:"
+
+msgid "QR Code"
+msgstr "QR Code"
+
+msgid "Ticket QR Code"
+msgstr "Ticket QR Code"
+
+msgid "Scan this QR code at the entrance"
+msgstr "Scan this QR code at the entrance"
+
+msgid "Please save or print this ticket. You will need it to enter the event."
+msgstr ""
+"Please save or print this ticket. You will need it to enter the event."
+
+msgid "Registration is not open for this event."
+msgstr "Registration is not open for this event."
+
+msgid "Invalid CAPTCHA. Please try again."
+msgstr "Invalid CAPTCHA. Please try again."
+
+msgid "You have already reserved a ticket for this event."
+msgstr "You have already reserved a ticket for this event."
+
+msgid ""
+"Cannot delete event with unused tickets. Please mark all tickets as used "
+"first."
+msgstr ""
+"Cannot delete event with unused tickets. Please mark all tickets as used "
+"first."
+
+msgid "Unauthorized"
+msgstr "Unauthorized"
+
+msgid "All fields are required."
+msgstr "All fields are required."
+
+msgid "Invalid date or time format."
+msgstr "Invalid date or time format."
+
+msgid "Error creating event:"
+msgstr "Error creating event:"
+
+msgid "Not Used"
+msgstr "Not Used"
+
+msgid "No tickets selected"
+msgstr "No tickets selected"
+
+msgid "This is a private event. Please use the private link to access it."
+msgstr "This is a private event. Please use the private link to access it."
+
+msgid "Create New Event"
+msgstr "Create New Event"
+
+msgid "Title"
+msgstr "Title"
+
+msgid "Capacity"
+msgstr "Capacity"
+
+msgid "Available"
+msgstr "Available"
+
+msgid "Active"
+msgstr "Active"
+
+msgid "Inactive"
+msgstr "Inactive"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "Event Details"
+msgstr "Event Details"
+
+msgid "Date & Time"
+msgstr "Date & Time"
+
+msgid "Location"
+msgstr "Location"
+
+msgid "Available Tickets"
+msgstr "Available Tickets"
+
+msgid "Sold Out"
+msgstr "Sold Out"
+
+msgid "Almost Gone"
+msgstr "Almost Gone"
+
+msgid "Reserve Your Spot"
+msgstr "Reserve Your Spot"
+
+msgid "Enter your name"
+msgstr "Enter your name"
+
+msgid "Please provide your name."
+msgstr "Please provide your name."
+
+msgid "Enter your email"
+msgstr "Enter your email"
+
+msgid "Please provide a valid email address."
+msgstr "Please provide a valid email address."
+
+msgid "Enter code"
+msgstr "Enter code"
+
+msgid "Please enter the CAPTCHA code."
+msgstr "Please enter the CAPTCHA code."
+
+msgid "Click on the image to refresh the code."
+msgstr "Click on the image to refresh the code."
+
+msgid "Click to refresh"
+msgstr "Click to refresh"
+
+msgid "Secure reservation"
+msgstr "Secure reservation"
+
+msgid "Quick process"
+msgstr "Quick process"
+
+msgid "Browse and register for upcoming events"
+msgstr "Browse and register for upcoming events"
+
+msgid "Read more"
+msgstr "Read more"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Location"
+msgstr "Location"
+
+msgid "Event Description"
+msgstr "Event Description"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "No Events Available"
+msgstr "No Events Available"
+
+msgid "Run Data Cleanup"
+msgstr "Run Data Cleanup"
+
+msgid ""
+"Are you sure you want to delete all tickets for past events? This action "
+"cannot be undone."
+msgstr ""
+"Are you sure you want to delete all tickets for past events? This action "
+"cannot be undone."
+
+msgid "Cleanup complete. {} tickets from past events were deleted."
+msgstr "Cleanup complete. {} tickets from past events were deleted."
+
+#: templates/wiki/edit_event.html:178
+msgid "Username Collection"
+msgstr "Username Collection"
+
+#: templates/wiki/edit_event.html:181
+msgid "Collect Username"
+msgstr "Collect Username"
+
+#: templates/wiki/edit_event.html:185
+msgid "Username Optional"
+msgstr "Username Optional"
+
+#: templates/wiki/edit_event.html:192
+msgid "Phone Number Collection"
+msgstr "Phone Number Collection"
+
+#: templates/wiki/edit_event.html:195
+msgid "Collect Phone Number"
+msgstr "Collect Phone Number"
+
+#: templates/wiki/edit_event.html:199
+msgid "Phone Number Optional"
+msgstr "Phone Number Optional"

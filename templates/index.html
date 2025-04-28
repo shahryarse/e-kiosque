@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('e-kiosque') }}{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="display-4 fw-bold">{{ _('Available Events') }}</h1>
+        <p class="lead text-muted">{{ _('Browse and register for upcoming events') }}</p>
+    </div>
+</div>
+
+{% if events.items %}
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for event in events.items %}
+    <div class="col">
+        <div class="card h-100 shadow-sm event-detail-card {% if not event.is_active %}border-secondary{% endif %}">
+            {% if event.image_url %}
+            <div class="card-img-top overflow-hidden" style="height: 180px;">
+                <img src="{{ event.image_url }}" alt="{{ event.title }}" class="img-fluid w-100 h-100" 
+                     style="object-fit: cover;{% if not event.is_active %} filter: grayscale(100%);{% endif %}">
+            </div>
+            {% else %}
+            <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 120px;">
+                <i class="bi bi-calendar-event text-muted" style="font-size: 3rem;"></i>
+            </div>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title fw-bold mb-3">{{ event.title }}</h5>
+                
+                <div class="mb-3">
+                    <p class="card-text text-truncate">{{ event.description }}</p>
+                    <button class="btn btn-link btn-sm p-0 read-more-btn">{{ _('Read more') }}</button>
+                </div>
+                
+                <div class="event-info">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="event-info-icon me-2">
+                            <i class="bi bi-calendar-date text-primary"></i>
+                        </div>
+                        <div>
+                            <small class="text-muted d-block">{{ _('Date') }}</small>
+                            <span class="fw-bold">{{ event.date.strftime('%Y-%m-%d %H:%M') }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="event-info-icon me-2">
+                            <i class="bi bi-geo-alt text-primary"></i>
+                        </div>
+                        <div>
+                            <small class="text-muted d-block">{{ _('Location') }}</small>
+                            <span>{{ event.location }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="event-info-icon me-2">
+                            <i class="bi bi-ticket-perforated text-primary"></i>
+                        </div>
+                        <div>
+                            <small class="text-muted d-block">{{ _('Available Tickets') }}</small>
+                            <span class="fw-bold">
+                                {% if not event.is_active %}
+                                0 <span class="badge bg-secondary ms-2">{{ _('Unavailable') }}</span>
+                                {% else %}
+                                {{ event.available_tickets }}
+                                {% if event.available_tickets == 0 %}
+                                <span class="badge bg-danger ms-2">{{ _('Sold Out') }}</span>
+                                {% elif event.available_tickets <= 5 %}
+                                <span class="badge bg-warning text-dark ms-2">{{ _('Almost Gone') }}</span>
+                                {% else %}
+                                <span class="badge bg-success ms-2">{{ _('Available') }}</span>
+                                {% endif %}
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="event-info-icon me-2">
+                            <i class="bi bi-clock-history text-primary"></i>
+                        </div>
+                        <div>
+                            <small class="text-muted d-block">{{ _('Registration Period') }}</small>
+                            <div>
+                                <small class="text-muted">{{ _('Start:') }}</small>
+                                <span class="fw-bold">{{ event.registration_start.strftime('%Y-%m-%d') }}</span>
+                                <br>
+                                <small class="text-muted">{{ _('End:') }}</small>
+                                <span class="fw-bold">{{ event.registration_end.strftime('%Y-%m-%d') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-transparent border-top-0">
+                <div class="d-grid gap-2">
+                    <a href="{{ url_for('event_detail', event_id=event.id) }}" class="btn {% if not event.is_active %}btn-secondary{% else %}btn-primary{% endif %}">
+                        <i class="bi bi-eye me-2"></i>{{ _('View Details') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Pagination -->
+{% if events.pages > 1 %}
+<nav aria-label="Page navigation" class="mt-4">
+    <ul class="pagination justify-content-center">
+        <li class="page-item {% if not events.has_prev %}disabled{% endif %}">
+            <a class="page-link" href="{{ url_for('index', page=events.prev_num) if events.has_prev else '#' }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        
+        {% for page_num in events.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+            {% if page_num %}
+                <li class="page-item {% if page_num == events.page %}active{% endif %}">
+                    <a class="page-link" href="{{ url_for('index', page=page_num) }}">{{ page_num }}</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">...</span>
+                </li>
+            {% endif %}
+        {% endfor %}
+        
+        <li class="page-item {% if not events.has_next %}disabled{% endif %}">
+            <a class="page-link" href="{{ url_for('index', page=events.next_num) if events.has_next else '#' }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+{% endif %}
+
+<!-- Event Description Modal -->
+<div class="modal fade" id="eventDescriptionModal" tabindex="-1" aria-labelledby="eventDescriptionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eventDescriptionModalLabel">{{ _('Event Description') }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="eventDescriptionText"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ _('Close') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-body text-center p-5">
+                <i class="bi bi-calendar-x text-muted mb-3" style="font-size: 4rem;"></i>
+                <h3 class="mb-3">{{ _('No Events Available') }}</h3>
+                <p class="lead text-muted">
+                    {{ _('No events are currently available. Please check back later.') }}
+                </p>
+                
+                {% if session.get('wiki_username') %}
+                <hr>
+                <p class="mb-0">
+                    <a href="{{ url_for('wiki_new_event') }}" class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i> {{ _('Create Your First Event') }}
+                    </a>
+                </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Read more" buttons
+    const readMoreBtns = document.querySelectorAll('.read-more-btn');
+    const modal = new bootstrap.Modal(document.getElementById('eventDescriptionModal'));
+    const modalTitle = document.getElementById('eventDescriptionModalLabel');
+    const modalBody = document.getElementById('eventDescriptionText');
+    
+    readMoreBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const card = this.closest('.card');
+            const title = card.querySelector('.card-title').textContent;
+            const description = this.previousElementSibling.textContent;
+            
+            modalTitle.textContent = title;
+            modalBody.textContent = description;
+            modal.show();
+        });
+    });
+});
+</script>
+{% endblock %} 

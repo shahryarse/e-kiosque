@@ -1,0 +1,392 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Wikimedia Event Dashboard') }}{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row mb-4">
+        <div class="col">
+            <h1>{{ _('My Wikimedia Events') }}</h1>
+            <p class="lead">{{ _('Manage your events and view registration statistics') }}</p>
+        </div>
+        <div class="col-auto d-flex align-items-center">
+            <a href="{{ url_for('wiki_new_event') }}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> {{ _('Create New Event') }}
+            </a>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body text-center">
+                    <h3 class="card-title">{{ events|length }}</h3>
+                    <p class="card-text">{{ _('Total Events') }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card bg-success text-white">
+                <div class="card-body text-center">
+                    <h3 class="card-title">{{ active_events|length }}</h3>
+                    <p class="card-text">{{ _('Active Events') }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card bg-info text-white">
+                <div class="card-body text-center">
+                    <h3 class="card-title">{{ total_tickets }}</h3>
+                    <p class="card-text">{{ _('Total Registrations') }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body text-center">
+                    <h3 class="card-title">{{ tickets_used }}</h3>
+                    <p class="card-text">{{ _('Tickets Used') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- My Events List -->
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">{{ _('My Events') }}</h5>
+        </div>
+        <div class="card-body">
+            {% if events %}
+                <ul class="nav nav-tabs mb-3" id="eventTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="active-tab" data-bs-toggle="tab" data-bs-target="#active" 
+                            type="button" role="tab" aria-controls="active" aria-selected="true">
+                            {{ _('Active Events') }}
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="past-tab" data-bs-toggle="tab" data-bs-target="#past" 
+                            type="button" role="tab" aria-controls="past" aria-selected="false">
+                            {{ _('Past Events') }}
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" 
+                            type="button" role="tab" aria-controls="all" aria-selected="false">
+                            {{ _('All Events') }}
+                        </button>
+                    </li>
+                </ul>
+                
+                <div class="tab-content" id="eventsTabContent">
+                    <!-- Active Events Tab -->
+                    <div class="tab-pane fade show active" id="active" role="tabpanel" aria-labelledby="active-tab">
+                        {% if active_events %}
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>{{ _('Title') }}</th>
+                                            <th>{{ _('Date') }}</th>
+                                            <th>{{ _('Location') }}</th>
+                                            <th>{{ _('Registrations') }}</th>
+                                            <th>{{ _('Actions') }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for event in active_events %}
+                                        <tr>
+                                            <td>
+                                                <strong>{{ event.title }}</strong>
+                                                {% if event.is_private %}
+                                                    <span class="badge bg-secondary ms-1">{{ _('Private') }}</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ event.date.strftime('%Y-%m-%d') }}</td>
+                                            <td>{{ event.location }}</td>
+                                            <td>
+                                                <div class="progress">
+                                                    {% set percentage = (event.tickets|length / event.capacity * 100)|int if event.capacity > 0 else 0 %}
+                                                    <div class="progress-bar {% if percentage > 80 %}bg-danger{% elif percentage > 50 %}bg-warning{% else %}bg-success{% endif %}" 
+                                                         role="progressbar" style="width: {{ percentage }}%" 
+                                                         aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100">
+                                                        {{ event.tickets|length }}/{{ event.capacity }}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a href="{{ url_for('wiki_edit_event', event_id=event.id) }}" class="btn btn-sm btn-outline-primary">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <a href="{{ url_for('wiki_manage_tickets', event_id=event.id) }}" class="btn btn-sm btn-outline-success">
+                                                        <i class="fas fa-ticket-alt"></i>
+                                                    </a>
+                                                    {% if event.is_private %}
+                                                    <button class="btn btn-sm btn-outline-info copy-link" data-link="{{ url_for('private_event', private_link=event.private_link, _external=True) }}">
+                                                        <i class="fas fa-link"></i>
+                                                    </button>
+                                                    {% endif %}
+                                                    <a href="{{ url_for('event_detail', event_id=event.id) }}" target="_blank" class="btn btn-sm btn-outline-secondary">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <button class="btn btn-sm btn-outline-danger delete-event" data-event-id="{{ event.id }}" data-event-title="{{ event.title }}">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% else %}
+                            <div class="alert alert-info">
+                                {{ _('You have no active events at the moment.') }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Past Events Tab -->
+                    <div class="tab-pane fade" id="past" role="tabpanel" aria-labelledby="past-tab">
+                        {% if past_events %}
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>{{ _('Title') }}</th>
+                                            <th>{{ _('Date') }}</th>
+                                            <th>{{ _('Location') }}</th>
+                                            <th>{{ _('Attendance') }}</th>
+                                            <th>{{ _('Actions') }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for event in past_events %}
+                                        <tr>
+                                            <td>
+                                                <strong>{{ event.title }}</strong>
+                                                {% if event.is_private %}
+                                                    <span class="badge bg-secondary ms-1">{{ _('Private') }}</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ event.date.strftime('%Y-%m-%d') }}</td>
+                                            <td>{{ event.location }}</td>
+                                            <td>
+                                                {% set used_tickets = event.tickets|selectattr('is_used', 'eq', true)|list|length %}
+                                                {% set attendance_rate = (used_tickets / event.tickets|length * 100)|int if event.tickets|length > 0 else 0 %}
+                                                <div class="progress">
+                                                    <div class="progress-bar {% if attendance_rate > 80 %}bg-success{% elif attendance_rate > 50 %}bg-warning{% else %}bg-danger{% endif %}" 
+                                                         role="progressbar" style="width: {{ attendance_rate }}%" 
+                                                         aria-valuenow="{{ attendance_rate }}" aria-valuemin="0" aria-valuemax="100">
+                                                        {{ used_tickets }}/{{ event.tickets|length }} ({{ attendance_rate }}%)
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a href="{{ url_for('wiki_manage_tickets', event_id=event.id) }}" class="btn btn-sm btn-outline-success">
+                                                        <i class="fas fa-ticket-alt"></i>
+                                                    </a>
+                                                    <a href="{{ url_for('event_detail', event_id=event.id) }}" target="_blank" class="btn btn-sm btn-outline-secondary">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <button class="btn btn-sm btn-outline-danger delete-event" data-event-id="{{ event.id }}" data-event-title="{{ event.title }}">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% else %}
+                            <div class="alert alert-info">
+                                {{ _('You have no past events.') }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- All Events Tab -->
+                    <div class="tab-pane fade" id="all" role="tabpanel" aria-labelledby="all-tab">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>{{ _('Title') }}</th>
+                                        <th>{{ _('Date') }}</th>
+                                        <th>{{ _('Location') }}</th>
+                                        <th>{{ _('Status') }}</th>
+                                        <th>{{ _('Registrations') }}</th>
+                                        <th>{{ _('Actions') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for event in events %}
+                                    <tr {% if not event.is_active %}class="table-secondary"{% endif %}>
+                                        <td>
+                                            <strong>{{ event.title }}</strong>
+                                            {% if event.is_private %}
+                                                <span class="badge bg-secondary ms-1">{{ _('Private') }}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ event.date.strftime('%Y-%m-%d') }}</td>
+                                        <td>{{ event.location }}</td>
+                                        <td>
+                                            {% if event.is_active %}
+                                                <span class="badge bg-success">{{ _('Active') }}</span>
+                                            {% else %}
+                                                <span class="badge bg-secondary">{{ _('Inactive') }}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ event.tickets|length }}/{{ event.capacity }}</td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                {% if event.is_active %}
+                                                <a href="{{ url_for('wiki_edit_event', event_id=event.id) }}" class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                {% endif %}
+                                                <a href="{{ url_for('wiki_manage_tickets', event_id=event.id) }}" class="btn btn-sm btn-outline-success">
+                                                    <i class="fas fa-ticket-alt"></i>
+                                                </a>
+                                                {% if event.is_private and event.is_active %}
+                                                <button class="btn btn-sm btn-outline-info copy-link" data-link="{{ url_for('private_event', private_link=event.private_link, _external=True) }}">
+                                                    <i class="fas fa-link"></i>
+                                                </button>
+                                                {% endif %}
+                                                <a href="{{ url_for('event_detail', event_id=event.id) }}" target="_blank" class="btn btn-sm btn-outline-secondary">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-outline-danger delete-event" data-event-id="{{ event.id }}" data-event-title="{{ event.title }}">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    <h4 class="alert-heading">{{ _('Welcome to the Wikimedia E-Kiosque!') }}</h4>
+                    <p>{{ _('You have not created any events yet. Get started by creating your first event.') }}</p>
+                    <hr>
+                    <a href="{{ url_for('wiki_new_event') }}" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> {{ _('Create Your First Event') }}
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Toast for Copy Success -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+    <div id="linkToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-success text-white">
+            <strong class="me-auto">{{ _('Success') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            {{ _('Private link copied to clipboard!') }}
+        </div>
+    </div>
+</div>
+
+<!-- Delete Event Confirmation Modal -->
+<div class="modal fade" id="deleteEventModal" tabindex="-1" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteEventModalLabel">{{ _('Confirm Deletion') }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="deleteEventMessage"></p>
+                <div id="deleteEventWarning" class="alert alert-warning mt-3" style="display: none;">
+                    <i class="fas fa-exclamation-triangle"></i> 
+                    {{ _('You cannot delete events with unused tickets. Please mark all tickets as used first.') }}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ _('Cancel') }}</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteEvent">{{ _('Delete') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Copy private link functionality
+        document.querySelectorAll('.copy-link').forEach(button => {
+            button.addEventListener('click', function() {
+                const link = this.dataset.link;
+                navigator.clipboard.writeText(link)
+                    .then(() => {
+                        const toast = new bootstrap.Toast(document.getElementById('linkToast'));
+                        toast.show();
+                    })
+                    .catch(err => {
+                        console.error('Error copying link: ', err);
+                        alert("{{ _('Error copying link to clipboard. Please try again.') }}");
+                    });
+            });
+        });
+
+        // Delete event functionality
+        let currentEventId = null;
+        const deleteModal = new bootstrap.Modal(document.getElementById('deleteEventModal'));
+        
+        document.querySelectorAll('.delete-event').forEach(button => {
+            button.addEventListener('click', function() {
+                const eventId = this.dataset.eventId;
+                const eventTitle = this.dataset.eventTitle;
+                currentEventId = eventId;
+                
+                document.getElementById('deleteEventMessage').textContent = 
+                    "{{ _('Are you sure you want to delete the event') }} \"" + eventTitle + "\"?";
+                document.getElementById('deleteEventWarning').style.display = 'none';
+                deleteModal.show();
+            });
+        });
+        
+        document.getElementById('confirmDeleteEvent').addEventListener('click', function() {
+            if (!currentEventId) return;
+            
+            fetch("{{ url_for('wiki_delete_event', event_id=0) }}".replace('0', currentEventId), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': "{{ csrf_token() }}"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.reload();
+                } else {
+                    if (data.message && data.message.includes('unused tickets')) {
+                        document.getElementById('deleteEventWarning').style.display = 'block';
+                    } else {
+                        deleteModal.hide();
+                        alert(data.message || "{{ _('Error deleting event') }}");
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                deleteModal.hide();
+                alert("{{ _('An error occurred while processing your request.') }}");
+            });
+        });
+    });
+</script>
+{% endblock %} 

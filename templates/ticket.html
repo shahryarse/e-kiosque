@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Your Ticket') }}{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1>{{ _('Ticket Details') }}</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">{{ _('Event:') }}</dt>
+                    <dd class="col-sm-9">{{ ticket.event.title }}</dd>
+
+                    <dt class="col-sm-3">{{ _('Ticket Code:') }}</dt>
+                    <dd class="col-sm-9">{{ ticket.ticket_code }}</dd>
+
+                    {% if ticket.name %}
+                    <dt class="col-sm-3">{{ _('Name') }}</dt>
+                    <dd class="col-sm-9">{{ ticket.name }}</dd>
+                    {% endif %}
+
+                    {% if ticket.email %}
+                    <dt class="col-sm-3">{{ _('Email') }}</dt>
+                    <dd class="col-sm-9">{{ ticket.email }}</dd>
+                    {% endif %}
+                </dl>
+
+                <div class="text-center mt-4">
+                    <h5>{{ _('QR Code') }}</h5>
+                    <img src="data:image/png;base64,{{ qr_base64 }}" alt="{{ _('Ticket QR Code') }}" class="img-fluid">
+                    <p class="text-muted mt-2">{{ _('Scan this QR code at the entrance') }}</p>
+                </div>
+
+                <div class="alert alert-info mt-4">
+                    {{ _('Please save or print this ticket. You will need it to enter the event.') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

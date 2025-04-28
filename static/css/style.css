@@ -1,0 +1,260 @@
+/* Event Form Styles */
+.card-header .fas, .card-header .fa {
+    margin-right: 0.5rem;
+}
+
+.form-label.fw-bold {
+    color: #495057;
+}
+
+.form-text {
+    color: #6c757d;
+    font-size: 0.85rem;
+}
+
+#imagePreview {
+    transition: all 0.3s ease;
+}
+
+#imagePreview img {
+    max-width: 100%;
+    border-radius: 4px;
+}
+
+.event-form-section {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 1.5rem;
+}
+
+.position-sticky {
+    position: sticky;
+    top: 2rem;
+}
+
+/* Switch toggles */
+.form-switch .form-check-input {
+    width: 3em;
+    height: 1.5em;
+}
+
+.form-check-input:checked {
+    background-color: #198754;
+    border-color: #198754;
+}
+
+/* Icons in form */
+.input-group-text .fas,
+.input-group-text .fa {
+    width: 1rem;
+    text-align: center;
+}
+
+/* Card hover effects */
+.card.border-light:hover {
+    border-color: #0d6efd;
+    box-shadow: 0 0.125rem 0.25rem rgba(13, 110, 253, 0.1);
+}
+
+/* Event Detail Page Styles */
+.event-description {
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+.event-detail-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-detail-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1) !important;
+}
+
+.badge {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.captcha-image {
+    transition: all 0.2s ease;
+}
+
+.captcha-image:hover {
+    opacity: 0.8;
+}
+
+.breadcrumb {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+}
+
+.breadcrumb-item a {
+    text-decoration: none;
+    color: #0d6efd;
+}
+
+.breadcrumb-item a:hover {
+    text-decoration: underline;
+}
+
+.event-info-icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+.reservation-form .input-group-text {
+    background-color: rgba(248, 249, 250, 0.8);
+}
+
+.card-title {
+    letter-spacing: 0.5px;
+}
+
+.lead {
+    font-weight: 300;
+}
+
+/* Animations and transitions */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translate3d(0, 10%, 0);
+        opacity: 0;
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
+
+.card, .alert, form, .breadcrumb {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.event-detail-card {
+    animation: slideInUp 0.5s ease-out;
+}
+
+.btn-primary {
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus states */
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Input hover effects */
+.form-control:hover {
+    border-color: #6c757d;
+}
+
+/* Badge animations */
+.badge {
+    transition: all 0.3s ease;
+}
+
+.badge:hover {
+    transform: scale(1.05);
+}
+
+/* Home Page Styles */
+.read-more-btn {
+    color: #0d6efd;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.read-more-btn:hover {
+    color: #0a58ca;
+    text-decoration: underline;
+}
+
+.event-info {
+    margin-top: 1rem;
+}
+
+.event-info .event-info-icon i {
+    color: #0d6efd;
+    font-size: 1.2rem;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-card-footer {
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-img-top {
+    transition: all 0.3s ease;
+}
+
+.event-detail-card:hover .card-img-top {
+    filter: brightness(1.05);
+}
+
+/* For event status badges */
+.badge.bg-success {
+    background-color: rgba(25, 135, 84, 0.9) !important;
+}
+
+.badge.bg-warning {
+    background-color: rgba(255, 193, 7, 0.9) !important;
+}
+
+.badge.bg-danger {
+    background-color: rgba(220, 53, 69, 0.9) !important;
+}
+
+/* Modal styling */
+.modal-content {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.modal-header {
+    border-bottom: none;
+    padding: 1.5rem 1.5rem 0.5rem;
+}
+
+.modal-body {
+    padding: 1rem 1.5rem;
+}
+
+.modal-footer {
+    border-top: none;
+    padding: 0.5rem 1.5rem 1.5rem;
+}
+
+/* Page title and introductory text */
+.display-4 {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.lead.text-muted {
+    margin-bottom: 2rem;
+} 

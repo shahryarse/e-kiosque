@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ title }}</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+        
+        <div class="mb-3">
+            {{ form.title.label(class="form-label") }}
+            {{ form.title(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            {{ form.description.label(class="form-label") }}
+            {{ form.description(class="form-control", rows=5) }}
+        </div>
+        
+        <div class="mb-3">
+            {{ form.image_filename.label(class="form-label") }}
+            <div class="input-group">
+                {{ form.image_filename(class="form-control") }}
+                <button type="button" class="btn btn-outline-secondary" onclick="validateImage()">
+                    {{ _('Validate & Preview') }}
+                </button>
+            </div>
+            <small class="form-text text-muted">
+                {{ _('Enter the filename from Wikimedia Commons (e.g., "File:Example.jpg")') }}
+            </small>
+        </div>
+        
+        <div class="mb-3" id="imagePreview" style="display: none;">
+            <img id="previewImage" src="" alt="Preview" class="img-fluid rounded">
+        </div>
+        
+        <div class="mb-3">
+            {{ form.date.label(class="form-label") }}
+            {{ form.date(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            {{ form.time.label(class="form-label") }}
+            {{ form.time(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            {{ form.timezone.label(class="form-label") }}
+            {{ form.timezone(class="form-select") }}
+        </div>
+        
+        <div class="mb-3">
+            {{ form.max_tickets.label(class="form-label") }}
+            {{ form.max_tickets(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            {{ form.is_private.label(class="form-check-label") }}
+            {{ form.is_private(class="form-check-input") }}
+        </div>
+        
+        <div class="mb-3">
+            {{ form.is_active.label(class="form-check-label") }}
+            {{ form.is_active(class="form-check-input") }}
+        </div>
+        
+        <button type="submit" class="btn btn-primary">{{ _('Save') }}</button>
+    </form>
+</div>
+
+<script>
+function validateImage() {
+    const filename = document.getElementById('image_filename').value;
+    if (!filename) {
+        alert('{{ _("Please enter a filename") }}');
+        return;
+    }
+    
+    fetch('/validate_image', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': '{{ csrf_token() }}'
+        },
+        body: `filename=${encodeURIComponent(filename)}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById('previewImage').src = data.preview_url;
+            document.getElementById('imagePreview').style.display = 'block';
+        } else {
+            alert(data.message);
+            document.getElementById('imagePreview').style.display = 'none';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('{{ _("An error occurred while validating the image") }}');
+    });
+}
+</script>
+{% endblock %} 

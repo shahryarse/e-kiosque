@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Events{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1>Manage Events</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Date</th>
+                                    <th>Location</th>
+                                    <th>Capacity</th>
+                                    <th>Available Tickets</th>
+                                    <th>Status</th>
+                                    <th>Private</th>
+                                    <th>Creator</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for event in events %}
+                                <tr class="{% if not event.is_active %}table-secondary{% endif %}">
+                                    <td>{{ event.title }}</td>
+                                    <td>{{ event.date.strftime('%Y-%m-%d %H:%M') }}</td>
+                                    <td>{{ event.location }}</td>
+                                    <td>{{ event.capacity }}</td>
+                                    <td>{{ event.available_tickets }}</td>
+                                    <td>
+                                        {% if event.is_active %}
+                                        <span class="badge bg-success">Active</span>
+                                        {% else %}
+                                        <span class="badge bg-danger">Inactive</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if event.is_private %}
+                                        <span class="badge bg-info"><i class="fas fa-lock"></i> Yes</span>
+                                        {% else %}
+                                        <span class="badge bg-light text-dark"><i class="fas fa-globe"></i> No</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ event.creator }}</td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a href="{{ url_for('edit_event', event_id=event.id) }}" class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-edit"></i> Edit
+                                            </a>
+                                            <a href="{{ url_for('manage_event_tickets', event_id=event.id) }}" class="btn btn-sm btn-outline-success">
+                                                <i class="fas fa-ticket-alt"></i> Tickets
+                                            </a>
+                                            {% if event.is_private %}
+                                            <button class="btn btn-sm btn-outline-info copy-link" data-link="{{ url_for('private_event', private_link=event.private_link, _external=True) }}">
+                                                <i class="fas fa-link"></i> Copy Link
+                                            </button>
+                                            {% endif %}
+                                            <a href="{{ url_for('event_detail', event_id=event.id) }}" target="_blank" class="btn btn-sm btn-outline-secondary">
+                                                <i class="fas fa-eye"></i> View
+                                            </a>
+                                            <button class="btn btn-sm btn-outline-danger delete-event" data-event-id="{{ event.id }}" data-event-title="{{ event.title }}">
+                                                <i class="fas fa-trash-alt"></i> Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Event Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteModalLabel">{{ _('Confirm Delete') }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="deleteMessage">{{ _('Are you sure you want to delete this event?') }}</p>
+                <div id="deleteEventWarning" class="alert alert-warning" style="display: none;">
+                    {{ _('Cannot delete event with unused tickets. Please mark all tickets as used first.') }}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ _('Cancel') }}</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteEvent">{{ _('Delete') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Copied Link Alert -->
+<div class="toast position-fixed bottom-0 end-0 m-3" id="linkCopiedToast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header bg-success text-white">
+        <strong class="me-auto">{{ _('Success') }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+        {{ _('Link copied to clipboard!') }}
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Link copy functionality
+        const copyButtons = document.querySelectorAll('.copy-link');
+        const linkCopiedToast = new bootstrap.Toast(document.getElementById('linkCopiedToast'));
+        
+        copyButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const link = this.dataset.link;
+                navigator.clipboard.writeText(link).then(function() {
+                    linkCopiedToast.show();
+                }).catch(function(err) {
+                    console.error('Could not copy text: ', err);
+                });
+            });
+        });
+        
+        // Delete functionality
+        const deleteButtons = document.querySelectorAll('.delete-event');
+        const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+        let currentEventId = null;
+        
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                currentEventId = this.dataset.eventId;
+                const eventTitle = this.dataset.eventTitle;
+                document.getElementById('deleteMessage').textContent = "{{ _('Are you sure you want to delete') }} " + eventTitle + "?";
+                document.getElementById('deleteEventWarning').style.display = 'none';
+                deleteModal.show();
+            });
+        });
+        
+        document.getElementById('confirmDeleteEvent').addEventListener('click', function() {
+            if (!currentEventId) return;
+            
+            fetch("/admin/events/" + currentEventId + "/delete", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': "{{ csrf_token() }}"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.reload();
+                } else {
+                    if (data.message && data.message.includes('unused tickets')) {
+                        document.getElementById('deleteEventWarning').style.display = 'block';
+                    } else {
+                        deleteModal.hide();
+                        alert(data.message || "{{ _('Error deleting event') }}");
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                deleteModal.hide();
+                alert("{{ _('An error occurred while processing your request.') }}");
+            });
+        });
+    });
+</script>
+{% endblock %} 

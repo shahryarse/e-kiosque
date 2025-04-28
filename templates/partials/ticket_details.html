@@ -1,0 +1,72 @@
+<div class="ticket-details">
+    <div class="row">
+        <div class="col-md-8">
+            <h5 class="mb-3">{{ _('Ticket Information') }}</h5>
+            <table class="table">
+                <tr>
+                    <th width="30%">{{ _('Event') }}:</th>
+                    <td>{{ event.title }}</td>
+                </tr>
+                <tr>
+                    <th>{{ _('Ticket Code') }}:</th>
+                    <td><code>{{ ticket.ticket_code }}</code></td>
+                </tr>
+                <tr>
+                    <th>{{ _('Status') }}:</th>
+                    <td>
+                        {% if ticket.is_used %}
+                            <span class="badge bg-success">{{ _('Used') }}</span>
+                        {% else %}
+                            <span class="badge bg-warning">{{ _('Unused') }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% if ticket.name %}
+                <tr>
+                    <th>{{ _('Name') }}:</th>
+                    <td>{{ ticket.name }}</td>
+                </tr>
+                {% endif %}
+                {% if ticket.email %}
+                <tr>
+                    <th>{{ _('Email') }}:</th>
+                    <td>{{ ticket.email }}</td>
+                </tr>
+                {% endif %}
+                {% if ticket.username %}
+                <tr>
+                    <th>{{ _('Username') }}:</th>
+                    <td>{{ ticket.username }}</td>
+                </tr>
+                {% endif %}
+                {% if ticket.phone %}
+                <tr>
+                    <th>{{ _('Phone Number') }}:</th>
+                    <td>{{ ticket.phone }}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <th>{{ _('Issue Date') }}:</th>
+                    <td>{{ ticket.issue_date.strftime('%Y-%m-%d %H:%M') }}</td>
+                </tr>
+                <tr>
+                    <th>{{ _('Event Date') }}:</th>
+                    <td>{{ event.date.strftime('%Y-%m-%d') }} {{ event.time }}</td>
+                </tr>
+                <tr>
+                    <th>{{ _('Location') }}:</th>
+                    <td>{{ event.location }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="card p-3 mb-3">
+                <h5 class="text-center mb-3">{{ _('QR Code') }}</h5>
+                <img src="data:image/png;base64,{{ qr_base64 }}" class="img-fluid mx-auto d-block" alt="QR Code">
+                <div class="mt-2 text-center small text-muted">
+                    {{ _('Scan this code at the event') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
