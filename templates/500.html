@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{% trans %}Internal Server Error{% endtrans %}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="display-1 text-muted">500</h1>
+                    <h2 class="mb-4">{% trans %}Internal Server Error{% endtrans %}</h2>
+                    <p class="lead mb-4">{% trans %}Something went wrong on our end. Our team has been notified and we're working to fix the issue.{% endtrans %}</p>
+                    <a href="{{ url_for('index') }}" class="btn btn-primary">{% trans %}Go to Homepage{% endtrans %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

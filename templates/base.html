@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}" dir="{{ 'rtl' if get_locale() == 'fa' else 'ltr' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{% block title %}{% trans %}Event Ticket System{% endtrans %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Font Awesome for additional icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Vazir Font for Persian language -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        {% if get_locale() == 'fa' %}
+        body {
+            direction: rtl;
+            text-align: right;
+            font-family: 'Vazir', Tahoma, Arial, sans-serif;
+        }
+        .navbar-nav {
+            margin-right: auto;
+        }
+        .language-selector {
+            margin-left: 1rem;
+        }
+        {% else %}
+        body {
+            direction: ltr;
+            text-align: left;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .navbar-nav {
+            margin-left: auto;
+        }
+        .language-selector {
+            margin-right: 1rem;
+        }
+        {% endif %}
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+        .language-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: #333;
+        }
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    {% if site_notice and site_notice.is_active %}
+    <div class="site-notice" style="background-color: {{ site_notice.background_color }}; color: {{ site_notice.text_color }}; padding: 10px 0; width: 100%;">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center">
+                <div class="flex-grow-1">
+                    <h5 class="mb-0">{{ site_notice.title }}</h5>
+                    <div>{{ site_notice.content | safe }}</div>
+                </div>
+                {% if session.get('admin_logged_in') %}
+                <div class="ms-2 mt-2 mt-sm-0">
+                    <a href="{{ url_for('manage_site_notice') }}" class="btn btn-sm btn-outline-secondary">
+                        <i class="bi bi-pencil-square"></i> {{ _('Edit') }}
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">{% trans %}Event Ticket System{% endtrans %}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">{% trans %}Home{% endtrans %}</a>
+                    </li>
+                    
+                    <!-- Wikimedia Events Link -->
+                    <li class="nav-item">
+                        {% if session.get('wiki_username') %}
+                            <a class="nav-link" href="{{ url_for('wiki_dashboard') }}">
+                                <i class="fas fa-calendar-alt"></i> {% trans %}My Events{% endtrans %}
+                            </a>
+                        {% else %}
+                            <a class="nav-link" href="{{ url_for('wiki_login') }}">
+                                <i class="fas fa-calendar-plus"></i> {% trans %}Create/Manage Events{% endtrans %}
+                            </a>
+                        {% endif %}
+                    </li>
+                    
+                    {% if session.get('wiki_username') %}
+                        {% if current_user and (current_user.is_admin or current_user.is_super_admin) %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('admin_dashboard') }}">{% trans %}Admin Dashboard{% endtrans %}</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('wiki_logout') }}">
+                                <i class="fas fa-sign-out-alt"></i> {% trans %}Logout{% endtrans %} ({{ session.get('wiki_username') }})
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+                <div class="language-selector">
+                    <div class="dropdown">
+                        <button class="btn language-btn dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            {% if get_locale() == 'en' %}
+                                {% trans %}English{% endtrans %}
+                            {% else %}
+                                {% trans %}Persian{% endtrans %}
+                            {% endif %}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('set_language', lang='en') }}">{% trans %}English{% endtrans %}</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('set_language', lang='fa') }}">{% trans %}Persian{% endtrans %}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-5 py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">
+                        &copy; {{ now.year }} // {% trans %}by{% endtrans %} <a href="https://meta.wikimedia.org/wiki/User:WASP-Outis" target="_blank">WASP-Outis</a>
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="https://meta.wikimedia.org/wiki/E-kiosque" class="btn btn-sm btn-outline-secondary me-2">{% trans %}About{% endtrans %}</a>
+                    <a href="https://github.com/shahryarse/e-kiosque" class="btn btn-sm btn-outline-secondary">{% trans %}Source code{% endtrans %}</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

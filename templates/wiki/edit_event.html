@@ -1,0 +1,410 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Edit Event') }}{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="border-bottom pb-3">
+                <i class="fas fa-edit"></i> {{ _('Edit Event') }}: {{ event.title }}
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data" id="eventForm">
+                        {{ form.csrf_token }}
+                        
+                        <!-- Basic Information Section -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-info-circle"></i> {{ _('Basic Information') }}
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="title" class="form-label fw-bold">{{ _('Event Title') }}</label>
+                                    {{ form.title(class="form-control", required=True, placeholder=_("Enter event title")) }}
+                                    <div class="form-text">{{ _('A descriptive title for your event.') }}</div>
+                                </div>
+        
+                                <div class="mb-3">
+                                    <label for="description" class="form-label fw-bold">{{ _('Description') }}</label>
+                                    {{ form.description(class="form-control", rows=5, required=True, placeholder=_("Describe your event...")) }}
+                                    <div class="form-text">{{ _('Provide details about your event. This will be shown to attendees.') }}</div>
+                                </div>
+        
+                                <div class="mb-3">
+                                    <label for="image_filename" class="form-label fw-bold">{{ _('Featured Image') }}</label>
+                                    <div class="input-group">
+                                        {{ form.image_filename(class="form-control", placeholder="File:Example.jpg") }}
+                                        <button type="button" class="btn btn-outline-primary" onclick="validateImage()">
+                                            <i class="fas fa-check-circle"></i> {{ _('Validate & Preview') }}
+                                        </button>
+                                    </div>
+                                    <div class="form-text">
+                                        <i class="fas fa-info-circle text-info"></i>
+                                        {{ _('Enter a filename from Wikimedia Commons (e.g., "File:Example.jpg")') }}
+                                    </div>
+                                </div>
+        
+                                <div class="mb-3" id="imagePreview" style="display: none;">
+                                    <div class="card border-primary">
+                                        <div class="card-header bg-primary text-white">{{ _('Image Preview') }}</div>
+                                        <div class="card-body text-center">
+                                            <img id="previewImage" src="" alt="Preview" class="img-fluid rounded" style="max-height: 300px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                {% if event.image_url %}
+                                <div class="mb-3">
+                                    <div class="card border-success">
+                                        <div class="card-header bg-success text-white">{{ _('Current Image') }}</div>
+                                        <div class="card-body text-center">
+                                            <img src="{{ event.image_url }}" alt="{{ event.title }}" class="img-fluid rounded" style="max-height: 300px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+        
+                                <div class="mb-3">
+                                    <label for="location" class="form-label fw-bold">{{ _('Location') }}</label>
+                                    {{ form.location(class="form-control", required=True, placeholder=_("Event location")) }}
+                                    <div class="form-text">{{ _('Where will the event take place?') }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Date and Time Section -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-clock"></i> {{ _('Date & Time') }}
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="date" class="form-label fw-bold">{{ _('Event Date') }}</label>
+                                            {{ form.date(class="form-control", type="date", required=True) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="time" class="form-label fw-bold">{{ _('Event Time') }}</label>
+                                            {{ form.time(class="form-control", type="time", required=True) }}
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="mb-4">
+                                    <label for="timezone" class="form-label fw-bold">{{ _('Timezone') }}</label>
+                                    {{ form.timezone(class="form-select", required=True) }}
+                                    <div class="form-text">{{ _('Select the timezone for your event.') }}</div>
+                                </div>
+                                
+                                <h6 class="text-muted border-bottom pb-2 mb-3">{{ _('Registration Period') }}</h6>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="registration_start_date" class="form-label fw-bold">{{ _('Registration Start Date') }}</label>
+                                            {{ form.registration_start_date(class="form-control", type="date", required=True) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="registration_start_time" class="form-label fw-bold">{{ _('Registration Start Time') }}</label>
+                                            {{ form.registration_start_time(class="form-control", type="time", required=True) }}
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="registration_end_date" class="form-label fw-bold">{{ _('Registration End Date') }}</label>
+                                            {{ form.registration_end_date(class="form-control", type="date", required=True) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="registration_end_time" class="form-label fw-bold">{{ _('Registration End Time') }}</label>
+                                            {{ form.registration_end_time(class="form-control", type="time", required=True) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Settings Section -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-cog"></i> {{ _('Event Settings') }}
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <label for="capacity" class="form-label fw-bold">{{ _('Capacity') }}</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-users"></i></span>
+                                        {{ form.capacity(class="form-control", type="number", min=1, required=True, placeholder=_("Number of attendees")) }}
+                                    </div>
+                                    <div class="form-text">{{ _('Maximum number of tickets available.') }}</div>
+                                </div>
+                                
+                                <h6 class="text-muted border-bottom pb-2 mb-3">{{ _('Event Status') }}</h6>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <div class="form-check form-switch">
+                                            {{ form.is_active(class="form-check-input") }}
+                                            <label class="form-check-label fw-bold" for="is_active">
+                                                <i class="fas fa-toggle-on text-success"></i> {{ _('Event Active') }}
+                                            </label>
+                                            <div class="form-text">{{ _('Activate or deactivate this event.') }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check form-switch">
+                                            {{ form.is_private(class="form-check-input") }}
+                                            <label class="form-check-label fw-bold" for="is_private">
+                                                <i class="fas fa-lock text-warning"></i> {{ _('Private Event') }}
+                                            </label>
+                                            <div class="form-text">{{ _('Private events can only be accessed with a special link.') }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <h6 class="text-muted border-bottom pb-2 mb-3">{{ _('Attendee Information') }}</h6>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <div class="card h-100 border-light">
+                                            <div class="card-body">
+                                                <h6 class="card-title">{{ _('Name Collection') }}</h6>
+                                                <div class="form-check mb-2">
+                                                    {{ form.collect_name(class="form-check-input") }}
+                                                    <label class="form-check-label" for="collect_name">
+                                                        {{ _('Collect Name') }}
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    {{ form.name_optional(class="form-check-input") }}
+                                                    <label class="form-check-label" for="name_optional">
+                                                        {{ _('Name Optional') }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card h-100 border-light">
+                                            <div class="card-body">
+                                                <h6 class="card-title">{{ _('Email Collection') }}</h6>
+                                                <div class="form-check mb-2">
+                                                    {{ form.collect_email(class="form-check-input") }}
+                                                    <label class="form-check-label" for="collect_email">
+                                                        {{ _('Collect Email') }}
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    {{ form.email_optional(class="form-check-input") }}
+                                                    <label class="form-check-label" for="email_optional">
+                                                        {{ _('Email Optional') }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <div class="card h-100 border-light">
+                                            <div class="card-body">
+                                                <h6 class="card-title">{{ _('Username Collection') }}</h6>
+                                                <div class="form-check mb-2">
+                                                    {{ form.collect_username(class="form-check-input") }}
+                                                    <label class="form-check-label" for="collect_username">
+                                                        {{ _('Collect Username') }}
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    {{ form.username_optional(class="form-check-input") }}
+                                                    <label class="form-check-label" for="username_optional">
+                                                        {{ _('Username Optional') }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card h-100 border-light">
+                                            <div class="card-body">
+                                                <h6 class="card-title">{{ _('Phone Number Collection') }}</h6>
+                                                <div class="form-check mb-2">
+                                                    {{ form.collect_phone(class="form-check-input") }}
+                                                    <label class="form-check-label" for="collect_phone">
+                                                        {{ _('Collect Phone Number') }}
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    {{ form.phone_optional(class="form-check-input") }}
+                                                    <label class="form-check-label" for="phone_optional">
+                                                        {{ _('Phone Number Optional') }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="{{ url_for('wiki_dashboard') }}" class="btn btn-light">
+                                <i class="fas fa-arrow-left"></i> {{ _('Cancel') }}
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> {{ _('Save Changes') }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3">
+            <div class="card shadow-sm position-sticky" style="top: 2rem;">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-info-circle"></i> {{ _('Help') }}</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>{{ _('Required fields:') }}</strong></p>
+                    <ul>
+                        <li>{{ _('Title') }}</li>
+                        <li>{{ _('Description') }}</li>
+                        <li>{{ _('Date & Time') }}</li>
+                        <li>{{ _('Location') }}</li>
+                        <li>{{ _('Capacity') }}</li>
+                        <li>{{ _('Registration Period') }}</li>
+                    </ul>
+                    <p><strong>{{ _('Optional fields:') }}</strong></p>
+                    <ul>
+                        <li>{{ _('Featured Image') }}</li>
+                    </ul>
+                    <hr>
+                    <p class="mb-0 text-muted">
+                        <i class="fas fa-lightbulb text-warning"></i> 
+                        <small>{{ _('Make sure all information is up to date before saving.') }}</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function validateImage() {
+    const filename = document.getElementById('image_filename').value;
+    if (!filename) {
+        alert('{{ _("Please enter a filename") }}');
+        return;
+    }
+    
+    // Show loading indicator
+    const previewDiv = document.getElementById('imagePreview');
+    previewDiv.style.display = 'block';
+    previewDiv.innerHTML = '<div class="text-center p-4"><div class="spinner-border text-primary" role="status"></div><p class="mt-2">{{ _("Validating image...") }}</p></div>';
+    
+    fetch('/validate_image', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({
+            filename: filename
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.exists) {
+            previewDiv.innerHTML = `
+                <div class="card border-primary">
+                    <div class="card-header bg-primary text-white">{{ _('Image Preview') }}</div>
+                    <div class="card-body text-center">
+                        <img id="previewImage" src="${data.url}" alt="Preview" class="img-fluid rounded" style="max-height: 300px;">
+                    </div>
+                </div>
+            `;
+        } else {
+            previewDiv.innerHTML = `
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i> ${data.message || '{{ _("Image not found. Please check the filename.") }}'}
+                </div>
+            `;
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        previewDiv.innerHTML = `
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-triangle"></i> {{ _("An error occurred while validating the image") }}
+            </div>
+        `;
+    });
+}
+
+// Toggle conditional fields
+document.addEventListener('DOMContentLoaded', function() {
+    const collectNameCheckbox = document.getElementById('collect_name');
+    const nameOptionalCheckbox = document.getElementById('name_optional');
+    const collectEmailCheckbox = document.getElementById('collect_email');
+    const emailOptionalCheckbox = document.getElementById('email_optional');
+    const collectUsernameCheckbox = document.getElementById('collect_username');
+    const usernameOptionalCheckbox = document.getElementById('username_optional');
+    const collectPhoneCheckbox = document.getElementById('collect_phone');
+    const phoneOptionalCheckbox = document.getElementById('phone_optional');
+    
+    function updateOptionalState() {
+        nameOptionalCheckbox.disabled = !collectNameCheckbox.checked;
+        if (!collectNameCheckbox.checked) {
+            nameOptionalCheckbox.checked = false;
+        }
+        
+        emailOptionalCheckbox.disabled = !collectEmailCheckbox.checked;
+        if (!collectEmailCheckbox.checked) {
+            emailOptionalCheckbox.checked = false;
+        }
+
+        usernameOptionalCheckbox.disabled = !collectUsernameCheckbox.checked;
+        if (!collectUsernameCheckbox.checked) {
+            usernameOptionalCheckbox.checked = false;
+        }
+
+        phoneOptionalCheckbox.disabled = !collectPhoneCheckbox.checked;
+        if (!collectPhoneCheckbox.checked) {
+            phoneOptionalCheckbox.checked = false;
+        }
+    }
+    
+    collectNameCheckbox.addEventListener('change', updateOptionalState);
+    collectEmailCheckbox.addEventListener('change', updateOptionalState);
+    collectUsernameCheckbox.addEventListener('change', updateOptionalState);
+    collectPhoneCheckbox.addEventListener('change', updateOptionalState);
+    
+    // Initialize states
+    updateOptionalState();
+});
+</script>
+{% endblock %} 

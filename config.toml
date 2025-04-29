@@ -1,0 +1,16 @@
+# OAuth configuration for Wikimedia
+SECRET_KEY = "your-secret-key-for-flask-sessions"  # This should be changed in production
+GREETING = "Welcome to e-kiosque! Login with your Wikimedia account to create and manage events."
+OAUTH_MWURI = "https://meta.wikimedia.org/w/index.php"
+CONSUMER_KEY = ""  # Register at https://meta.wikimedia.org/wiki/Special:OAuthConsumerRegistration/propose
+CONSUMER_SECRET = ""
+
+# Superadmin configuration
+SUPERADMIN_USERNAME = ""  # Username of the superadmin user
+
+# For Toolforge deployment:
+# 1. Register OAuth consumer at https://meta.wikimedia.org/wiki/Special:OAuthConsumerRegistration/propose
+# 2. Use callback URL: https://your-tool-name.toolforge.org/oauth-callback
+# 3. Request only "Basic rights" permissions
+# 4. Set Tool's maintainer as contact email
+# 5. Generate a secure SECRET_KEY with: python3 -c "import secrets; print(secrets.token_urlsafe(48))" 

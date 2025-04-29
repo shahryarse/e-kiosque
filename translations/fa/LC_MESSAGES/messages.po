@@ -1,0 +1,2742 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: e-kiosque\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-20 12:00+0000\n"
+"PO-Revision-Date: 2024-03-20 12:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Home"
+msgstr "خانه"
+
+msgid "Manage Tickets"
+msgstr "مدیریت بلیط‌ها"
+
+msgid "Ticket Code"
+msgstr "کد بلیط"
+
+msgid "Event"
+msgstr "رویداد"
+
+msgid "Name"
+msgstr "نام"
+
+msgid "Email"
+msgstr "ایمیل"
+
+msgid "Issue Date (UTC)"
+msgstr "تاریخ صدور (UTC)"
+
+msgid "Status"
+msgstr "وضعیت"
+
+msgid "Actions"
+msgstr "عملیات"
+
+msgid "Used"
+msgstr "استفاده شده"
+
+msgid "Unused"
+msgstr "استفاده نشده"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid ""
+"Are you sure you want to delete this ticket? This action cannot be undone."
+msgstr ""
+"آیا مطمئن هستید که می‌خواهید این بلیط را حذف کنید؟ این عمل قابل برگشت نیست."
+
+msgid "Details"
+msgstr "جزئیات"
+
+msgid "Timezone"
+msgstr "منطقه زمانی"
+
+msgid "Description"
+msgstr "توضیحات"
+
+msgid "Registration Period"
+msgstr "دوره ثبت‌نام"
+
+msgid "Start:"
+msgstr "شروع:"
+
+msgid "End:"
+msgstr "پایان:"
+
+msgid "Optional"
+msgstr "اختیاری"
+
+msgid "CAPTCHA"
+msgstr "کد امنیتی"
+
+msgid "Reserve Ticket"
+msgstr "رزرو بلیط"
+
+msgid "No tickets available."
+msgstr "بلیط موجود نیست."
+
+msgid "Available Events"
+msgstr "رویدادهای موجود"
+
+msgid "View Details"
+msgstr "مشاهده جزئیات"
+
+msgid "No events are currently available. Please check back later."
+msgstr "در حال حاضر رویدادی موجود نیست. لطفا بعداً بررسی کنید."
+
+msgid "Your Ticket"
+msgstr "بلیط شما"
+
+msgid "Ticket Details"
+msgstr "جزئیات بلیط"
+
+msgid "Event:"
+msgstr "رویداد:"
+
+msgid "Ticket Code:"
+msgstr "کد بلیط:"
+
+msgid "QR Code"
+msgstr "کد QR"
+
+msgid "Ticket QR Code"
+msgstr "کد QR بلیط"
+
+msgid "Scan this QR code at the entrance"
+msgstr "این کد QR را در ورودی اسکن کنید"
+
+msgid "Please save or print this ticket. You will need it to enter the event."
+msgstr ""
+"لطفا این بلیط را ذخیره یا چاپ کنید. برای ورود به رویداد به آن نیاز خواهید "
+"داشت."
+
+msgid "Registration is not open for this event."
+msgstr "ثبت‌نام برای این رویداد باز نیست."
+
+msgid "Invalid CAPTCHA. Please try again."
+msgstr "کد امنیتی نامعتبر است. لطفا دوباره تلاش کنید."
+
+msgid "You have already reserved a ticket for this event."
+msgstr "شما قبلاً برای این رویداد بلیط رزرو کرده‌اید."
+
+msgid ""
+"Cannot delete event with unused tickets. Please mark all tickets as used "
+"first."
+msgstr ""
+"نمی‌توان رویدادی را که بلیط‌های استفاده نشده دارد حذف کرد. لطفا ابتدا همه "
+"بلیط‌ها را به عنوان استفاده شده علامت بزنید."
+
+msgid "Unauthorized"
+msgstr "غیرمجاز"
+
+msgid "All fields are required."
+msgstr "تمام فیلدها ضروری هستند."
+
+msgid "Invalid date or time format."
+msgstr "فرمت تاریخ یا زمان نامعتبر است."
+
+msgid "Error creating event:"
+msgstr "خطا در ایجاد رویداد:"
+
+msgid "Not Used"
+msgstr "استفاده نشده"
+
+msgid "No tickets selected"
+msgstr "هیچ بلیطی انتخاب نشده است"
+
+msgid "This is a private event. Please use the private link to access it."
+msgstr ""
+"این یک رویداد خصوصی است. لطفاً از لینک خصوصی برای دسترسی به آن استفاده کنید."
+
+msgid "Create New Event"
+msgstr "ایجاد رویداد جدید"
+
+msgid "Title"
+msgstr "عنوان"
+
+msgid "Capacity"
+msgstr "ظرفیت"
+
+msgid "Available"
+msgstr "موجود"
+
+msgid "Active"
+msgstr "فعال"
+
+msgid "Inactive"
+msgstr "غیرفعال"
+
+msgid "Edit"
+msgstr "ویرایش"
+
+msgid "Event Details"
+msgstr "جزئیات رویداد"
+
+msgid "Date & Time"
+msgstr "تاریخ و زمان"
+
+msgid "Location"
+msgstr "مکان"
+
+msgid "Available Tickets"
+msgstr "بلیط‌های موجود"
+
+msgid "Sold Out"
+msgstr "تمام شده"
+
+msgid "Almost Gone"
+msgstr "تقریباً تمام شده"
+
+<<<<<<< HEAD
+=======
+msgid "Available"
+msgstr "موجود"
+
+>>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
+msgid "Reserve Your Spot"
+msgstr "جای خود را رزرو کنید"
+
+msgid "Enter your name"
+msgstr "نام خود را وارد کنید"
+
+msgid "Please provide your name."
+msgstr "لطفاً نام خود را وارد کنید."
+
+msgid "Enter your email"
+msgstr "ایمیل خود را وارد کنید"
+
+msgid "Please provide a valid email address."
+msgstr "لطفاً یک آدرس ایمیل معتبر وارد کنید."
+
+msgid "Enter code"
+msgstr "کد را وارد کنید"
+
+msgid "Please enter the CAPTCHA code."
+msgstr "لطفاً کد امنیتی را وارد کنید."
+
+msgid "Click on the image to refresh the code."
+msgstr "برای تازه کردن کد، روی تصویر کلیک کنید."
+
+msgid "Click to refresh"
+msgstr "برای تازه کردن کلیک کنید"
+
+msgid "Secure reservation"
+msgstr "رزرو امن"
+
+msgid "Quick process"
+msgstr "فرآیند سریع"
+
+msgid "Browse and register for upcoming events"
+msgstr "مرور و ثبت‌نام برای رویدادهای پیش رو"
+
+msgid "Read more"
+msgstr "بیشتر بخوانید"
+
+msgid "Date"
+msgstr "تاریخ"
+
+<<<<<<< HEAD
+=======
+msgid "Location"
+msgstr "مکان"
+
+>>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
+msgid "Event Description"
+msgstr "توضیحات رویداد"
+
+msgid "Close"
+msgstr "بستن"
+
+msgid "No Events Available"
+msgstr "هیچ رویدادی موجود نیست"
+
+msgid "Run Data Cleanup"
+msgstr "پاک کردن داده‌های قدیمی"
+
+msgid ""
+"Are you sure you want to delete all tickets for past events? This action "
+"cannot be undone."
+msgstr ""
+"آیا مطمئن هستید که می‌خواهید تمام بلیط‌های رویدادهای گذشته را حذف کنید؟ این "
+"عمل قابل بازگشت نیست."
+
+msgid "Cleanup complete. {} tickets from past events were deleted."
+msgstr "پاکسازی انجام شد. {} بلیط از رویدادهای گذشته حذف شدند."
+
+<<<<<<< HEAD
+=======
+msgid "Cannot create an event in the past."
+msgstr "امکان ایجاد رویداد در گذشته وجود ندارد."
+
+msgid "Cannot set event date to the past."
+msgstr "امکان تنظیم تاریخ رویداد به گذشته وجود ندارد."
+
+msgid "Unavailable"
+msgstr "غیرقابل دسترس"
+
+msgid "This event has already taken place."
+msgstr "این رویداد قبلاً برگزار شده است."
+
+msgid "Manage Site Notice"
+msgstr "مدیریت اطلاعیه سایت"
+
+msgid "Site notice updated successfully"
+msgstr "اطلاعیه سایت با موفقیت به‌روزرسانی شد"
+
+msgid "Error updating site notice:"
+msgstr "خطا در به‌روزرسانی اطلاعیه سایت:"
+
+msgid "Please enter a title."
+msgstr "لطفاً یک عنوان وارد کنید."
+
+msgid "Background Color"
+msgstr "رنگ پس‌زمینه"
+
+msgid "Text Color"
+msgstr "رنگ متن"
+
+msgid "Choose background color"
+msgstr "رنگ پس‌زمینه را انتخاب کنید"
+
+msgid "Choose text color"
+msgstr "رنگ متن را انتخاب کنید"
+
+msgid "Content"
+msgstr "محتوا"
+
+msgid "Please enter content."
+msgstr "لطفاً محتوا را وارد کنید."
+
+msgid "HTML tags are supported."
+msgstr "تگ‌های HTML پشتیبانی می‌شوند."
+
+msgid "Enable or disable this notice."
+msgstr "این اطلاعیه را فعال یا غیرفعال کنید."
+
+msgid "Preview"
+msgstr "پیش‌نمایش"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Welcome"
+msgstr "خوش آمدید"
+
+msgid "Create Your First Event"
+msgstr "اولین رویداد خود را ایجاد کنید"
+
+# Dashboard
+msgid "My Wikimedia Events"
+msgstr "رویدادهای ویکی‌مدیا من"
+
+msgid "Manage your events and view registration statistics"
+msgstr "رویدادهای خود را مدیریت کنید و آمار ثبت‌نام را مشاهده کنید"
+
+msgid "Total Events"
+msgstr "کل رویدادها"
+
+msgid "Active Events"
+msgstr "رویدادهای فعال"
+
+msgid "Total Registrations"
+msgstr "کل ثبت‌نام‌ها"
+
+msgid "Tickets Used"
+msgstr "بلیط‌های استفاده شده"
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Past Events"
+msgstr "رویدادهای گذشته"
+
+msgid "All Events"
+msgstr "تمام رویدادها"
+
+msgid "You have no active events at the moment."
+msgstr "در حال حاضر هیچ رویداد فعالی ندارید."
+
+msgid "You have no past events."
+msgstr "هیچ رویداد گذشته‌ای ندارید."
+
+msgid "Welcome to the Wikimedia E-Kiosque!"
+msgstr "به کیوسک ویکی‌مدیا خوش آمدید!"
+
+msgid ""
+"You have not created any events yet. Get started by creating your first "
+"event."
+msgstr ""
+"هنوز هیچ رویدادی ایجاد نکرده‌اید. با ایجاد اولین رویداد خود شروع کنید."
+
+msgid "Success"
+msgstr "موفقیت"
+
+msgid "Private link copied to clipboard!"
+msgstr "لینک خصوصی در کلیپ‌بورد کپی شد!"
+
+msgid "Error copying link to clipboard. Please try again."
+msgstr "خطا در کپی لینک به کلیپ‌بورد. لطفاً دوباره امتحان کنید."
+
+# Authentication Errors
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب کاربری ویکی‌مدیا خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "Authentication required"
+msgstr "نیاز به احراز هویت"
+
+msgid "Permission denied"
+msgstr "دسترسی ممنوع است"
+
+msgid "Invalid request"
+msgstr "درخواست نامعتبر"
+
+msgid "OAuth callback failed. Are cookies disabled?"
+msgstr "بازگشت OAuth انجام نشد. آیا کوکی‌ها غیرفعال هستند؟"
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب کاربری ویکی‌مدیا خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "از حساب کاربری ویکی‌مدیا خود خارج شده‌اید."
+
+msgid "Wikimedia Event Dashboard"
+msgstr "داشبورد رویدادهای ویکی‌مدیا"
+
+msgid "Registrations"
+msgstr "ثبت‌نام‌ها"
+
+msgid "Attendance"
+msgstr "حضور"
+
+msgid "Private"
+msgstr "خصوصی"
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف انتخاب شده‌ها"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری انتخاب شده‌ها به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری انتخاب شده‌ها به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+msgid "Confirm Deletion"
+msgstr "تایید حذف"
+
+msgid "Cancel"
+msgstr "لغو"
+
+msgid "Print Ticket"
+msgstr "چاپ بلیط"
+
+msgid "Please select at least one ticket."
+msgstr "لطفاً حداقل یک بلیط را انتخاب کنید."
+
+msgid "Are you sure you want to delete the selected tickets?"
+msgstr "آیا مطمئن هستید که می‌خواهید بلیط‌های انتخاب شده را حذف کنید؟"
+
+msgid "Print Ticket"
+msgstr "چاپ بلیط"
+
+msgid "Basic Information"
+msgstr "اطلاعات اصلی"
+
+msgid "Event Title"
+msgstr "عنوان رویداد"
+
+msgid "Enter event title"
+msgstr "عنوان رویداد را وارد کنید"
+
+msgid "A descriptive title for your event."
+msgstr "یک عنوان توصیفی برای رویداد شما."
+
+msgid "Describe your event..."
+msgstr "رویداد خود را توصیف کنید..."
+
+msgid "Provide details about your event. This will be shown to attendees."
+msgstr ""
+"جزئیات رویداد خود را ارائه دهید. این برای شرکت‌کنندگان نمایش داده خواهد شد."
+
+msgid "Featured Image"
+msgstr "تصویر اصلی"
+
+msgid "Validate & Preview"
+msgstr "اعتبارسنجی و پیش‌نمایش"
+
+msgid "Image Preview"
+msgstr "پیش‌نمایش تصویر"
+
+msgid "Event location"
+msgstr "مکان رویداد"
+
+msgid "Where will the event take place?"
+msgstr "رویداد کجا برگزار خواهد شد؟"
+
+msgid "Date & Time"
+msgstr "تاریخ و زمان"
+
+msgid "Event Date"
+msgstr "تاریخ رویداد"
+
+msgid "Event Time"
+msgstr "زمان رویداد"
+
+msgid "Select the timezone for your event."
+msgstr "منطقه زمانی رویداد خود را انتخاب کنید."
+
+msgid "Registration Start Date"
+msgstr "تاریخ شروع ثبت‌نام"
+
+msgid "Registration Start Time"
+msgstr "زمان شروع ثبت‌نام"
+
+msgid "Registration End Date"
+msgstr "تاریخ پایان ثبت‌نام"
+
+msgid "Registration End Time"
+msgstr "زمان پایان ثبت‌نام"
+
+msgid "Event Settings"
+msgstr "تنظیمات رویداد"
+
+msgid "Number of attendees"
+msgstr "تعداد شرکت‌کنندگان"
+
+msgid "Maximum number of tickets available."
+msgstr "حداکثر تعداد بلیط موجود."
+
+msgid "Event Status"
+msgstr "وضعیت رویداد"
+
+msgid "Event Active"
+msgstr "رویداد فعال"
+
+msgid "Activate or deactivate this event."
+msgstr "این رویداد را فعال یا غیرفعال کنید."
+
+msgid "Private Event"
+msgstr "رویداد خصوصی"
+
+msgid "Private events can only be accessed with a special link."
+msgstr "رویدادهای خصوصی فقط با لینک مخصوص قابل دسترسی هستند."
+
+msgid "Attendee Information"
+msgstr "اطلاعات شرکت‌کننده"
+
+msgid "Name Collection"
+msgstr "جمع‌آوری نام"
+
+msgid "Collect Name"
+msgstr "جمع‌آوری نام"
+
+msgid "Name Optional"
+msgstr "نام اختیاری"
+
+msgid "Email Collection"
+msgstr "جمع‌آوری ایمیل"
+
+msgid "Collect Email"
+msgstr "جمع‌آوری ایمیل"
+
+msgid "Email Optional"
+msgstr "ایمیل اختیاری"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب ویکی‌مدیای خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب ویکی‌مدیای خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "شما از حساب ویکی‌مدیای خود خارج شده‌اید."
+
+msgid "You do not have permission to edit this event."
+msgstr "شما اجازه ویرایش این رویداد را ندارید."
+
+msgid "You do not have permission to manage tickets for this event."
+msgstr "شما اجازه مدیریت بلیط‌های این رویداد را ندارید."
+
+msgid "You do not have permission to export tickets for this event."
+msgstr "شما اجازه خروجی گرفتن از بلیط‌های این رویداد را ندارید."
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Cannot create an event in the past."
+msgstr "نمی‌توان رویدادی در گذشته ایجاد کرد."
+
+msgid "Cannot set event date to the past."
+msgstr "نمی‌توان تاریخ رویداد را به گذشته تنظیم کرد."
+
+msgid "Edit Event"
+msgstr "ویرایش رویداد"
+
+msgid "Error deleting ticket"
+msgstr "خطا در حذف بلیط"
+
+msgid "Image not found on Wikimedia Commons. Please check the filename."
+msgstr "تصویر در ویکی‌مدیا کامنز یافت نشد. لطفاً نام فایل را بررسی کنید."
+
+msgid "Error validating image:"
+msgstr "خطا در اعتبارسنجی تصویر:"
+
+msgid "Image URL not found. Please make sure the image exists."
+msgstr "آدرس تصویر یافت نشد. لطفاً مطمئن شوید که تصویر وجود دارد."
+
+msgid "An error occurred while processing your request."
+msgstr "خطایی هنگام پردازش درخواست شما رخ داد."
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف موارد انتخاب شده"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+msgid "Confirm Deletion"
+msgstr "تایید حذف"
+
+msgid "Cancel"
+msgstr "لغو"
+
+msgid "Print Ticket"
+msgstr "چاپ بلیط"
+
+msgid "Please select at least one ticket."
+msgstr "لطفاً حداقل یک بلیط را انتخاب کنید."
+
+msgid "Are you sure you want to delete the selected tickets?"
+msgstr "آیا مطمئن هستید که می‌خواهید بلیط‌های انتخاب شده را حذف کنید؟"
+
+msgid "Print Ticket"
+msgstr "چاپ بلیط"
+
+msgid "Basic Information"
+msgstr "اطلاعات اصلی"
+
+msgid "Event Title"
+msgstr "عنوان رویداد"
+
+msgid "Enter event title"
+msgstr "عنوان رویداد را وارد کنید"
+
+msgid "A descriptive title for your event."
+msgstr "یک عنوان توصیفی برای رویداد شما."
+
+msgid "Describe your event..."
+msgstr "رویداد خود را توصیف کنید..."
+
+msgid "Provide details about your event. This will be shown to attendees."
+msgstr ""
+"جزئیات رویداد خود را ارائه دهید. این برای شرکت‌کنندگان نمایش داده خواهد شد."
+
+msgid "Featured Image"
+msgstr "تصویر اصلی"
+
+msgid "Validate & Preview"
+msgstr "اعتبارسنجی و پیش‌نمایش"
+
+msgid "Image Preview"
+msgstr "پیش‌نمایش تصویر"
+
+msgid "Event location"
+msgstr "مکان رویداد"
+
+msgid "Where will the event take place?"
+msgstr "رویداد کجا برگزار خواهد شد؟"
+
+msgid "Date & Time"
+msgstr "تاریخ و زمان"
+
+msgid "Event Date"
+msgstr "تاریخ رویداد"
+
+msgid "Event Time"
+msgstr "زمان رویداد"
+
+msgid "Select the timezone for your event."
+msgstr "منطقه زمانی رویداد خود را انتخاب کنید."
+
+msgid "Registration Start Date"
+msgstr "تاریخ شروع ثبت‌نام"
+
+msgid "Registration Start Time"
+msgstr "زمان شروع ثبت‌نام"
+
+msgid "Registration End Date"
+msgstr "تاریخ پایان ثبت‌نام"
+
+msgid "Registration End Time"
+msgstr "زمان پایان ثبت‌نام"
+
+msgid "Event Settings"
+msgstr "تنظیمات رویداد"
+
+msgid "Number of attendees"
+msgstr "تعداد شرکت‌کنندگان"
+
+msgid "Maximum number of tickets available."
+msgstr "حداکثر تعداد بلیط موجود."
+
+msgid "Event Status"
+msgstr "وضعیت رویداد"
+
+msgid "Event Active"
+msgstr "رویداد فعال"
+
+msgid "Activate or deactivate this event."
+msgstr "این رویداد را فعال یا غیرفعال کنید."
+
+msgid "Private Event"
+msgstr "رویداد خصوصی"
+
+msgid "Private events can only be accessed with a special link."
+msgstr "رویدادهای خصوصی فقط با لینک مخصوص قابل دسترسی هستند."
+
+msgid "Attendee Information"
+msgstr "اطلاعات شرکت‌کننده"
+
+msgid "Name Collection"
+msgstr "جمع‌آوری نام"
+
+msgid "Collect Name"
+msgstr "جمع‌آوری نام"
+
+msgid "Name Optional"
+msgstr "نام اختیاری"
+
+msgid "Email Collection"
+msgstr "جمع‌آوری ایمیل"
+
+msgid "Collect Email"
+msgstr "جمع‌آوری ایمیل"
+
+msgid "Email Optional"
+msgstr "ایمیل اختیاری"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب ویکی‌مدیای خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب ویکی‌مدیای خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "شما از حساب ویکی‌مدیای خود خارج شده‌اید."
+
+msgid "You do not have permission to edit this event."
+msgstr "شما اجازه ویرایش این رویداد را ندارید."
+
+msgid "You do not have permission to manage tickets for this event."
+msgstr "شما اجازه مدیریت بلیط‌های این رویداد را ندارید."
+
+msgid "You do not have permission to export tickets for this event."
+msgstr "شما اجازه خروجی گرفتن از بلیط‌های این رویداد را ندارید."
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Cannot create an event in the past."
+msgstr "نمی‌توان رویدادی در گذشته ایجاد کرد."
+
+msgid "Cannot set event date to the past."
+msgstr "نمی‌توان تاریخ رویداد را به گذشته تنظیم کرد."
+
+msgid "Edit Event"
+msgstr "ویرایش رویداد"
+
+msgid "Error deleting ticket"
+msgstr "خطا در حذف بلیط"
+
+msgid "Image not found on Wikimedia Commons. Please check the filename."
+msgstr "تصویر در ویکی‌مدیا کامنز یافت نشد. لطفاً نام فایل را بررسی کنید."
+
+msgid "Error validating image:"
+msgstr "خطا در اعتبارسنجی تصویر:"
+
+msgid "Image URL not found. Please make sure the image exists."
+msgstr "آدرس تصویر یافت نشد. لطفاً مطمئن شوید که تصویر وجود دارد."
+
+msgid "An error occurred while processing your request."
+msgstr "خطایی هنگام پردازش درخواست شما رخ داد."
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف موارد انتخاب شده"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+msgid "Confirm Deletion"
+msgstr "تایید حذف"
+
+msgid "Cancel"
+msgstr "لغو"
+
+msgid "Print Ticket"
+msgstr "چاپ بلیط"
+
+msgid "Please select at least one ticket."
+msgstr "لطفاً حداقل یک بلیط را انتخاب کنید."
+
+msgid "Are you sure you want to delete the selected tickets?"
+msgstr "آیا مطمئن هستید که می‌خواهید بلیط‌های انتخاب شده را حذف کنید؟"
+
+msgid "Print Ticket"
+msgstr "چاپ بلیط"
+
+msgid "Basic Information"
+msgstr "اطلاعات اصلی"
+
+msgid "Event Title"
+msgstr "عنوان رویداد"
+
+msgid "Enter event title"
+msgstr "عنوان رویداد را وارد کنید"
+
+msgid "A descriptive title for your event."
+msgstr "یک عنوان توصیفی برای رویداد شما."
+
+msgid "Describe your event..."
+msgstr "رویداد خود را توصیف کنید..."
+
+msgid "Provide details about your event. This will be shown to attendees."
+msgstr ""
+"جزئیات رویداد خود را ارائه دهید. این برای شرکت‌کنندگان نمایش داده خواهد شد."
+
+msgid "Featured Image"
+msgstr "تصویر اصلی"
+
+msgid "Validate & Preview"
+msgstr "اعتبارسنجی و پیش‌نمایش"
+
+msgid "Image Preview"
+msgstr "پیش‌نمایش تصویر"
+
+msgid "Event location"
+msgstr "مکان رویداد"
+
+msgid "Where will the event take place?"
+msgstr "رویداد کجا برگزار خواهد شد؟"
+
+msgid "Date & Time"
+msgstr "تاریخ و زمان"
+
+msgid "Event Date"
+msgstr "تاریخ رویداد"
+
+msgid "Event Time"
+msgstr "زمان رویداد"
+
+msgid "Select the timezone for your event."
+msgstr "منطقه زمانی رویداد خود را انتخاب کنید."
+
+msgid "Registration Start Date"
+msgstr "تاریخ شروع ثبت‌نام"
+
+msgid "Registration Start Time"
+msgstr "زمان شروع ثبت‌نام"
+
+msgid "Registration End Date"
+msgstr "تاریخ پایان ثبت‌نام"
+
+msgid "Registration End Time"
+msgstr "زمان پایان ثبت‌نام"
+
+msgid "Event Settings"
+msgstr "تنظیمات رویداد"
+
+msgid "Number of attendees"
+msgstr "تعداد شرکت‌کنندگان"
+
+msgid "Maximum number of tickets available."
+msgstr "حداکثر تعداد بلیط موجود."
+
+msgid "Event Status"
+msgstr "وضعیت رویداد"
+
+msgid "Event Active"
+msgstr "رویداد فعال"
+
+msgid "Activate or deactivate this event."
+msgstr "این رویداد را فعال یا غیرفعال کنید."
+
+msgid "Private Event"
+msgstr "رویداد خصوصی"
+
+msgid "Private events can only be accessed with a special link."
+msgstr "رویدادهای خصوصی فقط با لینک مخصوص قابل دسترسی هستند."
+
+msgid "Attendee Information"
+msgstr "اطلاعات شرکت‌کننده"
+
+msgid "Name Collection"
+msgstr "جمع‌آوری نام"
+
+msgid "Collect Name"
+msgstr "جمع‌آوری نام"
+
+msgid "Name Optional"
+msgstr "نام اختیاری"
+
+msgid "Email Collection"
+msgstr "جمع‌آوری ایمیل"
+
+msgid "Collect Email"
+msgstr "جمع‌آوری ایمیل"
+
+msgid "Email Optional"
+msgstr "ایمیل اختیاری"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب ویکی‌مدیای خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب ویکی‌مدیای خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "شما از حساب ویکی‌مدیای خود خارج شده‌اید."
+
+msgid "You do not have permission to edit this event."
+msgstr "شما اجازه ویرایش این رویداد را ندارید."
+
+msgid "You do not have permission to manage tickets for this event."
+msgstr "شما اجازه مدیریت بلیط‌های این رویداد را ندارید."
+
+msgid "You do not have permission to export tickets for this event."
+msgstr "شما اجازه خروجی گرفتن از بلیط‌های این رویداد را ندارید."
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Cannot create an event in the past."
+msgstr "نمی‌توان رویدادی در گذشته ایجاد کرد."
+
+msgid "Cannot set event date to the past."
+msgstr "نمی‌توان تاریخ رویداد را به گذشته تنظیم کرد."
+
+msgid "Edit Event"
+msgstr "ویرایش رویداد"
+
+msgid "Error deleting ticket"
+msgstr "خطا در حذف بلیط"
+
+msgid "Image not found on Wikimedia Commons. Please check the filename."
+msgstr "تصویر در ویکی‌مدیا کامنز یافت نشد. لطفاً نام فایل را بررسی کنید."
+
+msgid "Error validating image:"
+msgstr "خطا در اعتبارسنجی تصویر:"
+
+msgid "Image URL not found. Please make sure the image exists."
+msgstr "آدرس تصویر یافت نشد. لطفاً مطمئن شوید که تصویر وجود دارد."
+
+msgid "An error occurred while processing your request."
+msgstr "خطایی هنگام پردازش درخواست شما رخ داد."
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف موارد انتخاب شده"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+msgid "Confirm Deletion"
+msgstr "تایید حذف"
+
+msgid "Cancel"
+msgstr "لغو"
+
+msgid "Print Ticket"
+msgstr "چاپ بلیط"
+
+msgid "Please select at least one ticket."
+msgstr "لطفاً حداقل یک بلیط را انتخاب کنید."
+
+msgid "Are you sure you want to delete the selected tickets?"
+msgstr "آیا مطمئن هستید که می‌خواهید بلیط‌های انتخاب شده را حذف کنید؟"
+
+msgid "Print Ticket"
+msgstr "چاپ بلیط"
+
+msgid "Basic Information"
+msgstr "اطلاعات اصلی"
+
+msgid "Event Title"
+msgstr "عنوان رویداد"
+
+msgid "Enter event title"
+msgstr "عنوان رویداد را وارد کنید"
+
+msgid "A descriptive title for your event."
+msgstr "یک عنوان توصیفی برای رویداد شما."
+
+msgid "Describe your event..."
+msgstr "رویداد خود را توصیف کنید..."
+
+msgid "Provide details about your event. This will be shown to attendees."
+msgstr ""
+"جزئیات رویداد خود را ارائه دهید. این برای شرکت‌کنندگان نمایش داده خواهد شد."
+
+msgid "Featured Image"
+msgstr "تصویر اصلی"
+
+msgid "Validate & Preview"
+msgstr "اعتبارسنجی و پیش‌نمایش"
+
+msgid "Image Preview"
+msgstr "پیش‌نمایش تصویر"
+
+msgid "Event location"
+msgstr "مکان رویداد"
+
+msgid "Where will the event take place?"
+msgstr "رویداد کجا برگزار خواهد شد؟"
+
+msgid "Date & Time"
+msgstr "تاریخ و زمان"
+
+msgid "Event Date"
+msgstr "تاریخ رویداد"
+
+msgid "Event Time"
+msgstr "زمان رویداد"
+
+msgid "Select the timezone for your event."
+msgstr "منطقه زمانی رویداد خود را انتخاب کنید."
+
+msgid "Registration Start Date"
+msgstr "تاریخ شروع ثبت‌نام"
+
+msgid "Registration Start Time"
+msgstr "زمان شروع ثبت‌نام"
+
+msgid "Registration End Date"
+msgstr "تاریخ پایان ثبت‌نام"
+
+msgid "Registration End Time"
+msgstr "زمان پایان ثبت‌نام"
+
+msgid "Event Settings"
+msgstr "تنظیمات رویداد"
+
+msgid "Number of attendees"
+msgstr "تعداد شرکت‌کنندگان"
+
+msgid "Maximum number of tickets available."
+msgstr "حداکثر تعداد بلیط موجود."
+
+msgid "Event Status"
+msgstr "وضعیت رویداد"
+
+msgid "Event Active"
+msgstr "رویداد فعال"
+
+msgid "Activate or deactivate this event."
+msgstr "این رویداد را فعال یا غیرفعال کنید."
+
+msgid "Private Event"
+msgstr "رویداد خصوصی"
+
+msgid "Private events can only be accessed with a special link."
+msgstr "رویدادهای خصوصی فقط با لینک مخصوص قابل دسترسی هستند."
+
+msgid "Attendee Information"
+msgstr "اطلاعات شرکت‌کننده"
+
+msgid "Name Collection"
+msgstr "جمع‌آوری نام"
+
+msgid "Collect Name"
+msgstr "جمع‌آوری نام"
+
+msgid "Name Optional"
+msgstr "نام اختیاری"
+
+msgid "Email Collection"
+msgstr "جمع‌آوری ایمیل"
+
+msgid "Collect Email"
+msgstr "جمع‌آوری ایمیل"
+
+msgid "Email Optional"
+msgstr "ایمیل اختیاری"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب ویکی‌مدیای خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب ویکی‌مدیای خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "شما از حساب ویکی‌مدیای خود خارج شده‌اید."
+
+msgid "You do not have permission to edit this event."
+msgstr "شما اجازه ویرایش این رویداد را ندارید."
+
+msgid "You do not have permission to manage tickets for this event."
+msgstr "شما اجازه مدیریت بلیط‌های این رویداد را ندارید."
+
+msgid "You do not have permission to export tickets for this event."
+msgstr "شما اجازه خروجی گرفتن از بلیط‌های این رویداد را ندارید."
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Cannot create an event in the past."
+msgstr "نمی‌توان رویدادی در گذشته ایجاد کرد."
+
+msgid "Cannot set event date to the past."
+msgstr "نمی‌توان تاریخ رویداد را به گذشته تنظیم کرد."
+
+msgid "Edit Event"
+msgstr "ویرایش رویداد"
+
+msgid "Error deleting ticket"
+msgstr "خطا در حذف بلیط"
+
+msgid "Image not found on Wikimedia Commons. Please check the filename."
+msgstr "تصویر در ویکی‌مدیا کامنز یافت نشد. لطفاً نام فایل را بررسی کنید."
+
+msgid "Error validating image:"
+msgstr "خطا در اعتبارسنجی تصویر:"
+
+msgid "Image URL not found. Please make sure the image exists."
+msgstr "آدرس تصویر یافت نشد. لطفاً مطمئن شوید که تصویر وجود دارد."
+
+msgid "An error occurred while processing your request."
+msgstr "خطایی هنگام پردازش درخواست شما رخ داد."
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف موارد انتخاب شده"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+msgid "Confirm Deletion"
+msgstr "تایید حذف"
+
+msgid "Cancel"
+msgstr "لغو"
+
+msgid "Print Ticket"
+msgstr "چاپ بلیط"
+
+msgid "Please select at least one ticket."
+msgstr "لطفاً حداقل یک بلیط را انتخاب کنید."
+
+msgid "Are you sure you want to delete the selected tickets?"
+msgstr "آیا مطمئن هستید که می‌خواهید بلیط‌های انتخاب شده را حذف کنید؟"
+
+msgid "Print Ticket"
+msgstr "چاپ بلیط"
+
+msgid "Basic Information"
+msgstr "اطلاعات اصلی"
+
+msgid "Event Title"
+msgstr "عنوان رویداد"
+
+msgid "Enter event title"
+msgstr "عنوان رویداد را وارد کنید"
+
+msgid "A descriptive title for your event."
+msgstr "یک عنوان توصیفی برای رویداد شما."
+
+msgid "Describe your event..."
+msgstr "رویداد خود را توصیف کنید..."
+
+msgid "Provide details about your event. This will be shown to attendees."
+msgstr ""
+"جزئیات رویداد خود را ارائه دهید. این برای شرکت‌کنندگان نمایش داده خواهد شد."
+
+msgid "Featured Image"
+msgstr "تصویر اصلی"
+
+msgid "Validate & Preview"
+msgstr "اعتبارسنجی و پیش‌نمایش"
+
+msgid "Image Preview"
+msgstr "پیش‌نمایش تصویر"
+
+msgid "Event location"
+msgstr "مکان رویداد"
+
+msgid "Where will the event take place?"
+msgstr "رویداد کجا برگزار خواهد شد؟"
+
+msgid "Date & Time"
+msgstr "تاریخ و زمان"
+
+msgid "Event Date"
+msgstr "تاریخ رویداد"
+
+msgid "Event Time"
+msgstr "زمان رویداد"
+
+msgid "Select the timezone for your event."
+msgstr "منطقه زمانی رویداد خود را انتخاب کنید."
+
+msgid "Registration Start Date"
+msgstr "تاریخ شروع ثبت‌نام"
+
+msgid "Registration Start Time"
+msgstr "زمان شروع ثبت‌نام"
+
+msgid "Registration End Date"
+msgstr "تاریخ پایان ثبت‌نام"
+
+msgid "Registration End Time"
+msgstr "زمان پایان ثبت‌نام"
+
+msgid "Event Settings"
+msgstr "تنظیمات رویداد"
+
+msgid "Number of attendees"
+msgstr "تعداد شرکت‌کنندگان"
+
+msgid "Maximum number of tickets available."
+msgstr "حداکثر تعداد بلیط موجود."
+
+msgid "Event Status"
+msgstr "وضعیت رویداد"
+
+msgid "Event Active"
+msgstr "رویداد فعال"
+
+msgid "Activate or deactivate this event."
+msgstr "این رویداد را فعال یا غیرفعال کنید."
+
+msgid "Private Event"
+msgstr "رویداد خصوصی"
+
+msgid "Private events can only be accessed with a special link."
+msgstr "رویدادهای خصوصی فقط با لینک مخصوص قابل دسترسی هستند."
+
+msgid "Attendee Information"
+msgstr "اطلاعات شرکت‌کننده"
+
+msgid "Name Collection"
+msgstr "جمع‌آوری نام"
+
+msgid "Collect Name"
+msgstr "جمع‌آوری نام"
+
+msgid "Name Optional"
+msgstr "نام اختیاری"
+
+msgid "Email Collection"
+msgstr "جمع‌آوری ایمیل"
+
+msgid "Collect Email"
+msgstr "جمع‌آوری ایمیل"
+
+msgid "Email Optional"
+msgstr "ایمیل اختیاری"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب ویکی‌مدیای خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب ویکی‌مدیای خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "شما از حساب ویکی‌مدیای خود خارج شده‌اید."
+
+msgid "You do not have permission to edit this event."
+msgstr "شما اجازه ویرایش این رویداد را ندارید."
+
+msgid "You do not have permission to manage tickets for this event."
+msgstr "شما اجازه مدیریت بلیط‌های این رویداد را ندارید."
+
+msgid "You do not have permission to export tickets for this event."
+msgstr "شما اجازه خروجی گرفتن از بلیط‌های این رویداد را ندارید."
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Cannot create an event in the past."
+msgstr "نمی‌توان رویدادی در گذشته ایجاد کرد."
+
+msgid "Cannot set event date to the past."
+msgstr "نمی‌توان تاریخ رویداد را به گذشته تنظیم کرد."
+
+msgid "Edit Event"
+msgstr "ویرایش رویداد"
+
+msgid "Error deleting ticket"
+msgstr "خطا در حذف بلیط"
+
+msgid "Image not found on Wikimedia Commons. Please check the filename."
+msgstr "تصویر در ویکی‌مدیا کامنز یافت نشد. لطفاً نام فایل را بررسی کنید."
+
+msgid "Error validating image:"
+msgstr "خطا در اعتبارسنجی تصویر:"
+
+msgid "Image URL not found. Please make sure the image exists."
+msgstr "آدرس تصویر یافت نشد. لطفاً مطمئن شوید که تصویر وجود دارد."
+
+msgid "An error occurred while processing your request."
+msgstr "خطایی هنگام پردازش درخواست شما رخ داد."
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف موارد انتخاب شده"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+>>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
+msgid "Username Collection"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Collect Username"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Username Optional"
+msgstr "نام کاربری اختیاری"
+
+msgid "Phone Number Collection"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Collect Phone Number"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Phone Number Optional"
+msgstr "شماره تلفن اختیاری"
+
+<<<<<<< HEAD
+msgid "Unavailable"
+msgstr "غیرقابل دسترس"
+
+msgid "View Your Ticket"
+msgstr "مشاهده بلیط شما"
+
+msgid "Username"
+msgstr "نام کاربری"
+
+msgid "Enter your username"
+msgstr "نام کاربری خود را وارد کنید"
+
+msgid "Please provide your username."
+msgstr "لطفاً نام کاربری خود را وارد کنید"
+
+msgid "Phone Number"
+msgstr "شماره تلفن"
+
+msgid "Enter your phone number"
+msgstr "شماره تلفن خود را وارد کنید"
+
+msgid "Please provide your phone number."
+msgstr "لطفاً شماره تلفن خود را وارد کنید"
+=======
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب ویکی‌مدیای خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب ویکی‌مدیای خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "شما از حساب ویکی‌مدیای خود خارج شده‌اید."
+
+msgid "You do not have permission to edit this event."
+msgstr "شما اجازه ویرایش این رویداد را ندارید."
+
+msgid "You do not have permission to manage tickets for this event."
+msgstr "شما اجازه مدیریت بلیط‌های این رویداد را ندارید."
+
+msgid "You do not have permission to export tickets for this event."
+msgstr "شما اجازه خروجی گرفتن از بلیط‌های این رویداد را ندارید."
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Cannot create an event in the past."
+msgstr "نمی‌توان رویدادی در گذشته ایجاد کرد."
+
+msgid "Cannot set event date to the past."
+msgstr "نمی‌توان تاریخ رویداد را به گذشته تنظیم کرد."
+
+msgid "Edit Event"
+msgstr "ویرایش رویداد"
+
+msgid "Error deleting ticket"
+msgstr "خطا در حذف بلیط"
+
+msgid "Image not found on Wikimedia Commons. Please check the filename."
+msgstr "تصویر در ویکی‌مدیا کامنز یافت نشد. لطفاً نام فایل را بررسی کنید."
+
+msgid "Error validating image:"
+msgstr "خطا در اعتبارسنجی تصویر:"
+
+msgid "Image URL not found. Please make sure the image exists."
+msgstr "آدرس تصویر یافت نشد. لطفاً مطمئن شوید که تصویر وجود دارد."
+
+msgid "An error occurred while processing your request."
+msgstr "خطایی هنگام پردازش درخواست شما رخ داد."
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف موارد انتخاب شده"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+msgid "Username Collection"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Collect Username"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Username Optional"
+msgstr "نام کاربری اختیاری"
+
+msgid "Phone Number Collection"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Collect Phone Number"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Phone Number Optional"
+msgstr "شماره تلفن اختیاری"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب ویکی‌مدیای خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب ویکی‌مدیای خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "شما از حساب ویکی‌مدیای خود خارج شده‌اید."
+
+msgid "You do not have permission to edit this event."
+msgstr "شما اجازه ویرایش این رویداد را ندارید."
+
+msgid "You do not have permission to manage tickets for this event."
+msgstr "شما اجازه مدیریت بلیط‌های این رویداد را ندارید."
+
+msgid "You do not have permission to export tickets for this event."
+msgstr "شما اجازه خروجی گرفتن از بلیط‌های این رویداد را ندارید."
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Cannot create an event in the past."
+msgstr "نمی‌توان رویدادی در گذشته ایجاد کرد."
+
+msgid "Cannot set event date to the past."
+msgstr "نمی‌توان تاریخ رویداد را به گذشته تنظیم کرد."
+
+msgid "Edit Event"
+msgstr "ویرایش رویداد"
+
+msgid "Error deleting ticket"
+msgstr "خطا در حذف بلیط"
+
+msgid "Image not found on Wikimedia Commons. Please check the filename."
+msgstr "تصویر در ویکی‌مدیا کامنز یافت نشد. لطفاً نام فایل را بررسی کنید."
+
+msgid "Error validating image:"
+msgstr "خطا در اعتبارسنجی تصویر:"
+
+msgid "Image URL not found. Please make sure the image exists."
+msgstr "آدرس تصویر یافت نشد. لطفاً مطمئن شوید که تصویر وجود دارد."
+
+msgid "An error occurred while processing your request."
+msgstr "خطایی هنگام پردازش درخواست شما رخ داد."
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف موارد انتخاب شده"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+msgid "Username Collection"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Collect Username"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Username Optional"
+msgstr "نام کاربری اختیاری"
+
+msgid "Phone Number Collection"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Collect Phone Number"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Phone Number Optional"
+msgstr "شماره تلفن اختیاری"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب ویکی‌مدیای خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب ویکی‌مدیای خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "شما از حساب ویکی‌مدیای خود خارج شده‌اید."
+
+msgid "You do not have permission to edit this event."
+msgstr "شما اجازه ویرایش این رویداد را ندارید."
+
+msgid "You do not have permission to manage tickets for this event."
+msgstr "شما اجازه مدیریت بلیط‌های این رویداد را ندارید."
+
+msgid "You do not have permission to export tickets for this event."
+msgstr "شما اجازه خروجی گرفتن از بلیط‌های این رویداد را ندارید."
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Cannot create an event in the past."
+msgstr "نمی‌توان رویدادی در گذشته ایجاد کرد."
+
+msgid "Cannot set event date to the past."
+msgstr "نمی‌توان تاریخ رویداد را به گذشته تنظیم کرد."
+
+msgid "Edit Event"
+msgstr "ویرایش رویداد"
+
+msgid "Error deleting ticket"
+msgstr "خطا در حذف بلیط"
+
+msgid "Image not found on Wikimedia Commons. Please check the filename."
+msgstr "تصویر در ویکی‌مدیا کامنز یافت نشد. لطفاً نام فایل را بررسی کنید."
+
+msgid "Error validating image:"
+msgstr "خطا در اعتبارسنجی تصویر:"
+
+msgid "Image URL not found. Please make sure the image exists."
+msgstr "آدرس تصویر یافت نشد. لطفاً مطمئن شوید که تصویر وجود دارد."
+
+msgid "An error occurred while processing your request."
+msgstr "خطایی هنگام پردازش درخواست شما رخ داد."
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف موارد انتخاب شده"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+msgid "Username Collection"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Collect Username"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Username Optional"
+msgstr "نام کاربری اختیاری"
+
+msgid "Phone Number Collection"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Collect Phone Number"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Phone Number Optional"
+msgstr "شماره تلفن اختیاری"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب ویکی‌مدیای خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب ویکی‌مدیای خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "شما از حساب ویکی‌مدیای خود خارج شده‌اید."
+
+msgid "You do not have permission to edit this event."
+msgstr "شما اجازه ویرایش این رویداد را ندارید."
+
+msgid "You do not have permission to manage tickets for this event."
+msgstr "شما اجازه مدیریت بلیط‌های این رویداد را ندارید."
+
+msgid "You do not have permission to export tickets for this event."
+msgstr "شما اجازه خروجی گرفتن از بلیط‌های این رویداد را ندارید."
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Cannot create an event in the past."
+msgstr "نمی‌توان رویدادی در گذشته ایجاد کرد."
+
+msgid "Cannot set event date to the past."
+msgstr "نمی‌توان تاریخ رویداد را به گذشته تنظیم کرد."
+
+msgid "Edit Event"
+msgstr "ویرایش رویداد"
+
+msgid "Error deleting ticket"
+msgstr "خطا در حذف بلیط"
+
+msgid "Image not found on Wikimedia Commons. Please check the filename."
+msgstr "تصویر در ویکی‌مدیا کامنز یافت نشد. لطفاً نام فایل را بررسی کنید."
+
+msgid "Error validating image:"
+msgstr "خطا در اعتبارسنجی تصویر:"
+
+msgid "Image URL not found. Please make sure the image exists."
+msgstr "آدرس تصویر یافت نشد. لطفاً مطمئن شوید که تصویر وجود دارد."
+
+msgid "An error occurred while processing your request."
+msgstr "خطایی هنگام پردازش درخواست شما رخ داد."
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف موارد انتخاب شده"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+msgid "Username Collection"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Collect Username"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Username Optional"
+msgstr "نام کاربری اختیاری"
+
+msgid "Phone Number Collection"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Collect Phone Number"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Phone Number Optional"
+msgstr "شماره تلفن اختیاری"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب ویکی‌مدیای خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب ویکی‌مدیای خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "شما از حساب ویکی‌مدیای خود خارج شده‌اید."
+
+msgid "You do not have permission to edit this event."
+msgstr "شما اجازه ویرایش این رویداد را ندارید."
+
+msgid "You do not have permission to manage tickets for this event."
+msgstr "شما اجازه مدیریت بلیط‌های این رویداد را ندارید."
+
+msgid "You do not have permission to export tickets for this event."
+msgstr "شما اجازه خروجی گرفتن از بلیط‌های این رویداد را ندارید."
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Cannot create an event in the past."
+msgstr "نمی‌توان رویدادی در گذشته ایجاد کرد."
+
+msgid "Cannot set event date to the past."
+msgstr "نمی‌توان تاریخ رویداد را به گذشته تنظیم کرد."
+
+msgid "Edit Event"
+msgstr "ویرایش رویداد"
+
+msgid "Error deleting ticket"
+msgstr "خطا در حذف بلیط"
+
+msgid "Image not found on Wikimedia Commons. Please check the filename."
+msgstr "تصویر در ویکی‌مدیا کامنز یافت نشد. لطفاً نام فایل را بررسی کنید."
+
+msgid "Error validating image:"
+msgstr "خطا در اعتبارسنجی تصویر:"
+
+msgid "Image URL not found. Please make sure the image exists."
+msgstr "آدرس تصویر یافت نشد. لطفاً مطمئن شوید که تصویر وجود دارد."
+
+msgid "An error occurred while processing your request."
+msgstr "خطایی هنگام پردازش درخواست شما رخ داد."
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف موارد انتخاب شده"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+msgid "Username Collection"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Collect Username"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Username Optional"
+msgstr "نام کاربری اختیاری"
+
+msgid "Phone Number Collection"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Collect Phone Number"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Phone Number Optional"
+msgstr "شماره تلفن اختیاری"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب ویکی‌مدیای خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب ویکی‌مدیای خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "شما از حساب ویکی‌مدیای خود خارج شده‌اید."
+
+msgid "You do not have permission to edit this event."
+msgstr "شما اجازه ویرایش این رویداد را ندارید."
+
+msgid "You do not have permission to manage tickets for this event."
+msgstr "شما اجازه مدیریت بلیط‌های این رویداد را ندارید."
+
+msgid "You do not have permission to export tickets for this event."
+msgstr "شما اجازه خروجی گرفتن از بلیط‌های این رویداد را ندارید."
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Cannot create an event in the past."
+msgstr "نمی‌توان رویدادی در گذشته ایجاد کرد."
+
+msgid "Cannot set event date to the past."
+msgstr "نمی‌توان تاریخ رویداد را به گذشته تنظیم کرد."
+
+msgid "Edit Event"
+msgstr "ویرایش رویداد"
+
+msgid "Error deleting ticket"
+msgstr "خطا در حذف بلیط"
+
+msgid "Image not found on Wikimedia Commons. Please check the filename."
+msgstr "تصویر در ویکی‌مدیا کامنز یافت نشد. لطفاً نام فایل را بررسی کنید."
+
+msgid "Error validating image:"
+msgstr "خطا در اعتبارسنجی تصویر:"
+
+msgid "Image URL not found. Please make sure the image exists."
+msgstr "آدرس تصویر یافت نشد. لطفاً مطمئن شوید که تصویر وجود دارد."
+
+msgid "An error occurred while processing your request."
+msgstr "خطایی هنگام پردازش درخواست شما رخ داد."
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف موارد انتخاب شده"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+msgid "Username Collection"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Collect Username"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Username Optional"
+msgstr "نام کاربری اختیاری"
+
+msgid "Phone Number Collection"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Collect Phone Number"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Phone Number Optional"
+msgstr "شماره تلفن اختیاری"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب ویکی‌مدیای خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب ویکی‌مدیای خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "شما از حساب ویکی‌مدیای خود خارج شده‌اید."
+
+msgid "You do not have permission to edit this event."
+msgstr "شما اجازه ویرایش این رویداد را ندارید."
+
+msgid "You do not have permission to manage tickets for this event."
+msgstr "شما اجازه مدیریت بلیط‌های این رویداد را ندارید."
+
+msgid "You do not have permission to export tickets for this event."
+msgstr "شما اجازه خروجی گرفتن از بلیط‌های این رویداد را ندارید."
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Cannot create an event in the past."
+msgstr "نمی‌توان رویدادی در گذشته ایجاد کرد."
+
+msgid "Cannot set event date to the past."
+msgstr "نمی‌توان تاریخ رویداد را به گذشته تنظیم کرد."
+
+msgid "Edit Event"
+msgstr "ویرایش رویداد"
+
+msgid "Error deleting ticket"
+msgstr "خطا در حذف بلیط"
+
+msgid "Image not found on Wikimedia Commons. Please check the filename."
+msgstr "تصویر در ویکی‌مدیا کامنز یافت نشد. لطفاً نام فایل را بررسی کنید."
+
+msgid "Error validating image:"
+msgstr "خطا در اعتبارسنجی تصویر:"
+
+msgid "Image URL not found. Please make sure the image exists."
+msgstr "آدرس تصویر یافت نشد. لطفاً مطمئن شوید که تصویر وجود دارد."
+
+msgid "An error occurred while processing your request."
+msgstr "خطایی هنگام پردازش درخواست شما رخ داد."
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف موارد انتخاب شده"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+msgid "Username Collection"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Collect Username"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Username Optional"
+msgstr "نام کاربری اختیاری"
+
+msgid "Phone Number Collection"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Collect Phone Number"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Phone Number Optional"
+msgstr "شماره تلفن اختیاری"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب ویکی‌مدیای خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب ویکی‌مدیای خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "شما از حساب ویکی‌مدیای خود خارج شده‌اید."
+
+msgid "You do not have permission to edit this event."
+msgstr "شما اجازه ویرایش این رویداد را ندارید."
+
+msgid "You do not have permission to manage tickets for this event."
+msgstr "شما اجازه مدیریت بلیط‌های این رویداد را ندارید."
+
+msgid "You do not have permission to export tickets for this event."
+msgstr "شما اجازه خروجی گرفتن از بلیط‌های این رویداد را ندارید."
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Cannot create an event in the past."
+msgstr "نمی‌توان رویدادی در گذشته ایجاد کرد."
+
+msgid "Cannot set event date to the past."
+msgstr "نمی‌توان تاریخ رویداد را به گذشته تنظیم کرد."
+
+msgid "Edit Event"
+msgstr "ویرایش رویداد"
+
+msgid "Error deleting ticket"
+msgstr "خطا در حذف بلیط"
+
+msgid "Image not found on Wikimedia Commons. Please check the filename."
+msgstr "تصویر در ویکی‌مدیا کامنز یافت نشد. لطفاً نام فایل را بررسی کنید."
+
+msgid "Error validating image:"
+msgstr "خطا در اعتبارسنجی تصویر:"
+
+msgid "Image URL not found. Please make sure the image exists."
+msgstr "آدرس تصویر یافت نشد. لطفاً مطمئن شوید که تصویر وجود دارد."
+
+msgid "An error occurred while processing your request."
+msgstr "خطایی هنگام پردازش درخواست شما رخ داد."
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف موارد انتخاب شده"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+msgid "Username Collection"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Collect Username"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Username Optional"
+msgstr "نام کاربری اختیاری"
+
+msgid "Phone Number Collection"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Collect Phone Number"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Phone Number Optional"
+msgstr "شماره تلفن اختیاری"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب ویکی‌مدیای خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب ویکی‌مدیای خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "شما از حساب ویکی‌مدیای خود خارج شده‌اید."
+
+msgid "You do not have permission to edit this event."
+msgstr "شما اجازه ویرایش این رویداد را ندارید."
+
+msgid "You do not have permission to manage tickets for this event."
+msgstr "شما اجازه مدیریت بلیط‌های این رویداد را ندارید."
+
+msgid "You do not have permission to export tickets for this event."
+msgstr "شما اجازه خروجی گرفتن از بلیط‌های این رویداد را ندارید."
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Cannot create an event in the past."
+msgstr "نمی‌توان رویدادی در گذشته ایجاد کرد."
+
+msgid "Cannot set event date to the past."
+msgstr "نمی‌توان تاریخ رویداد را به گذشته تنظیم کرد."
+
+msgid "Edit Event"
+msgstr "ویرایش رویداد"
+
+msgid "Error deleting ticket"
+msgstr "خطا در حذف بلیط"
+
+msgid "Image not found on Wikimedia Commons. Please check the filename."
+msgstr "تصویر در ویکی‌مدیا کامنز یافت نشد. لطفاً نام فایل را بررسی کنید."
+
+msgid "Error validating image:"
+msgstr "خطا در اعتبارسنجی تصویر:"
+
+msgid "Image URL not found. Please make sure the image exists."
+msgstr "آدرس تصویر یافت نشد. لطفاً مطمئن شوید که تصویر وجود دارد."
+
+msgid "An error occurred while processing your request."
+msgstr "خطایی هنگام پردازش درخواست شما رخ داد."
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف موارد انتخاب شده"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+msgid "Username Collection"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Collect Username"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Username Optional"
+msgstr "نام کاربری اختیاری"
+
+msgid "Phone Number Collection"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Collect Phone Number"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Phone Number Optional"
+msgstr "شماره تلفن اختیاری"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب ویکی‌مدیای خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب ویکی‌مدیای خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "شما از حساب ویکی‌مدیای خود خارج شده‌اید."
+
+msgid "You do not have permission to edit this event."
+msgstr "شما اجازه ویرایش این رویداد را ندارید."
+
+msgid "You do not have permission to manage tickets for this event."
+msgstr "شما اجازه مدیریت بلیط‌های این رویداد را ندارید."
+
+msgid "You do not have permission to export tickets for this event."
+msgstr "شما اجازه خروجی گرفتن از بلیط‌های این رویداد را ندارید."
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Cannot create an event in the past."
+msgstr "نمی‌توان رویدادی در گذشته ایجاد کرد."
+
+msgid "Cannot set event date to the past."
+msgstr "نمی‌توان تاریخ رویداد را به گذشته تنظیم کرد."
+
+msgid "Edit Event"
+msgstr "ویرایش رویداد"
+
+msgid "Error deleting ticket"
+msgstr "خطا در حذف بلیط"
+
+msgid "Image not found on Wikimedia Commons. Please check the filename."
+msgstr "تصویر در ویکی‌مدیا کامنز یافت نشد. لطفاً نام فایل را بررسی کنید."
+
+msgid "Error validating image:"
+msgstr "خطا در اعتبارسنجی تصویر:"
+
+msgid "Image URL not found. Please make sure the image exists."
+msgstr "آدرس تصویر یافت نشد. لطفاً مطمئن شوید که تصویر وجود دارد."
+
+msgid "An error occurred while processing your request."
+msgstr "خطایی هنگام پردازش درخواست شما رخ داد."
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف موارد انتخاب شده"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+msgid "Username Collection"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Collect Username"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Username Optional"
+msgstr "نام کاربری اختیاری"
+
+msgid "Phone Number Collection"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Collect Phone Number"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Phone Number Optional"
+msgstr "شماره تلفن اختیاری"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب ویکی‌مدیای خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب ویکی‌مدیای خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "شما از حساب ویکی‌مدیای خود خارج شده‌اید."
+
+msgid "You do not have permission to edit this event."
+msgstr "شما اجازه ویرایش این رویداد را ندارید."
+
+msgid "You do not have permission to manage tickets for this event."
+msgstr "شما اجازه مدیریت بلیط‌های این رویداد را ندارید."
+
+msgid "You do not have permission to export tickets for this event."
+msgstr "شما اجازه خروجی گرفتن از بلیط‌های این رویداد را ندارید."
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Cannot create an event in the past."
+msgstr "نمی‌توان رویدادی در گذشته ایجاد کرد."
+
+msgid "Cannot set event date to the past."
+msgstr "نمی‌توان تاریخ رویداد را به گذشته تنظیم کرد."
+
+msgid "Edit Event"
+msgstr "ویرایش رویداد"
+
+msgid "Error deleting ticket"
+msgstr "خطا در حذف بلیط"
+
+msgid "Image not found on Wikimedia Commons. Please check the filename."
+msgstr "تصویر در ویکی‌مدیا کامنز یافت نشد. لطفاً نام فایل را بررسی کنید."
+
+msgid "Error validating image:"
+msgstr "خطا در اعتبارسنجی تصویر:"
+
+msgid "Image URL not found. Please make sure the image exists."
+msgstr "آدرس تصویر یافت نشد. لطفاً مطمئن شوید که تصویر وجود دارد."
+
+msgid "An error occurred while processing your request."
+msgstr "خطایی هنگام پردازش درخواست شما رخ داد."
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف موارد انتخاب شده"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+msgid "Username Collection"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Collect Username"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Username Optional"
+msgstr "نام کاربری اختیاری"
+
+msgid "Phone Number Collection"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Collect Phone Number"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Phone Number Optional"
+msgstr "شماره تلفن اختیاری"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب ویکی‌مدیای خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب ویکی‌مدیای خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "شما از حساب ویکی‌مدیای خود خارج شده‌اید."
+
+msgid "You do not have permission to edit this event."
+msgstr "شما اجازه ویرایش این رویداد را ندارید."
+
+msgid "You do not have permission to manage tickets for this event."
+msgstr "شما اجازه مدیریت بلیط‌های این رویداد را ندارید."
+
+msgid "You do not have permission to export tickets for this event."
+msgstr "شما اجازه خروجی گرفتن از بلیط‌های این رویداد را ندارید."
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Cannot create an event in the past."
+msgstr "نمی‌توان رویدادی در گذشته ایجاد کرد."
+
+msgid "Cannot set event date to the past."
+msgstr "نمی‌توان تاریخ رویداد را به گذشته تنظیم کرد."
+
+msgid "Edit Event"
+msgstr "ویرایش رویداد"
+
+msgid "Error deleting ticket"
+msgstr "خطا در حذف بلیط"
+
+msgid "Image not found on Wikimedia Commons. Please check the filename."
+msgstr "تصویر در ویکی‌مدیا کامنز یافت نشد. لطفاً نام فایل را بررسی کنید."
+
+msgid "Error validating image:"
+msgstr "خطا در اعتبارسنجی تصویر:"
+
+msgid "Image URL not found. Please make sure the image exists."
+msgstr "آدرس تصویر یافت نشد. لطفاً مطمئن شوید که تصویر وجود دارد."
+
+msgid "An error occurred while processing your request."
+msgstr "خطایی هنگام پردازش درخواست شما رخ داد."
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف موارد انتخاب شده"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+msgid "Username Collection"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Collect Username"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Username Optional"
+msgstr "نام کاربری اختیاری"
+
+msgid "Phone Number Collection"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Collect Phone Number"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Phone Number Optional"
+msgstr "شماره تلفن اختیاری"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Please login with your Wikimedia account."
+msgstr "لطفاً با حساب ویکی‌مدیای خود وارد شوید."
+
+msgid "User account not found. Please login again."
+msgstr "حساب کاربری یافت نشد. لطفاً دوباره وارد شوید."
+
+msgid "You have been successfully logged in with your Wikimedia account."
+msgstr "شما با موفقیت با حساب ویکی‌مدیای خود وارد شده‌اید."
+
+msgid "You have been logged out from your Wikimedia account."
+msgstr "شما از حساب ویکی‌مدیای خود خارج شده‌اید."
+
+msgid "You do not have permission to edit this event."
+msgstr "شما اجازه ویرایش این رویداد را ندارید."
+
+msgid "You do not have permission to manage tickets for this event."
+msgstr "شما اجازه مدیریت بلیط‌های این رویداد را ندارید."
+
+msgid "You do not have permission to export tickets for this event."
+msgstr "شما اجازه خروجی گرفتن از بلیط‌های این رویداد را ندارید."
+
+msgid "My Events"
+msgstr "رویدادهای من"
+
+msgid "Cannot create an event in the past."
+msgstr "نمی‌توان رویدادی در گذشته ایجاد کرد."
+
+msgid "Cannot set event date to the past."
+msgstr "نمی‌توان تاریخ رویداد را به گذشته تنظیم کرد."
+
+msgid "Edit Event"
+msgstr "ویرایش رویداد"
+
+msgid "Error deleting ticket"
+msgstr "خطا در حذف بلیط"
+
+msgid "Image not found on Wikimedia Commons. Please check the filename."
+msgstr "تصویر در ویکی‌مدیا کامنز یافت نشد. لطفاً نام فایل را بررسی کنید."
+
+msgid "Error validating image:"
+msgstr "خطا در اعتبارسنجی تصویر:"
+
+msgid "Image URL not found. Please make sure the image exists."
+msgstr "آدرس تصویر یافت نشد. لطفاً مطمئن شوید که تصویر وجود دارد."
+
+msgid "An error occurred while processing your request."
+msgstr "خطایی هنگام پردازش درخواست شما رخ داد."
+
+msgid "Manage Tickets for"
+msgstr "مدیریت بلیط‌ها برای"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Export Tickets"
+msgstr "خروجی بلیط‌ها"
+
+msgid "Registered Participants"
+msgstr "شرکت‌کنندگان ثبت‌نام شده"
+
+msgid "Delete Selected"
+msgstr "حذف موارد انتخاب شده"
+
+msgid "Mark Selected as Used"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده شده"
+
+msgid "Mark Selected as Unused"
+msgstr "علامت‌گذاری موارد انتخاب شده به عنوان استفاده نشده"
+
+msgid "Registration Date"
+msgstr "تاریخ ثبت‌نام"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
+
+msgid "Username Collection"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Collect Username"
+msgstr "جمع‌آوری نام کاربری"
+
+msgid "Username Optional"
+msgstr "نام کاربری اختیاری"
+
+msgid "Phone Number Collection"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Collect Phone Number"
+msgstr "جمع‌آوری شماره تلفن"
+
+msgid "Phone Number Optional"
+msgstr "شماره تلفن اختیاری"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+>>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b

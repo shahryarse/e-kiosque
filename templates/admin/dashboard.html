@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1>Admin Dashboard</h1>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Events</h5>
+                <h2 class="card-text">{{ total_events }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Active Events</h5>
+                <h2 class="card-text">{{ active_events }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Tickets</h5>
+                <h2 class="card-text">{{ total_tickets }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Used Tickets</h5>
+                <h2 class="card-text">{{ used_tickets }}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Top 10 Events by Ticket Count</h5>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Event</th>
+                                <th>Tickets</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for title, count in event_stats %}
+                            <tr>
+                                <td>{{ title }}</td>
+                                <td>{{ count }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">10 Most Recent Tickets</h5>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Event</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ticket in recent_tickets %}
+                            <tr>
+                                <td>{{ ticket.ticket_code }}</td>
+                                <td>{{ ticket.event.title }}</td>
+                                <td>{{ ticket.issue_date.strftime('%Y-%m-%d %H:%M') }}</td>
+                                <td>
+                                    {% if ticket.is_used %}
+                                    <span class="badge bg-success">Used</span>
+                                    {% else %}
+                                    <span class="badge bg-warning">Unused</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Quick Actions</h5>
+                <div class="d-flex gap-2">
+                    <a href="{{ url_for('wiki_new_event') }}" class="btn btn-primary">Create New Event</a>
+                    <a href="{{ url_for('admin_events') }}" class="btn btn-outline-primary">Manage Events</a>
+                    <a href="{{ url_for('admin_tickets') }}" class="btn btn-outline-primary">Manage Tickets</a>
+                    <a href="{{ url_for('manage_site_notice') }}" class="btn btn-outline-primary">
+                        <i class="bi bi-megaphone"></i> {{ _('Manage Site Notice') }}
+                    </a>
+                    {% if current_user.is_super_admin %}
+                    <a href="{{ url_for('manage_admins') }}" class="btn btn-outline-primary">Manage Admins</a>
+                    <form action="{{ url_for('admin_run_cleanup') }}" method="POST" class="d-inline">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit" class="btn btn-warning" onclick="return confirm('{{ _('Are you sure you want to delete all tickets for past events? This action cannot be undone.') }}');">
+                            <i class="bi bi-trash"></i> {{ _('Run Data Cleanup') }}
+                        </button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

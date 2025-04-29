@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Manage Site Notice') }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">{{ _('Manage Site Notice') }}</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" class="needs-validation" novalidate>
+                        {{ form.csrf_token }}
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="title" class="form-label">{{ _('Title') }}</label>
+                                <input type="text" class="form-control" id="title" name="title" value="{{ form.title.data or '' }}" required>
+                                <div class="invalid-feedback">
+                                    {{ _('Please enter a title.') }}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="background_color" class="form-label">{{ _('Background Color') }}</label>
+                                <input type="color" class="form-control form-control-color" id="background_color" name="background_color" value="{{ form.background_color.data or '#FFF3CD' }}" title="{{ _('Choose background color') }}">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="text_color" class="form-label">{{ _('Text Color') }}</label>
+                                <input type="color" class="form-control form-control-color" id="text_color" name="text_color" value="{{ form.text_color.data or '#212529' }}" title="{{ _('Choose text color') }}">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="content" class="form-label">{{ _('Content') }}</label>
+                            <textarea class="form-control" id="content" name="content" rows="4" required>{{ form.content.data or '' }}</textarea>
+                            <div class="invalid-feedback">
+                                {{ _('Please enter content.') }}
+                            </div>
+                            <small class="form-text text-muted">{{ _('HTML tags are supported.') }}</small>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" value="true" id="is_active" name="is_active" {% if form.is_active.data %}checked{% endif %}>
+                            <label class="form-check-label" for="is_active">
+                                {{ _('Active') }}
+                            </label>
+                            <div class="form-text">{{ _('Enable or disable this notice.') }}</div>
+                        </div>
+                        
+                        <div class="mt-4 mb-3">
+                            <h5>{{ _('Preview') }}</h5>
+                            <div id="notice-preview" class="alert p-3 mb-3" role="alert">
+                                <h4 id="preview-title">{{ form.title.data or 'Notice Title' }}</h4>
+                                <div id="preview-content">{{ form.content.data or 'Notice content goes here...' }}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save me-2"></i>{{ _('Save Changes') }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Form validation 
+    const forms = document.querySelectorAll('.needs-validation');
+    Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        }, false);
+    });
+    
+    // Live preview
+    const previewBox = document.getElementById('notice-preview');
+    const previewTitle = document.getElementById('preview-title');
+    const previewContent = document.getElementById('preview-content');
+    const titleInput = document.getElementById('title');
+    const contentInput = document.getElementById('content');
+    const bgColorInput = document.getElementById('background_color');
+    const textColorInput = document.getElementById('text_color');
+    
+    function updatePreview() {
+        previewTitle.textContent = titleInput.value || 'Notice Title';
+        previewContent.innerHTML = contentInput.value || 'Notice content goes here...';
+        previewBox.style.backgroundColor = bgColorInput.value;
+        previewBox.style.color = textColorInput.value;
+    }
+    
+    titleInput.addEventListener('input', updatePreview);
+    contentInput.addEventListener('input', updatePreview);
+    bgColorInput.addEventListener('input', updatePreview);
+    textColorInput.addEventListener('input', updatePreview);
+    
+    // Initial preview update
+    updatePreview();
+});
+</script>
+{% endblock %} 

@@ -1,0 +1,284 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row mb-4">
+        <div class="col">
+            <h1>{{ title }}</h1>
+            <a href="{{ url_for('wiki_dashboard') }}" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left"></i> {{ _('Back to Dashboard') }}
+            </a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0">{{ _('Event Details') }}</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+                {{ form.csrf_token }}
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            {{ form.title.label(class="form-label") }}
+                            {{ form.title(class="form-control") }}
+                            {% if form.title.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.title.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            {{ form.description.label(class="form-label") }}
+                            {{ form.description(class="form-control", rows=5) }}
+                            {% if form.description.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.description.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            {{ form.location.label(class="form-label") }}
+                            {{ form.location(class="form-control") }}
+                            {% if form.location.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.location.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    {{ form.date.label(class="form-label") }}
+                                    {{ form.date(class="form-control") }}
+                                    {% if form.date.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {% for error in form.date.errors %}
+                                                {{ error }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    {{ form.time.label(class="form-label") }}
+                                    {{ form.time(class="form-control") }}
+                                    {% if form.time.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {% for error in form.time.errors %}
+                                                {{ error }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            {{ form.timezone.label(class="form-label") }}
+                            {{ form.timezone(class="form-select") }}
+                            {% if form.timezone.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.timezone.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            {{ form.capacity.label(class="form-label") }}
+                            {{ form.capacity(class="form-control") }}
+                            {% if form.capacity.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.capacity.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    {{ form.registration_start_date.label(class="form-label") }}
+                                    {{ form.registration_start_date(class="form-control") }}
+                                    {% if form.registration_start_date.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {% for error in form.registration_start_date.errors %}
+                                                {{ error }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="form-group mb-3">
+                                    {{ form.registration_start_time.label(class="form-label") }}
+                                    {{ form.registration_start_time(class="form-control") }}
+                                    {% if form.registration_start_time.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {% for error in form.registration_start_time.errors %}
+                                                {{ error }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    {{ form.registration_end_date.label(class="form-label") }}
+                                    {{ form.registration_end_date(class="form-control") }}
+                                    {% if form.registration_end_date.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {% for error in form.registration_end_date.errors %}
+                                                {{ error }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="form-group mb-3">
+                                    {{ form.registration_end_time.label(class="form-label") }}
+                                    {{ form.registration_end_time(class="form-control") }}
+                                    {% if form.registration_end_time.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {% for error in form.registration_end_time.errors %}
+                                                {{ error }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            {{ form.image.label(class="form-label") }}
+                            <div class="input-group">
+                                {{ form.image(class="form-control") }}
+                                <button type="button" class="btn btn-outline-secondary" id="validateImageBtn">
+                                    {{ _('Validate') }}
+                                </button>
+                            </div>
+                            <small class="text-muted">{{ _('Enter a Wikimedia Commons image filename (e.g., "Example.jpg")') }}</small>
+                            <div id="imageValidationResult" class="mt-2"></div>
+                            {% if form.image.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.image.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-check mb-3">
+                            {{ form.is_active(class="form-check-input") }}
+                            {{ form.is_active.label(class="form-check-label") }}
+                            {% if form.is_active.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.is_active.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            {{ form.is_private(class="form-check-input") }}
+                            {{ form.is_private.label(class="form-check-label") }}
+                            <small class="form-text text-muted d-block">{{ _('Private events will only be accessible via a special link') }}</small>
+                            {% if form.is_private.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.is_private.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> {{ _('Save Event') }}
+                        </button>
+                        <a href="{{ url_for('wiki_dashboard') }}" class="btn btn-secondary">
+                            {{ _('Cancel') }}
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('validateImageBtn').addEventListener('click', function() {
+        const imageField = document.getElementById('{{ form.image.id }}');
+        const resultDiv = document.getElementById('imageValidationResult');
+        
+        if (!imageField.value) {
+            resultDiv.innerHTML = '<div class="alert alert-warning">{{ _("Please enter an image filename.") }}</div>';
+            return;
+        }
+        
+        resultDiv.innerHTML = '<div class="alert alert-info">{{ _("Validating image...") }}</div>';
+        
+        fetch('/validate_image', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                filename: imageField.value
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.exists) {
+                resultDiv.innerHTML = `
+                    <div class="alert alert-success">
+                        <p>{{ _("Image found!") }}</p>
+                        <img src="${data.thumb_url}" alt="Thumbnail" class="img-thumbnail" style="max-height: 150px;">
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="alert alert-danger">
+                        {{ _("Image not found. Please check the filename and try again.") }}
+                    </div>
+                `;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            resultDiv.innerHTML = `
+                <div class="alert alert-danger">
+                    {{ _("An error occurred while validating the image.") }}
+                </div>
+            `;
+        });
+    });
+</script>
+{% endblock %} 

@@ -1,0 +1,328 @@
+{% extends "base.html" %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('index') }}">{{ _('Home') }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ event.title }}</li>
+            </ol>
+        </nav>
+        <h1 class="display-5 fw-bold">{{ event.title }}</h1>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Event Details Column -->
+    <div class="col-lg-8">
+        {% if event.image_url %}
+        <div class="card mb-4 overflow-hidden shadow-sm event-detail-card">
+            <img src="{{ event.image_url }}" alt="{{ event.title }}" class="card-img-top img-fluid">
+        </div>
+        {% endif %}
+        
+        <div class="card shadow-sm mb-4 event-detail-card">
+            <div class="card-header bg-light py-3">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-info-circle me-2"></i>{{ _('Event Details') }}
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="p-2">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h6 class="text-muted mb-2">{{ _('Description') }}</h6>
+                            <p class="lead event-description">{{ event.description }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
+                        <div class="col">
+                            <div class="card h-100 border-0 bg-light event-detail-card">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted">
+                                        <i class="bi bi-calendar-event me-2 event-info-icon"></i>{{ _('Date & Time') }}
+                                    </h6>
+                                    <p class="card-text fs-5">{{ event.date.strftime('%Y-%m-%d %H:%M') }}</p>
+                                    <p class="card-text small">
+                                        {% for offset, label in display_form.timezone.choices %}
+                                            {% if event.timezone == offset %}
+                                                <span class="badge bg-light text-dark border">{{ label }}</span>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col">
+                            <div class="card h-100 border-0 bg-light event-detail-card">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted">
+                                        <i class="bi bi-geo-alt me-2 event-info-icon"></i>{{ _('Location') }}
+                                    </h6>
+                                    <p class="card-text fs-5">{{ event.location }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col">
+                            <div class="card h-100 border-0 bg-light event-detail-card">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted">
+                                        <i class="bi bi-ticket-perforated me-2 event-info-icon"></i>{{ _('Available Tickets') }}
+                                    </h6>
+                                    <p class="card-text fs-5">
+                                        {% if not event.is_active %}
+                                        <span class="fw-bold">0</span>
+                                        <span class="badge bg-secondary ms-2">{{ _('Unavailable') }}</span>
+                                        {% else %}
+                                        <span class="fw-bold">{{ event.available_tickets }}</span>
+                                        {% if event.available_tickets == 0 %}
+                                        <span class="badge bg-danger ms-2">{{ _('Sold Out') }}</span>
+                                        {% elif event.available_tickets <= 5 %}
+                                        <span class="badge bg-warning text-dark ms-2">{{ _('Almost Gone') }}</span>
+                                        {% else %}
+                                        <span class="badge bg-success ms-2">{{ _('Available') }}</span>
+                                        {% endif %}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col">
+                            <div class="card h-100 border-0 bg-light event-detail-card">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted">
+                                        <i class="bi bi-clock-history me-2 event-info-icon"></i>{{ _('Registration Period') }}
+                                    </h6>
+                                    <p class="card-text mb-1">
+                                        <small class="text-muted">{{ _('Start:') }}</small><br>
+                                        {{ event.registration_start.strftime('%Y-%m-%d %H:%M') }}
+                                    </p>
+                                    <p class="card-text">
+                                        <small class="text-muted">{{ _('End:') }}</small><br>
+                                        {{ event.registration_end.strftime('%Y-%m-%d %H:%M') }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Reservation Form Column -->
+    <div class="col-lg-4">
+        <div class="card shadow-sm sticky-top event-detail-card" style="top: 2rem; z-index: 100;">
+            <div class="card-header bg-light py-3">
+                <h5 class="card-title mb-0">
+<<<<<<< HEAD
+                    {% if user_ticket %}
+                    <i class="bi bi-ticket-perforated me-2"></i>{{ _('Your Ticket') }}
+                    {% else %}
+                    <i class="bi bi-bookmark-check me-2"></i>{{ _('Reserve Your Spot') }}
+                    {% endif %}
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if user_ticket %}
+                    <!-- User already has a ticket - show view ticket button -->
+                    <div class="text-center mb-3">
+                        <div class="alert alert-success">
+                            <i class="bi bi-check-circle me-2"></i>{{ _('You have already reserved a ticket for this event.') }}
+                        </div>
+                        
+                        <h6 class="mb-3">{{ _('Ticket Code:') }} <strong>{{ user_ticket.ticket_code }}</strong></h6>
+                        
+                        <div class="d-grid gap-2">
+                            <a href="{{ url_for('view_ticket_by_token', token=ticket_token) }}" class="btn btn-primary btn-lg mb-2">
+                                <i class="bi bi-ticket-detailed me-2"></i>{{ _('View Your Ticket') }}
+                            </a>
+                        </div>
+                    </div>
+                {% elif event.is_active and event.available_tickets > 0 %}
+=======
+                    <i class="bi bi-bookmark-check me-2"></i>{{ _('Reserve Your Spot') }}
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if event.is_active and event.available_tickets > 0 %}
+>>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
+                    <form method="POST" action="{{ url_for('reserve_ticket', event_id=event.id) }}" class="needs-validation reservation-form" novalidate>
+                        {{ form.csrf_token }}
+                        
+                        {% if event.collect_name %}
+                        <div class="mb-3">
+                            <label for="name" class="form-label fw-bold">
+                                {{ _('Name') }}
+                                {% if event.name_optional %}
+                                    <span class="text-muted">({{ _('Optional') }})</span>
+                                {% endif %}
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                <input type="text" class="form-control" id="name" name="name" 
+                                       {% if not event.name_optional %}required{% endif %}
+                                       placeholder="{{ _('Enter your name') }}">
+                            </div>
+                            {% if not event.name_optional %}
+                            <div class="invalid-feedback">
+                                {{ _('Please provide your name.') }}
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+
+                        {% if event.collect_email %}
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-bold">
+                                {{ _('Email') }}
+                                {% if event.email_optional %}
+                                    <span class="text-muted">({{ _('Optional') }})</span>
+                                {% endif %}
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                <input type="email" class="form-control" id="email" name="email" 
+                                       {% if not event.email_optional %}required{% endif %}
+                                       placeholder="{{ _('Enter your email') }}">
+                            </div>
+                            {% if not event.email_optional %}
+                            <div class="invalid-feedback">
+                                {{ _('Please provide a valid email address.') }}
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+
+                        {% if event.collect_username %}
+                        <div class="mb-3">
+                            <label for="username" class="form-label fw-bold">
+                                {{ _('Username') }}
+                                {% if event.username_optional %}
+                                    <span class="text-muted">({{ _('Optional') }})</span>
+                                {% endif %}
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+                                <input type="text" class="form-control" id="username" name="username" 
+                                       {% if not event.username_optional %}required{% endif %}
+                                       placeholder="{{ _('Enter your username') }}">
+                            </div>
+                            {% if not event.username_optional %}
+                            <div class="invalid-feedback">
+                                {{ _('Please provide your username.') }}
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+
+                        {% if event.collect_phone %}
+                        <div class="mb-3">
+                            <label for="phone" class="form-label fw-bold">
+                                {{ _('Phone Number') }}
+                                {% if event.phone_optional %}
+                                    <span class="text-muted">({{ _('Optional') }})</span>
+                                {% endif %}
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                                <input type="tel" class="form-control" id="phone" name="phone" 
+                                       {% if not event.phone_optional %}required{% endif %}
+                                       placeholder="{{ _('Enter your phone number') }}">
+                            </div>
+                            {% if not event.phone_optional %}
+                            <div class="invalid-feedback">
+                                {{ _('Please provide your phone number.') }}
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+
+                        <div class="mb-4">
+                            <label for="captcha" class="form-label fw-bold">{{ _('CAPTCHA') }}</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-shield-lock"></i></span>
+                                <input type="text" class="form-control" id="captcha" name="captcha" required
+                                       placeholder="{{ _('Enter code') }}">
+                                <span class="input-group-text p-0 overflow-hidden">
+                                    <img src="{{ url_for('captcha') }}" alt="CAPTCHA" 
+                                         class="captcha-image" style="height:38px; cursor:pointer;"
+                                         onclick="this.src='{{ url_for('captcha') }}?' + Math.random()"
+                                         title="{{ _('Click to refresh') }}">
+                                </span>
+                            </div>
+                            <div class="invalid-feedback">
+                                {{ _('Please enter the CAPTCHA code.') }}
+                            </div>
+                            <div class="form-text small">
+                                <i class="bi bi-info-circle"></i> {{ _('Click on the image to refresh the code.') }}
+                            </div>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-check-circle me-2"></i>{{ _('Reserve Ticket') }}
+                            </button>
+                        </div>
+                    </form>
+                {% elif not event.is_active %}
+                    <div class="alert alert-secondary mb-0">
+                        <i class="bi bi-clock-history me-2"></i>{{ _('This event has already taken place.') }}
+                    </div>
+                {% else %}
+                    <div class="alert alert-warning mb-0">
+                        <i class="bi bi-exclamation-triangle me-2"></i>{{ _('No tickets available.') }}
+                    </div>
+                {% endif %}
+            </div>
+<<<<<<< HEAD
+            {% if event.is_active and event.available_tickets > 0 and not user_ticket %}
+=======
+            {% if event.is_active and event.available_tickets > 0 %}
+>>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
+            <div class="card-footer bg-light small">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-shield-check text-success me-2"></i>{{ _('Secure reservation') }}</span>
+                    <span><i class="bi bi-clock me-2"></i>{{ _('Quick process') }}</span>
+                </div>
+            </div>
+<<<<<<< HEAD
+            {% elif user_ticket %}
+            <div class="card-footer bg-light small">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-qr-code text-success me-2"></i>{{ _('QR code ticket') }}</span>
+                    <span><i class="bi bi-shield-lock me-2"></i>{{ _('Secure access') }}</span>
+                </div>
+            </div>
+=======
+>>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    'use strict';
+    
+    var forms = document.getElementsByClassName('needs-validation');
+    
+    var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        }, false);
+    });
+});
+</script>
+{% endblock %} 
