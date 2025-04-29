@@ -375,7 +375,7 @@ msgid "View Your Ticket"
 msgstr "مشاهده بلیط شما"
 
 msgid "Event Ticket System"
-msgstr "سیستم بلیط رویداد"
+msgstr "کیوسک رویداد"
 
 msgid "My Events"
 msgstr "رویدادهای من"
