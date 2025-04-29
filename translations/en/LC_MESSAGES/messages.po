@@ -283,12 +283,358 @@ msgstr "Collect Phone Number"
 
 #: templates/wiki/edit_event.html:199
 msgid "Phone Number Optional"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Phone Number Optional"
-=======
-msgstr "Phone Number Optional"
->>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
-=======
-msgstr "Phone Number Optional"
->>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
+
+msgid "Admin Dashboard"
+msgstr "Admin Dashboard"
+
+msgid "Total Events"
+msgstr "Total Events"
+
+msgid "Active Events"
+msgstr "Active Events"
+
+msgid "Total Tickets"
+msgstr "Total Tickets"
+
+msgid "Used Tickets"
+msgstr "Used Tickets"
+
+msgid "Notice Title"
+msgstr "Notice Title"
+
+msgid "Notice content goes here..."
+msgstr "Notice content goes here..."
+
+msgid "Access Forbidden"
+msgstr "Access Forbidden"
+
+msgid "You don't have permission to access this page. Please contact the administrator if you believe this is an error."
+msgstr "You don't have permission to access this page. Please contact the administrator if you believe this is an error."
+
+msgid "Go to Homepage"
+msgstr "Go to Homepage"
+
+msgid "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable."
+msgstr "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable."
+
+msgid "Page Not Found"
+msgstr "Page Not Found"
+
+msgid "Too Many Requests"
+msgstr "Too Many Requests"
+
+msgid "You have made too many requests. Please try again later."
+msgstr "You have made too many requests. Please try again later."
+
+msgid "Internal Server Error"
+msgstr "Internal Server Error"
+
+msgid "An unexpected error has occurred. Please try again later."
+msgstr "An unexpected error has occurred. Please try again later."
+
+msgid "Username"
+msgstr "Username"
+
+msgid "Enter your username"
+msgstr "Enter your username"
+
+msgid "Please provide your username."
+msgstr "Please provide your username."
+
+msgid "Phone Number"
+msgstr "Phone Number"
+
+msgid "Enter your phone number"
+msgstr "Enter your phone number"
+
+msgid "Please provide your phone number."
+msgstr "Please provide your phone number."
+
+msgid "Unavailable"
+msgstr "Unavailable"
+
+msgid "View Your Ticket"
+msgstr "View Your Ticket"
+
+msgid "Event Ticket System"
+msgstr "Event Ticket System"
+
+msgid "My Events"
+msgstr "My Events"
+
+msgid "Create/Manage Events"
+msgstr "Create/Manage Events"
+
+msgid "Logout"
+msgstr "Logout"
+
+msgid "English"
+msgstr "English"
+
+msgid "Persian"
+msgstr "Persian"
+
+msgid "by"
+msgstr "by"
+
+msgid "About"
+msgstr "About"
+
+msgid "Source code"
+msgstr "Source code"
+
+msgid "Wikimedia Event Dashboard"
+msgstr "Wikimedia Event Dashboard"
+
+msgid "My Wikimedia Events"
+msgstr "My Wikimedia Events"
+
+msgid "Manage your events and view registration statistics"
+msgstr "Manage your events and view registration statistics"
+
+msgid "Total Registrations"
+msgstr "Total Registrations"
+
+msgid "Tickets Used"
+msgstr "Tickets Used"
+
+msgid "Past Events"
+msgstr "Past Events"
+
+msgid "All Events"
+msgstr "All Events"
+
+msgid "Private"
+msgstr "Private"
+
+msgid "Attendance"
+msgstr "Attendance"
+
+msgid "You have no active events at the moment."
+msgstr "You have no active events at the moment."
+
+msgid "You have no past events."
+msgstr "You have no past events."
+
+msgid "Welcome to the Wikimedia E-Kiosque!"
+msgstr "Welcome to the Wikimedia E-Kiosque!"
+
+msgid "You have not created any events yet. Get started by creating your first event."
+msgstr "You have not created any events yet. Get started by creating your first event."
+
+msgid "Create Your First Event"
+msgstr "Create Your First Event"
+
+msgid "Success"
+msgstr "Success"
+
+msgid "Private link copied to clipboard!"
+msgstr "Private link copied to clipboard!"
+
+msgid "Confirm Deletion"
+msgstr "Confirm Deletion"
+
+msgid "You cannot delete events with unused tickets. Please mark all tickets as used first."
+msgstr "You cannot delete events with unused tickets. Please mark all tickets as used first."
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Are you sure you want to delete the event"
+msgstr "Are you sure you want to delete the event"
+
+msgid "Error copying link to clipboard. Please try again."
+msgstr "Error copying link to clipboard. Please try again."
+
+msgid "Error deleting event"
+msgstr "Error deleting event"
+
+msgid "An error occurred while processing your request."
+msgstr "An error occurred while processing your request."
+
+msgid "Basic Information"
+msgstr "Basic Information"
+
+msgid "Event Title"
+msgstr "Event Title"
+
+msgid "Enter event title"
+msgstr "Enter event title"
+
+msgid "A descriptive title for your event."
+msgstr "A descriptive title for your event."
+
+msgid "Describe your event..."
+msgstr "Describe your event..."
+
+msgid "Provide details about your event. This will be shown to attendees."
+msgstr "Provide details about your event. This will be shown to attendees."
+
+msgid "Featured Image"
+msgstr "Featured Image"
+
+msgid "Validate & Preview"
+msgstr "Validate & Preview"
+
+msgid "Enter a filename from Wikimedia Commons (e.g., \"File:Example.jpg\")"
+msgstr "Enter a filename from Wikimedia Commons (e.g., \"File:Example.jpg\")"
+
+msgid "Image Preview"
+msgstr "Image Preview"
+
+msgid "Event location"
+msgstr "Event location"
+
+msgid "Where will the event take place?"
+msgstr "Where will the event take place?"
+
+msgid "Event Date"
+msgstr "Event Date"
+
+msgid "Event Time"
+msgstr "Event Time"
+
+msgid "Select the timezone for your event."
+msgstr "Select the timezone for your event."
+
+msgid "Registration Start Date"
+msgstr "Registration Start Date"
+
+msgid "Registration Start Time"
+msgstr "Registration Start Time"
+
+msgid "Registration End Date"
+msgstr "Registration End Date"
+
+msgid "Registration End Time"
+msgstr "Registration End Time"
+
+msgid "Event Settings"
+msgstr "Event Settings"
+
+msgid "Number of attendees"
+msgstr "Number of attendees"
+
+msgid "Maximum number of tickets available."
+msgstr "Maximum number of tickets available."
+
+msgid "Event Status"
+msgstr "Event Status"
+
+msgid "Event Active"
+msgstr "Event Active"
+
+msgid "Activate or deactivate this event."
+msgstr "Activate or deactivate this event."
+
+msgid "Private Event"
+msgstr "Private Event"
+
+msgid "Private events can only be accessed with a special link."
+msgstr "Private events can only be accessed with a special link."
+
+msgid "Attendee Information"
+msgstr "Attendee Information"
+
+msgid "Name Collection"
+msgstr "Name Collection"
+
+msgid "Collect Name"
+msgstr "Collect Name"
+
+msgid "Name Optional"
+msgstr "Name Optional"
+
+msgid "Email Collection"
+msgstr "Email Collection"
+
+msgid "Collect Email"
+msgstr "Collect Email"
+
+msgid "Email Optional"
+msgstr "Email Optional"
+
+msgid "Create Event"
+msgstr "Create Event"
+
+msgid "Help"
+msgstr "Help"
+
+msgid "Required fields:"
+msgstr "Required fields:"
+
+msgid "Optional fields:"
+msgstr "Optional fields:"
+
+msgid "Fill out all required information to create your event."
+msgstr "Fill out all required information to create your event."
+
+msgid "Please enter a filename"
+msgstr "Please enter a filename"
+
+msgid "Validating image..."
+msgstr "Validating image..."
+
+msgid "Image not found. Please check the filename."
+msgstr "Image not found. Please check the filename."
+
+msgid "An error occurred while validating the image"
+msgstr "An error occurred while validating the image"
+
+msgid "Manage Event Tickets"
+msgstr "Manage Event Tickets"
+
+msgid "Delete Selected"
+msgstr "Delete Selected"
+
+msgid "Mark Selected as Used"
+msgstr "Mark Selected as Used"
+
+msgid "Mark Selected as Unused"
+msgstr "Mark Selected as Unused"
+
+msgid "Export All"
+msgstr "Export All"
+
+msgid "No tickets have been registered for this event yet."
+msgstr "No tickets have been registered for this event yet."
+
+msgid "Print Ticket"
+msgstr "Print Ticket"
+
+msgid "Registration Date"
+msgstr "Registration Date"
+
+msgid "Issue Date"
+msgstr "Issue Date"
+
+msgid "Error deleting ticket"
+msgstr "Error deleting ticket"
+
+msgid "An error occurred while retrieving ticket details."
+msgstr "An error occurred while retrieving ticket details."
+
+msgid "this ticket"
+msgstr "this ticket"
+
+msgid "Registrations"
+msgstr "Registrations"
+
+msgid "Registered Participants"
+msgstr "Registered Participants"
+
+msgid "Back to Dashboard"
+msgstr "Back to Dashboard"
+
+msgid "Export Tickets"
+msgstr "Export Tickets"
+
+msgid "Save Changes"
+msgstr "Save Changes"
+
+msgid "Secure access"
+msgstr "Secure access"
+
+msgid "QR code ticket"
+msgstr "QR code ticket"
