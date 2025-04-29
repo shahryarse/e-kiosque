@@ -197,6 +197,12 @@ msgid "Almost Gone"
 msgstr "تقریباً تمام شده"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+msgid "Available"
+msgstr "موجود"
+
+>>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
 =======
 msgid "Available"
 msgstr "موجود"
@@ -245,6 +251,12 @@ msgid "Date"
 msgstr "تاریخ"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+msgid "Location"
+msgstr "مکان"
+
+>>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
 =======
 msgid "Location"
 msgstr "مکان"
@@ -273,7 +285,10 @@ msgid "Cleanup complete. {} tickets from past events were deleted."
 msgstr "پاکسازی انجام شد. {} بلیط از رویدادهای گذشته حذف شدند."
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
 msgid "Cannot create an event in the past."
 msgstr "امکان ایجاد رویداد در گذشته وجود ندارد."
 
@@ -1445,6 +1460,9 @@ msgstr "تاریخ ثبت‌نام"
 msgid "No tickets have been registered for this event yet."
 msgstr "هنوز هیچ بلیطی برای این رویداد ثبت نشده است."
 
+<<<<<<< HEAD
+>>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
+=======
 >>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
 msgid "Username Collection"
 msgstr "جمع‌آوری نام کاربری"
@@ -1464,6 +1482,7 @@ msgstr "جمع‌آوری شماره تلفن"
 msgid "Phone Number Optional"
 msgstr "شماره تلفن اختیاری"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 msgid "Unavailable"
 msgstr "غیرقابل دسترس"
@@ -1489,6 +1508,8 @@ msgstr "شماره تلفن خود را وارد کنید"
 msgid "Please provide your phone number."
 msgstr "لطفاً شماره تلفن خود را وارد کنید"
 =======
+=======
+>>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
 msgid "Save Changes"
 msgstr "ذخیره تغییرات"
 
@@ -2739,4 +2760,7 @@ msgstr "شماره تلفن اختیاری"
 
 msgid "Save Changes"
 msgstr "ذخیره تغییرات"
+<<<<<<< HEAD
+>>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
+=======
 >>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b

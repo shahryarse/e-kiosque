@@ -123,6 +123,7 @@
             <div class="card-header bg-light py-3">
                 <h5 class="card-title mb-0">
 <<<<<<< HEAD
+<<<<<<< HEAD
                     {% if user_ticket %}
                     <i class="bi bi-ticket-perforated me-2"></i>{{ _('Your Ticket') }}
                     {% else %}
@@ -148,11 +149,16 @@
                     </div>
                 {% elif event.is_active and event.available_tickets > 0 %}
 =======
+=======
+>>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
                     <i class="bi bi-bookmark-check me-2"></i>{{ _('Reserve Your Spot') }}
                 </h5>
             </div>
             <div class="card-body">
                 {% if event.is_active and event.available_tickets > 0 %}
+<<<<<<< HEAD
+>>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
+=======
 >>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
                     <form method="POST" action="{{ url_for('reserve_ticket', event_id=event.id) }}" class="needs-validation reservation-form" novalidate>
                         {{ form.csrf_token }}
@@ -283,7 +289,11 @@
                 {% endif %}
             </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
             {% if event.is_active and event.available_tickets > 0 and not user_ticket %}
+=======
+            {% if event.is_active and event.available_tickets > 0 %}
+>>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
 =======
             {% if event.is_active and event.available_tickets > 0 %}
 >>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
@@ -294,6 +304,7 @@
                 </div>
             </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
             {% elif user_ticket %}
             <div class="card-footer bg-light small">
                 <div class="d-flex justify-content-between align-items-center">
@@ -301,6 +312,8 @@
                     <span><i class="bi bi-shield-lock me-2"></i>{{ _('Secure access') }}</span>
                 </div>
             </div>
+=======
+>>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
 =======
 >>>>>>> 4dd3aa7196f677e5961db92629fd98362b563f5b
             {% endif %}
