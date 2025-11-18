@@ -638,3 +638,51 @@ msgstr "Secure access"
 
 msgid "QR code ticket"
 msgstr "QR code ticket"
+
+msgid "Waiting list is not available for this event."
+msgstr "Waiting list is not available for this event."
+
+msgid "Tickets are still available! Please reserve directly."
+msgstr "Tickets are still available! Please reserve directly."
+
+msgid "Email is required to join the waiting list."
+msgstr "Email is required to join the waiting list."
+
+msgid "You have been added to the waiting list at position %(position)s. We will notify you if a ticket becomes available."
+msgstr "You have been added to the waiting list at position %(position)s. We will notify you if a ticket becomes available."
+
+msgid "Could not join waiting list: %(error)s"
+msgstr "Could not join waiting list: %(error)s"
+
+msgid "You can only remove yourself from the waiting list."
+msgstr "You can only remove yourself from the waiting list."
+
+msgid "You have been removed from the waiting list."
+msgstr "You have been removed from the waiting list."
+
+msgid "Could not remove from waiting list: %(error)s"
+msgstr "Could not remove from waiting list: %(error)s"
+
+msgid "You are in the waiting list"
+msgstr "You are in the waiting list"
+
+msgid "Your position: %(position)s"
+msgstr "Your position: %(position)s"
+
+msgid "We will notify you if a ticket becomes available."
+msgstr "We will notify you if a ticket becomes available."
+
+msgid "Remove from waiting list"
+msgstr "Remove from waiting list"
+
+msgid "Join Waiting List"
+msgstr "Join Waiting List"
+
+msgid "Be notified if tickets become available. Current waiting list:"
+msgstr "Be notified if tickets become available. Current waiting list:"
+
+msgid "people"
+msgstr "people"
+
+msgid "Required for notifications"
+msgstr "Required for notifications"

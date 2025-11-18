@@ -44,6 +44,10 @@ class Event(db.Model):
     collect_phone = db.Column(db.Boolean, default=False)
     phone_optional = db.Column(db.Boolean, default=False)
     
+    # Waiting list settings
+    enable_waiting_list = db.Column(db.Boolean, default=True)
+    max_waiting_list = db.Column(db.Integer, default=50)
+    
     tickets = db.relationship('Ticket', backref='event', lazy=True)
     wiki_creator_id = db.Column(db.Integer, db.ForeignKey('wiki_user.id'), nullable=True)
     creator = db.Column(db.String(50), nullable=False)  # Username of the event creator
@@ -100,4 +104,36 @@ class WikiUser(db.Model):
     is_super_admin = db.Column(db.Boolean, default=False)
     
     # Relationship to events created by this user
-    events = db.relationship('Event', backref='wiki_creator', lazy=True, foreign_keys='Event.wiki_creator_id') 
+    events = db.relationship('Event', backref='wiki_creator', lazy=True, foreign_keys='Event.wiki_creator_id')
+
+class WaitingList(db.Model):
+    """Waiting list for events that are fully booked"""
+    __tablename__ = 'waiting_list'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    event_id = db.Column(db.Integer, db.ForeignKey('event.id'), nullable=False)
+    
+    # User information
+    name = db.Column(db.String(100), nullable=True)
+    email = db.Column(db.String(120), nullable=False)
+    username = db.Column(db.String(100), nullable=True)
+    phone = db.Column(db.String(20), nullable=True)
+    
+    # Security/tracking (similar to Ticket model)
+    hashed_ip = db.Column(db.String(200), nullable=False)
+    hashed_session = db.Column(db.String(200), nullable=False)
+    hashed_cookie = db.Column(db.String(200), nullable=False)
+    
+    # Waiting list management
+    position = db.Column(db.Integer, nullable=False)  # Position in queue
+    joined_at = db.Column(db.DateTime, default=datetime.utcnow)
+    notified = db.Column(db.Boolean, default=False)  # Has been notified about availability
+    notification_sent_at = db.Column(db.DateTime, nullable=True)
+    converted_to_ticket = db.Column(db.Boolean, default=False)  # Converted to actual ticket
+    converted_at = db.Column(db.DateTime, nullable=True)
+    
+    # Relationship to event
+    event = db.relationship('Event', backref='waiting_list_entries', foreign_keys=[event_id])
+    
+    def __repr__(self):
+        return f'<WaitingList {self.id}: {self.email} for Event {self.event_id} at position {self.position}>' 

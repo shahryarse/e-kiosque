@@ -269,9 +269,107 @@
                         <i class="bi bi-clock-history me-2"></i>{{ _('This event has already taken place.') }}
                     </div>
                 {% else %}
-                    <div class="alert alert-warning mb-0">
+                    <!-- No tickets available - show waiting list option -->
+                    <div class="alert alert-warning">
                         <i class="bi bi-exclamation-triangle me-2"></i>{{ _('No tickets available.') }}
                     </div>
+                    
+                    {% if event.enable_waiting_list %}
+                    {% set waiting_count = event.waiting_list_entries | selectattr('converted_to_ticket', 'equalto', false) | list | length %}
+                    {% set user_waiting = event.waiting_list_entries | selectattr('converted_to_ticket', 'equalto', false) | selectattr('email', 'equalto', request.form.get('email', '')) | first %}
+                    
+                    {% if user_waiting %}
+                        <!-- User is already in waiting list -->
+                        <div class="alert alert-info">
+                            <h6 class="alert-heading"><i class="bi bi-hourglass-split me-2"></i>{{ _('You are in the waiting list') }}</h6>
+                            <p class="mb-2">{{ _('Your position: %(position)s', position=user_waiting.position) }}</p>
+                            <p class="mb-0 small">{{ _('We will notify you if a ticket becomes available.') }}</p>
+                        </div>
+                        <form method="POST" action="{{ url_for('main.remove_from_waiting_list', waiting_id=user_waiting.id) }}">
+                            <button type="submit" class="btn btn-outline-secondary btn-sm w-100">
+                                <i class="bi bi-x-circle me-2"></i>{{ _('Remove from waiting list') }}
+                            </button>
+                        </form>
+                    {% else %}
+                        <!-- Join waiting list form -->
+                        <div class="card border-primary mb-3">
+                            <div class="card-header bg-primary text-white">
+                                <h6 class="mb-0"><i class="bi bi-list-check me-2"></i>{{ _('Join Waiting List') }}</h6>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text small mb-3">
+                                    {{ _('Be notified if tickets become available. Current waiting list:') }}
+                                    <strong>{{ waiting_count }}</strong> {{ _('people') }}
+                                </p>
+                                
+                                <form method="POST" action="{{ url_for('main.join_waiting_list', event_id=event.id) }}" class="needs-validation" novalidate>
+                                    {{ form.csrf_token }}
+                                    
+                                    {% if event.collect_name %}
+                                    <div class="mb-3">
+                                        <label for="wl_name" class="form-label">
+                                            {{ _('Name') }}
+                                            {% if event.name_optional %}<span class="text-muted">({{ _('Optional') }})</span>{% endif %}
+                                        </label>
+                                        <input type="text" class="form-control" id="wl_name" name="name" 
+                                               {% if not event.name_optional %}required{% endif %}>
+                                    </div>
+                                    {% endif %}
+                                    
+                                    {% if event.collect_email %}
+                                    <div class="mb-3">
+                                        <label for="wl_email" class="form-label">
+                                            {{ _('Email') }}
+                                            {% if event.email_optional %}<span class="text-muted">({{ _('Optional') }})</span>{% else %}<span class="text-danger">*</span>{% endif %}
+                                        </label>
+                                        <input type="email" class="form-control" id="wl_email" name="email" 
+                                               {% if not event.email_optional %}required{% endif %}>
+                                        <div class="form-text small">{{ _('Required for notifications') }}</div>
+                                    </div>
+                                    {% endif %}
+                                    
+                                    {% if event.collect_phone %}
+                                    <div class="mb-3">
+                                        <label for="wl_phone" class="form-label">
+                                            {{ _('Phone') }}
+                                            {% if event.phone_optional %}<span class="text-muted">({{ _('Optional') }})</span>{% endif %}
+                                        </label>
+                                        <input type="tel" class="form-control" id="wl_phone" name="phone" 
+                                               {% if not event.phone_optional %}required{% endif %}>
+                                    </div>
+                                    {% endif %}
+                                    
+                                    {% if event.collect_username and not session.get('wiki_username') %}
+                                    <div class="mb-3">
+                                        <label for="wl_username" class="form-label">
+                                            {{ _('Username') }}
+                                            {% if event.username_optional %}<span class="text-muted">({{ _('Optional') }})</span>{% endif %}
+                                        </label>
+                                        <input type="text" class="form-control" id="wl_username" name="username" 
+                                               {% if not event.username_optional %}required{% endif %}>
+                                    </div>
+                                    {% endif %}
+                                    
+                                    <div class="mb-3">
+                                        <label for="wl_captcha" class="form-label">{{ _('CAPTCHA') }}</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control" id="wl_captcha" name="captcha" required>
+                                            <span class="input-group-text p-0">
+                                                <img src="{{ url_for('main.captcha') }}" alt="CAPTCHA" 
+                                                     style="height:31px; cursor:pointer;"
+                                                     onclick="this.src='{{ url_for('main.captcha') }}?' + Math.random()">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        <i class="bi bi-plus-circle me-2"></i>{{ _('Join Waiting List') }}
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% endif %}
                 {% endif %}
             </div>
             {% if event.is_active and event.available_tickets > 0 and not user_ticket %}

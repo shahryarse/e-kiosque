@@ -1,5 +1,5 @@
 from app import app, db
-from models import User, Event, Ticket, AccessRestriction, SiteNotice, WikiUser
+from models import User, Event, Ticket, AccessRestriction, SiteNotice, WikiUser, WaitingList
 import tomllib
 from datetime import datetime, timedelta
 import random

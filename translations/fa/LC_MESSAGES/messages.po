@@ -655,3 +655,51 @@ msgstr "دسترسی امن"
 
 msgid "QR code ticket"
 msgstr "بلیط کد QR"
+
+msgid "Waiting list is not available for this event."
+msgstr "لیست انتظار برای این رویداد فعال نیست."
+
+msgid "Tickets are still available! Please reserve directly."
+msgstr "بلیت‌ها هنوز موجود هستند! لطفاً مستقیماً رزرو کنید."
+
+msgid "Email is required to join the waiting list."
+msgstr "ایمیل برای عضویت در لیست انتظار الزامی است."
+
+msgid "You have been added to the waiting list at position %(position)s. We will notify you if a ticket becomes available."
+msgstr "شما در موقعیت %(position)s به لیست انتظار اضافه شدید. در صورت آزاد شدن بلیت، به شما اطلاع خواهیم داد."
+
+msgid "Could not join waiting list: %(error)s"
+msgstr "نتوانستید به لیست انتظار بپیوندید: %(error)s"
+
+msgid "You can only remove yourself from the waiting list."
+msgstr "شما فقط می‌توانید خودتان را از لیست انتظار حذف کنید."
+
+msgid "You have been removed from the waiting list."
+msgstr "شما از لیست انتظار حذف شدید."
+
+msgid "Could not remove from waiting list: %(error)s"
+msgstr "نتوانست از لیست انتظار حذف شود: %(error)s"
+
+msgid "You are in the waiting list"
+msgstr "شما در لیست انتظار هستید"
+
+msgid "Your position: %(position)s"
+msgstr "موقعیت شما: %(position)s"
+
+msgid "We will notify you if a ticket becomes available."
+msgstr "در صورت آزاد شدن بلیت به شما اطلاع خواهیم داد."
+
+msgid "Remove from waiting list"
+msgstr "حذف از لیست انتظار"
+
+msgid "Join Waiting List"
+msgstr "عضویت در لیست انتظار"
+
+msgid "Be notified if tickets become available. Current waiting list:"
+msgstr "در صورت آزاد شدن بلیت مطلع شوید. لیست انتظار فعلی:"
+
+msgid "people"
+msgstr "نفر"
+
+msgid "Required for notifications"
+msgstr "برای اطلاع‌رسانی الزامی است"

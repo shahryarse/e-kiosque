@@ -4,7 +4,7 @@ Main routes for public pages (homepage, event details, ticket reservation)
 
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash, send_file, abort
 from flask_babel import gettext as _
-from models import Event, Ticket
+from models import Event, Ticket, WaitingList
 from extensions import db, limiter
 from datetime import datetime, timezone, timedelta
 import uuid
@@ -15,6 +15,7 @@ import qrcode
 from io import BytesIO
 import re
 import pytz
+from services.waiting_list_service import WaitingListService
 
 main_bp = Blueprint('main', __name__)
 
@@ -376,4 +377,127 @@ def captcha():
     from app import generate_captcha
     img_byte_arr = generate_captcha()
     return send_file(img_byte_arr, mimetype='image/png')
+
+
+@main_bp.route('/event/<int:event_id>/join-waiting-list', methods=['POST'])
+def join_waiting_list(event_id):
+    """Add user to waiting list for a fully booked event"""
+    from app import hash_identifier, TicketForm
+    from flask_login import current_user
+    
+    event = db.session.get(Event, event_id)
+    if event is None:
+        abort(404)
+    
+    # Check if waiting list is enabled
+    if not event.enable_waiting_list:
+        flash(_('Waiting list is not available for this event.'), 'error')
+        return redirect(url_for('main.event_detail', event_id=event_id))
+    
+    # Check if tickets are still available
+    if event.available_tickets > 0:
+        flash(_('Tickets are still available! Please reserve directly.'), 'info')
+        return redirect(url_for('main.event_detail', event_id=event_id))
+    
+    # Verify CAPTCHA
+    captcha_input = request.form.get('captcha', '').upper()
+    stored_captcha = session.get('captcha', '')
+    if captcha_input != stored_captcha:
+        flash(_('Invalid CAPTCHA. Please try again.'), 'error')
+        return redirect(url_for('main.event_detail', event_id=event_id))
+    
+    # Get current identifiers
+    current_ip = request.remote_addr
+    current_session_id = session.get('_id', str(uuid.uuid4()))
+    current_cookie = request.cookies.get('session', str(uuid.uuid4()))
+    
+    # Get username if user is logged in
+    current_username = None
+    if current_user and current_user.is_authenticated:
+        current_username = current_user.username
+    elif session.get('wiki_username'):
+        current_username = session.get('wiki_username')
+    
+    # Get form data
+    name = request.form.get('name') if event.collect_name else None
+    email = request.form.get('email') if event.collect_email else None
+    phone = request.form.get('phone') if event.collect_phone else None
+    
+    # Validate email is provided
+    if event.collect_email and not email:
+        flash(_('Email is required to join the waiting list.'), 'error')
+        return redirect(url_for('main.event_detail', event_id=event_id))
+    
+    # Set username
+    username = None
+    if current_username:
+        username = current_username
+    elif event.collect_username:
+        username = request.form.get('username')
+    
+    # Hash identifiers
+    hashed_ip = hash_identifier(current_ip)
+    hashed_session = hash_identifier(current_session_id)
+    hashed_cookie = hash_identifier(current_cookie)
+    
+    # Add to waiting list
+    success, result, position = WaitingListService.add_to_waiting_list(
+        event_id=event_id,
+        name=name,
+        email=email,
+        username=username,
+        phone=phone,
+        hashed_ip=hashed_ip,
+        hashed_session=hashed_session,
+        hashed_cookie=hashed_cookie
+    )
+    
+    if success:
+        flash(_('You have been added to the waiting list at position %(position)s. We will notify you if a ticket becomes available.', position=position), 'success')
+    else:
+        flash(_('Could not join waiting list: %(error)s', error=result), 'error')
+    
+    return redirect(url_for('main.event_detail', event_id=event_id))
+
+
+@main_bp.route('/waiting-list/<int:waiting_id>/remove', methods=['POST'])
+def remove_from_waiting_list(waiting_id):
+    """Remove user from waiting list"""
+    from app import verify_identifier
+    
+    waiting_entry = WaitingList.query.get_or_404(waiting_id)
+    event_id = waiting_entry.event_id
+    
+    # Verify user identity
+    current_ip = request.remote_addr
+    current_session_id = session.get('_id')
+    current_cookie = request.cookies.get('session')
+    
+    # Check if the request is from the same user
+    is_same_user = False
+    if verify_identifier(current_ip, waiting_entry.hashed_ip):
+        is_same_user = True
+    elif current_session_id and verify_identifier(current_session_id, waiting_entry.hashed_session):
+        is_same_user = True
+    elif current_cookie and verify_identifier(current_cookie, waiting_entry.hashed_cookie):
+        is_same_user = True
+    
+    # Also allow if logged in with same username
+    current_username = session.get('wiki_username')
+    if current_username and current_username == waiting_entry.username:
+        is_same_user = True
+    
+    if not is_same_user:
+        flash(_('You can only remove yourself from the waiting list.'), 'error')
+        return redirect(url_for('main.event_detail', event_id=event_id))
+    
+    # Remove from waiting list
+    success, message = WaitingListService.remove_from_waiting_list(waiting_id)
+    
+    if success:
+        flash(_('You have been removed from the waiting list.'), 'success')
+    else:
+        flash(_('Could not remove from waiting list: %(error)s', error=message), 'error')
+    
+    return redirect(url_for('main.event_detail', event_id=event_id))
 
