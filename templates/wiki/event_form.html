@@ -7,7 +7,7 @@
     <div class="row mb-4">
         <div class="col">
             <h1>{{ title }}</h1>
-            <a href="{{ url_for('wiki_dashboard') }}" class="btn btn-outline-secondary">
+            <a href="{{ url_for('wiki.dashboard') }}" class="btn btn-outline-secondary">
                 <i class="fas fa-arrow-left"></i> {{ _('Back to Dashboard') }}
             </a>
         </div>
@@ -222,7 +222,7 @@
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-save"></i> {{ _('Save Event') }}
                         </button>
-                        <a href="{{ url_for('wiki_dashboard') }}" class="btn btn-secondary">
+                        <a href="{{ url_for('wiki.dashboard') }}" class="btn btn-secondary">
                             {{ _('Cancel') }}
                         </a>
                     </div>

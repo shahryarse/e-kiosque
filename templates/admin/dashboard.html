@@ -113,15 +113,15 @@
             <div class="card-body">
                 <h5 class="card-title">Quick Actions</h5>
                 <div class="d-flex gap-2">
-                    <a href="{{ url_for('wiki_new_event') }}" class="btn btn-primary">Create New Event</a>
-                    <a href="{{ url_for('admin_events') }}" class="btn btn-outline-primary">Manage Events</a>
-                    <a href="{{ url_for('admin_tickets') }}" class="btn btn-outline-primary">Manage Tickets</a>
-                    <a href="{{ url_for('manage_site_notice') }}" class="btn btn-outline-primary">
+                    <a href="{{ url_for('wiki.new_event') }}" class="btn btn-primary">Create New Event</a>
+                    <a href="{{ url_for('admin.events') }}" class="btn btn-outline-primary">Manage Events</a>
+                    <a href="{{ url_for('admin.tickets') }}" class="btn btn-outline-primary">Manage Tickets</a>
+                    <a href="{{ url_for('admin.manage_site_notice') }}" class="btn btn-outline-primary">
                         <i class="bi bi-megaphone"></i> {{ _('Manage Site Notice') }}
                     </a>
                     {% if current_user.is_super_admin %}
-                    <a href="{{ url_for('manage_admins') }}" class="btn btn-outline-primary">Manage Admins</a>
-                    <form action="{{ url_for('admin_run_cleanup') }}" method="POST" class="d-inline">
+                    <a href="{{ url_for('admin.manage_admins') }}" class="btn btn-outline-primary">Manage Admins</a>
+                    <form action="{{ url_for('admin.run_cleanup') }}" method="POST" class="d-inline">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                         <button type="submit" class="btn btn-warning" onclick="return confirm('{{ _('Are you sure you want to delete all tickets for past events? This action cannot be undone.') }}');">
                             <i class="bi bi-trash"></i> {{ _('Run Data Cleanup') }}

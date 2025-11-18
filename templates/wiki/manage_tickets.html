@@ -7,10 +7,10 @@
     <div class="row mb-4">
         <div class="col">
             <h1>{{ _('Manage Tickets') }}: {{ event.title }}</h1>
-            <a href="{{ url_for('wiki_dashboard') }}" class="btn btn-outline-secondary">
+            <a href="{{ url_for('wiki.dashboard') }}" class="btn btn-outline-secondary">
                 <i class="fas fa-arrow-left"></i> {{ _('Back to Dashboard') }}
             </a>
-            <a href="{{ url_for('wiki_export_tickets', event_id=event.id) }}" class="btn btn-outline-primary">
+            <a href="{{ url_for('wiki.export_tickets', event_id=event.id) }}" class="btn btn-outline-primary">
                 <i class="fas fa-file-export"></i> {{ _('Export Tickets') }}
             </a>
         </div>

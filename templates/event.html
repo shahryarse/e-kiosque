@@ -7,7 +7,7 @@
     <div class="col-12">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url_for('index') }}">{{ _('Home') }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">{{ _('Home') }}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ event.title }}</li>
             </ol>
         </nav>
@@ -140,13 +140,13 @@
                         <h6 class="mb-3">{{ _('Ticket Code:') }} <strong>{{ user_ticket.ticket_code }}</strong></h6>
                         
                         <div class="d-grid gap-2">
-                            <a href="{{ url_for('view_ticket_by_token', token=ticket_token) }}" class="btn btn-primary btn-lg mb-2">
+                            <a href="{{ url_for('main.view_ticket_by_token', token=ticket_token) }}" class="btn btn-primary btn-lg mb-2">
                                 <i class="bi bi-ticket-detailed me-2"></i>{{ _('View Your Ticket') }}
                             </a>
                         </div>
                     </div>
                 {% elif event.is_active and event.available_tickets > 0 %}
-                    <form method="POST" action="{{ url_for('reserve_ticket', event_id=event.id) }}" class="needs-validation reservation-form" novalidate>
+                    <form method="POST" action="{{ url_for('main.reserve_ticket', event_id=event.id) }}" class="needs-validation reservation-form" novalidate>
                         {{ form.csrf_token }}
                         
                         {% if event.collect_name %}
@@ -244,9 +244,9 @@
                                 <input type="text" class="form-control" id="captcha" name="captcha" required
                                        placeholder="{{ _('Enter code') }}">
                                 <span class="input-group-text p-0 overflow-hidden">
-                                    <img src="{{ url_for('captcha') }}" alt="CAPTCHA" 
+                                    <img src="{{ url_for('main.captcha') }}" alt="CAPTCHA" 
                                          class="captcha-image" style="height:38px; cursor:pointer;"
-                                         onclick="this.src='{{ url_for('captcha') }}?' + Math.random()"
+                                         onclick="this.src='{{ url_for('main.captcha') }}?' + Math.random()"
                                          title="{{ _('Click to refresh') }}">
                                 </span>
                             </div>

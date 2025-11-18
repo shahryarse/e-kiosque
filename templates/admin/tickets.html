@@ -19,7 +19,7 @@
                             <button type="button" class="btn btn-danger" onclick="bulkDelete()">{{ _('Delete Selected') }}</button>
                             <button type="button" class="btn btn-success" onclick="bulkMarkUsed()">{{ _('Mark Selected as Used') }}</button>
                             <button type="button" class="btn btn-warning" onclick="bulkMarkUnused()">{{ _('Mark Selected as Unused') }}</button>
-                            <a href="{{ url_for('export_tickets') }}" class="btn btn-primary">{{ _('Export All') }}</a>
+                            <a href="{{ url_for('admin.export_tickets') }}" class="btn btn-primary">{{ _('Export All') }}</a>
                         </div>
                     </div>
                     

@@ -34,7 +34,7 @@
                             <label class="form-label">Security Check</label>
                             <div class="d-flex align-items-center">
                                 <div class="me-2">
-                                    <img src="{{ url_for('captcha') }}" alt="CAPTCHA" class="img-fluid" onclick="this.src='{{ url_for('captcha') }}?' + new Date().getTime();">
+                                    <img src="{{ url_for('main.captcha') }}" alt="CAPTCHA" class="img-fluid" onclick="this.src='{{ url_for('main.captcha') }}?' + new Date().getTime();">
                                 </div>
                                 <div class="flex-grow-1">
                                     <input type="text" class="form-control" name="captcha" required>

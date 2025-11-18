@@ -1,0 +1,26 @@
+# e-kiosque Configuration File (Example)
+# Copy this file to config.toml and fill in your values
+
+# OAuth configuration for Wikimedia
+SECRET_KEY = "your-secret-key-for-flask-sessions"  # Generate with: python3 -c "import secrets; print(secrets.token_urlsafe(48))"
+GREETING = "Welcome to e-kiosque! Login with your Wikimedia account to create and manage events."
+OAUTH_MWURI = "https://meta.wikimedia.org/w/index.php"
+CONSUMER_KEY = ""  # Register at https://meta.wikimedia.org/wiki/Special:OAuthConsumerRegistration/propose
+CONSUMER_SECRET = ""  # OAuth consumer secret
+
+# Security configuration for hashing
+# IMPORTANT: Change these to random unique values for your deployment
+# Generate with: python3 -c "import secrets; print(secrets.token_urlsafe(32))"
+SALT = "CHANGE_THIS_TO_RANDOM_VALUE"  # Used for SHA-256 hashing
+PEPPER = "CHANGE_THIS_TO_RANDOM_VALUE"  # Used for Argon2 hashing
+
+# Superadmin configuration
+SUPERADMIN_USERNAME = ""  # Username of the superadmin user (REQUIRED - your Wikimedia username)
+
+# For Toolforge deployment:
+# 1. Register OAuth consumer at https://meta.wikimedia.org/wiki/Special:OAuthConsumerRegistration/propose
+# 2. Use callback URL: https://your-tool-name.toolforge.org/oauth-callback (or http://localhost:5000/oauth-callback for local dev)
+# 3. Request only "Basic rights" permissions
+# 4. Set Tool's maintainer as contact email
+# 5. Generate secure values for SECRET_KEY, SALT, and PEPPER using the commands above
+

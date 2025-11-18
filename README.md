@@ -41,22 +41,70 @@ e-kiosque is a Flask-based web application that provides a secure and user-frien
 
 ## Installation
 
-1. Clone the repository
-2. Install dependencies:
+### Prerequisites
+- Python 3.11+
+- SQLite3
+- Git
+
+### Setup Steps
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/e-kiosque.git
+   cd e-kiosque
+   ```
+
+2. **Create virtual environment:**
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   ```
+
+3. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
-3. Configure the application:
-   - Create `config.toml` with necessary OAuth credentials
-   - Set up environment variables
-4. Initialize the database:
+
+4. **Configure the application:**
+   
+   Copy the example config file:
    ```bash
-   flask db upgrade
+   cp config.toml.example config.toml
    ```
-5. Run the application:
+   
+   Edit `config.toml` and set:
+   - `SECRET_KEY` - A random secret key for Flask sessions
+   - `CONSUMER_KEY` - OAuth consumer key from Wikimedia
+   - `CONSUMER_SECRET` - OAuth consumer secret from Wikimedia
+   - `SUPERADMIN_USERNAME` - Your Wikimedia username
+   - `SALT` - Random string for hashing (generate with `openssl rand -hex 32`)
+   - `PEPPER` - Another random string for hashing
+
+5. **Initialize the database:**
    ```bash
-   flask run
+   python init_db.py
    ```
+
+6. **Compile translations:**
+   ```bash
+   python compile_translations.py
+   ```
+
+7. **Run the application:**
+   
+   Development:
+   ```bash
+   python app.py
+   ```
+   
+   Production (with Gunicorn):
+   ```bash
+   gunicorn -w 4 -b 0.0.0.0:5000 app:app
+   ```
+
+8. **Set up scheduled tasks:**
+   
+   See `CRONJOB_SETUP.md` for cron job configuration.
 
 ## Toolforge Deployment
 

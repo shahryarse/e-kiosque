@@ -96,7 +96,7 @@
             </div>
             <div class="card-footer bg-transparent border-top-0">
                 <div class="d-grid gap-2">
-                    <a href="{{ url_for('event_detail', event_id=event.id) }}" class="btn {% if not event.is_active %}btn-secondary{% else %}btn-primary{% endif %}">
+                    <a href="{{ url_for('main.event_detail', event_id=event.id) }}" class="btn {% if not event.is_active %}btn-secondary{% else %}btn-primary{% endif %}">
                         <i class="bi bi-eye me-2"></i>{{ _('View Details') }}
                     </a>
                 </div>
@@ -169,7 +169,7 @@
                 {% if session.get('wiki_username') %}
                 <hr>
                 <p class="mb-0">
-                    <a href="{{ url_for('wiki_new_event') }}" class="btn btn-primary">
+                    <a href="{{ url_for('wiki.new_event') }}" class="btn btn-primary">
                         <i class="bi bi-plus-circle"></i> {{ _('Create Your First Event') }}
                     </a>
                 </p>

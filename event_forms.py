@@ -330,7 +330,7 @@ def validate_image(image_filename, form, template_path, context=None):
     }
     
     try:
-        response = requests.get(api_url, params=params, headers=headers)
+        response = requests.get(api_url, params=params, headers=headers, timeout=5)
         response.raise_for_status()
         
         data = response.json()
