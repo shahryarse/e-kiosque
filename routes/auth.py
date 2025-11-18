@@ -10,10 +10,10 @@ from extensions import db
 import mwoauth
 from datetime import datetime
 
-auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
+auth_bp = Blueprint('auth', __name__)
 
 
-@auth_bp.route('/wiki-login')
+@auth_bp.route('/auth/wiki-login')
 def wiki_login():
     """Initiate an OAuth login.
     
@@ -113,7 +113,7 @@ def oauth_callback():
     return redirect(url_for('wiki.dashboard'))
 
 
-@auth_bp.route('/wiki-logout')
+@auth_bp.route('/auth/wiki-logout')
 def wiki_logout():
     """Log the user out by clearing their session."""
     # Save any non-auth related session data we want to keep
