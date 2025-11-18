@@ -11,9 +11,11 @@ import xlsxwriter
 from io import BytesIO
 import qrcode
 import base64
+import logging
 from event_forms import EventForm, populate_form_from_request, populate_form_from_event, handle_event_creation, handle_event_update
 
 wiki_bp = Blueprint('wiki', __name__, url_prefix='/wiki')
+logger = logging.getLogger(__name__)
 
 
 def wiki_login_required(f):
@@ -466,4 +468,81 @@ def delete_event(event_id):
         db.session.rollback()
         current_app.logger.error(f"Error deleting event: {str(e)}")
         return jsonify({'success': False, 'message': _('An error occurred while deleting the event')}), 500
+
+
+@wiki_bp.route('/validate_image', methods=['POST'])
+def validate_image():
+    """Validate image from Wikimedia Commons"""
+    import requests
+    
+    # Check if it's a form submission or JSON request
+    if request.is_json:
+        data = request.json
+        original_filename = data.get('filename', '').strip()
+    else:
+        original_filename = request.form.get('filename', '').strip()
+    
+    logger.debug(f"Received filename for validation: {original_filename}")
+    if not original_filename:
+        return jsonify({'exists': False, 'message': _('Please enter a filename')})
+
+    # Ensure filename starts with "File:" for the API query
+    if not original_filename.lower().startswith('file:'):
+        query_title = f"File:{original_filename}"
+    else:
+        query_title = original_filename
+
+    # Wikimedia Commons API endpoint
+    api_url = "https://commons.wikimedia.org/w/api.php"
+
+    params = {
+        "action": "query",
+        "titles": query_title,
+        "prop": "imageinfo",
+        "iiprop": "url|size",
+        "format": "json"
+    }
+
+    headers = {
+        'User-Agent': 'e-kiosque/1.0 (Toolforge; e-kiosque@toolforge.org) PythonRequests'
+    }
+
+    try:
+        logger.debug(f"Querying Wikimedia Commons API with params: {params}")
+        response = requests.get(api_url, params=params, headers=headers, timeout=5)
+        response.raise_for_status()
+        
+        data = response.json()
+        logger.debug(f"API Response received: {data}")
+
+        # Navigate the API response structure
+        query_result = data.get('query', {})
+        pages = query_result.get('pages', {})
+        
+        # Check if the page exists (key is not '-1') and has imageinfo
+        page_id = next(iter(pages), '-1')
+        
+        if page_id != '-1' and 'imageinfo' in pages[page_id]:
+            image_info = pages[page_id]['imageinfo'][0]
+            image_url = image_info.get('url')
+            
+            if image_url:
+                logger.debug(f"Image found on Wikimedia Commons: {image_url}")
+                return jsonify({
+                    'exists': True,
+                    'url': image_url
+                })
+            else:
+                logger.warning("Image URL not found in API response imageinfo")
+                return jsonify({'exists': False, 'message': _('Image URL not found in API response')})
+        else:
+            logger.info(f"Image not found on Wikimedia Commons (Page ID: {page_id})")
+            return jsonify({'exists': False, 'message': _('Image not found on Wikimedia Commons')})
+
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Wikimedia Commons API request failed: {str(e)}")
+        return jsonify({'exists': False, 'message': f"Error querying Wikimedia API: {str(e)}"})
+    except Exception as e:
+        logger.exception("Unexpected error during image validation")
+        return jsonify({'exists': False, 'message': str(e)})
 

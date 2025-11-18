@@ -600,6 +600,7 @@ def manage_site_notice():
 
 
 @admin_bp.route('/validate_image', methods=['POST'])
+@login_required
 def validate_image():
     """Validate image from Wikimedia Commons"""
     import requests

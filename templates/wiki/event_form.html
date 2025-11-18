@@ -244,7 +244,7 @@
         
         resultDiv.innerHTML = '<div class="alert alert-info">{{ _("Validating image...") }}</div>';
         
-        fetch('/validate_image', {
+        fetch('{{ url_for("wiki.validate_image") }}', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

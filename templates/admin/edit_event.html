@@ -333,7 +333,7 @@ function validateImage() {
     previewDiv.style.display = 'block';
     previewDiv.innerHTML = '<div class="text-center p-4"><div class="spinner-border text-primary" role="status"></div><p class="mt-2">Validating image...</p></div>';
     
-    fetch('/validate_image', {
+    fetch('{{ url_for("admin.validate_image") }}', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
