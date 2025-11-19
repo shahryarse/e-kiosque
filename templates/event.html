@@ -276,7 +276,6 @@
                     
                     {% if event.enable_waiting_list %}
                     {% set waiting_count = event.waiting_list_entries | selectattr('converted_to_ticket', 'equalto', false) | list | length %}
-                    {% set user_waiting = event.waiting_list_entries | selectattr('converted_to_ticket', 'equalto', false) | selectattr('email', 'equalto', request.form.get('email', '')) | first %}
                     
                     {% if user_waiting %}
                         <!-- User is already in waiting list -->

@@ -76,6 +76,9 @@ class EventForm(FlaskForm):
     image_filename = StringField('Image Filename', validators=[Optional()])
     image = FileField('Upload Image', validators=[Optional()])
     commons_image = StringField('Wikimedia Commons Image', validators=[Optional()])
+    # Waiting list settings
+    enable_waiting_list = BooleanField('Enable Waiting List')
+    max_waiting_list = IntegerField('Maximum Waiting List Size', validators=[Optional()])
 
 def generate_private_link():
     """Generate a complex private link using multiple random components"""
@@ -120,6 +123,7 @@ def populate_form_from_request(form):
         username_optional = 'username_optional' in request.form
         collect_phone = 'collect_phone' in request.form
         phone_optional = 'phone_optional' in request.form
+        enable_waiting_list = 'enable_waiting_list' in request.form
     else:
         is_active = request.form.get('is_active') == 'true'
         is_private = request.form.get('is_private') == 'true'
@@ -131,7 +135,9 @@ def populate_form_from_request(form):
         username_optional = request.form.get('username_optional') == 'true'
         collect_phone = request.form.get('collect_phone') == 'true'
         phone_optional = request.form.get('phone_optional') == 'true'
+        enable_waiting_list = request.form.get('enable_waiting_list') == 'true'
     
+    max_waiting_list = request.form.get('max_waiting_list', '50')
     image_filename = request.form.get('image_filename')
     
     # Pre-populate form with submitted values
@@ -160,6 +166,12 @@ def populate_form_from_request(form):
     form.username_optional.data = username_optional
     form.collect_phone.data = collect_phone
     form.phone_optional.data = phone_optional
+    form.enable_waiting_list.data = enable_waiting_list
+    if max_waiting_list:
+        try:
+            form.max_waiting_list.data = int(max_waiting_list)
+        except ValueError:
+            form.max_waiting_list.data = 50
     form.image_filename.data = image_filename
     
     # Return all the form values for further processing
@@ -185,6 +197,8 @@ def populate_form_from_request(form):
         'username_optional': username_optional,
         'collect_phone': collect_phone,
         'phone_optional': phone_optional,
+        'enable_waiting_list': enable_waiting_list,
+        'max_waiting_list': max_waiting_list,
         'image_filename': image_filename
     }
 
@@ -211,6 +225,8 @@ def populate_form_from_event(form, event):
     form.username_optional.data = event.username_optional
     form.collect_phone.data = event.collect_phone
     form.phone_optional.data = event.phone_optional
+    form.enable_waiting_list.data = event.enable_waiting_list
+    form.max_waiting_list.data = event.max_waiting_list
     
     # Handle image filename if the event has an image URL
     if event.image_url:
@@ -401,7 +417,7 @@ def handle_event_creation(form_data, creator_info, is_wiki=False):
     
     # Generate private link if event is private
     private_link = None
-    if form_data['is_private']:
+    if form_data.get('is_private'):
         private_link = generate_private_link()
     
     try:
@@ -428,6 +444,8 @@ def handle_event_creation(form_data, creator_info, is_wiki=False):
             username_optional=form_data['username_optional'],
             collect_phone=form_data['collect_phone'],
             phone_optional=form_data['phone_optional'],
+            enable_waiting_list=form_data.get('enable_waiting_list', True),
+            max_waiting_list=int(form_data.get('max_waiting_list', 50)) if form_data.get('max_waiting_list') else 50,
             image_url=image_url,
             creator=creator_info.username if is_wiki else creator_info.username  # Save creator's username
         )
@@ -494,9 +512,13 @@ def handle_event_update(event, form_data, is_wiki=False):
         event.location = form_data['location']
         event.capacity = int(form_data['capacity'])
         
-        # Calculate available tickets by subtracting used tickets from capacity
-        used_tickets = Ticket.query.filter_by(event_id=event.id, is_used=True).count()
-        event.available_tickets = int(form_data['capacity']) - used_tickets
+        # Calculate available tickets by subtracting total issued tickets from capacity
+        # We need to count ALL tickets (both used and unused) because they all occupy capacity
+        total_issued_tickets = Ticket.query.filter_by(event_id=event.id).count()
+        new_capacity = int(form_data['capacity'])
+        
+        # Ensure available_tickets doesn't go negative
+        event.available_tickets = max(0, new_capacity - total_issued_tickets)
         
         event.registration_start = date_obj['registration_start']
         event.registration_end = date_obj['registration_end']
@@ -510,6 +532,8 @@ def handle_event_update(event, form_data, is_wiki=False):
         event.username_optional = form_data['username_optional']
         event.collect_phone = form_data['collect_phone']
         event.phone_optional = form_data['phone_optional']
+        event.enable_waiting_list = form_data.get('enable_waiting_list', True)
+        event.max_waiting_list = int(form_data.get('max_waiting_list', 50)) if form_data.get('max_waiting_list') else 50
         event.image_url = image_url
         
         db.session.commit()

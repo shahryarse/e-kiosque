@@ -259,6 +259,27 @@
                             </div>
                         </div>
                         
+                        <h6 class="text-muted border-bottom pb-2 mb-3 mt-4">{{ _('Waiting List Settings') }}</h6>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-check form-switch">
+                                    {{ form.enable_waiting_list(class="form-check-input") }}
+                                    <label class="form-check-label fw-bold" for="enable_waiting_list">
+                                        <i class="fas fa-list-check text-primary"></i> {{ _('Enable Waiting List') }}
+                                    </label>
+                                    <div class="form-text">{{ _('Allow users to join waiting list when tickets are sold out') }}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    {{ form.max_waiting_list.label(class="form-label fw-bold") }}
+                                    {{ form.max_waiting_list(class="form-control", type="number", min="1", max="500", value=form.max_waiting_list.data or 50) }}
+                                    <div class="form-text">{{ _('Maximum number of people allowed in waiting list') }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="d-flex justify-content-between mt-4">
                             <a href="{{ url_for('admin.events') }}" class="btn btn-light">
                                 <i class="fas fa-arrow-left"></i> Cancel

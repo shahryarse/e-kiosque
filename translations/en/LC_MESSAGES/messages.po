@@ -686,3 +686,21 @@ msgstr "people"
 
 msgid "Required for notifications"
 msgstr "Required for notifications"
+
+msgid "Waiting List Settings"
+msgstr "Waiting List Settings"
+
+msgid "Enable Waiting List"
+msgstr "Enable Waiting List"
+
+msgid "Maximum Waiting List Size"
+msgstr "Maximum Waiting List Size"
+
+msgid "Allow users to join waiting list when tickets are sold out"
+msgstr "Allow users to join waiting list when tickets are sold out"
+
+msgid "Maximum number of people allowed in waiting list"
+msgstr "Maximum number of people allowed in waiting list"
+
+msgid "Event Deleted"
+msgstr "Event Deleted"

@@ -162,12 +162,21 @@ def run_cleanup():
     return redirect(url_for('admin.dashboard'))
 
 
+def recalculate_available_tickets(event):
+    """Recalculate and update available_tickets for an event based on actual ticket count"""
+    total_issued_tickets = Ticket.query.filter_by(event_id=event.id).count()
+    event.available_tickets = max(0, event.capacity - total_issued_tickets)
+    return event.available_tickets
+
 @admin_bp.route('/events')
 @login_required
 @admin_required
 def events():
     """List all events"""
     events = Event.query.order_by(Event.date.desc()).all()
+    # Recalculate available_tickets for each event to ensure accuracy
+    for event in events:
+        recalculate_available_tickets(event)
     return render_template('admin/events.html', events=events)
 
 
@@ -196,6 +205,8 @@ def edit_event(event_id):
     else:
         # Pre-populate form with event data
         populate_form_from_event(form, event)
+        # Recalculate available_tickets to ensure accuracy
+        recalculate_available_tickets(event)
     
     return render_template('admin/edit_event.html', form=form, event=event)
 
@@ -208,6 +219,9 @@ def manage_event_tickets(event_id):
     event = db.session.get(Event, event_id)
     if event is None:
         abort(404)
+    
+    # Recalculate available_tickets to ensure accuracy
+    recalculate_available_tickets(event)
     
     tickets = Ticket.query.filter_by(event_id=event_id).order_by(Ticket.issue_date.desc()).all()
     return render_template('admin/manage_tickets.html', event=event, tickets=tickets)
@@ -305,8 +319,23 @@ def delete_event(event_id):
 @admin_required
 def tickets():
     """List all tickets"""
-    tickets = Ticket.query.order_by(Ticket.issue_date.desc()).all()
-    return render_template('admin/tickets.html', tickets=tickets)
+    try:
+        # Get all tickets with their events
+        tickets = Ticket.query.order_by(Ticket.issue_date.desc()).all()
+        
+        # Verify all tickets have valid events
+        valid_tickets = []
+        for ticket in tickets:
+            if ticket.event is None:
+                logger.warning(f"Ticket {ticket.id} has no associated event")
+                continue
+            valid_tickets.append(ticket)
+        
+        return render_template('admin/tickets.html', tickets=valid_tickets)
+    except Exception as e:
+        logger.exception(f"Error loading tickets: {str(e)}")
+        flash(_('An error occurred while loading tickets.'), 'error')
+        return render_template('admin/tickets.html', tickets=[])
 
 
 @admin_bp.route('/tickets/<int:ticket_id>/details', methods=['POST'])
@@ -377,8 +406,10 @@ def delete_ticket(ticket_id):
             abort(404)
             
         event = ticket.event
-        event.available_tickets += 1
         db.session.delete(ticket)
+        # Recalculate available_tickets after deletion
+        total_issued_tickets = Ticket.query.filter_by(event_id=event.id).count()
+        event.available_tickets = max(0, event.capacity - total_issued_tickets)
         db.session.commit()
         return jsonify({'success': True})
     except Exception as e:
@@ -401,10 +432,19 @@ def bulk_delete_tickets():
             return jsonify({'success': False, 'message': _('No tickets selected')})
         
         tickets = Ticket.query.filter(Ticket.id.in_(ticket_ids)).all()
+        # Group tickets by event to update available_tickets correctly
+        events_to_update = {}
         for ticket in tickets:
             event = ticket.event
-            event.available_tickets += 1
+            if event.id not in events_to_update:
+                events_to_update[event.id] = event
             db.session.delete(ticket)
+        
+        # Recalculate available_tickets for each affected event
+        for event_id, event in events_to_update.items():
+            total_issued_tickets = Ticket.query.filter_by(event_id=event_id).count()
+            event.available_tickets = max(0, event.capacity - total_issued_tickets)
+        
         db.session.commit()
         return jsonify({'success': True})
     except Exception as e:

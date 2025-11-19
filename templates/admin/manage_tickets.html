@@ -18,7 +18,7 @@
                         <button type="button" class="btn btn-danger" onclick="bulkDelete()">{{ _('Delete Selected') }}</button>
                         <button type="button" class="btn btn-success" onclick="bulkMarkUsed()">{{ _('Mark Selected as Used') }}</button>
                         <button type="button" class="btn btn-warning" onclick="bulkMarkUnused()">{{ _('Mark Selected as Unused') }}</button>
-                        <a href="{{ url_for('export_tickets', event_id=event.id) }}" class="btn btn-primary">{{ _('Export All') }}</a>
+                        <a href="{{ url_for('admin.export_tickets', event_id=event.id) }}" class="btn btn-primary">{{ _('Export All') }}</a>
                     </div>
                 </div>
 
@@ -100,7 +100,7 @@ function bulkDelete() {
     }
     
     if (confirm('{{ _("Are you sure you want to delete these tickets? This action cannot be undone.") }}')) {
-        fetch('{{ url_for("bulk_delete_tickets") }}', {
+        fetch('{{ url_for("admin.bulk_delete_tickets") }}', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -130,7 +130,7 @@ function bulkMarkUsed() {
         return;
     }
     
-    fetch('{{ url_for("bulk_mark_used") }}', {
+    fetch('{{ url_for("admin.bulk_mark_used") }}', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -159,7 +159,7 @@ function bulkMarkUnused() {
         return;
     }
     
-    fetch('{{ url_for("bulk_mark_unused") }}', {
+    fetch('{{ url_for("admin.bulk_mark_unused") }}', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const ticketId = this.dataset.ticketId;
             const modal = new bootstrap.Modal(document.getElementById('viewTicketModal'));
             
-            fetch(`{{ url_for('admin_get_ticket_details', event_id=event.id) }}`, {
+            fetch(`/admin/tickets/${ticketId}/details`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

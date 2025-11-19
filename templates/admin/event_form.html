@@ -77,7 +77,7 @@ function validateImage() {
         return;
     }
     
-    fetch('/validate_image', {
+    fetch('{{ url_for("admin.validate_image") }}', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

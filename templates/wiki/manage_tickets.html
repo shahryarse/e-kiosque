@@ -187,7 +187,7 @@
         
         // Bulk delete function
         function bulkDelete(ticketIds) {
-            fetch("{{ url_for('wiki_bulk_ticket_action', event_id=event.id) }}", {
+            fetch("{{ url_for('wiki.bulk_ticket_action', event_id=event.id) }}", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -215,7 +215,7 @@
         
         // Bulk mark status function
         function bulkMarkStatus(ticketIds, isUsed) {
-            fetch("{{ url_for('wiki_bulk_ticket_action', event_id=event.id) }}", {
+            fetch("{{ url_for('wiki.bulk_ticket_action', event_id=event.id) }}", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -249,7 +249,7 @@
                 const ticketId = this.dataset.ticketId;
                 const currentStatus = parseInt(this.dataset.currentStatus);
                 
-                fetch("{{ url_for('wiki_toggle_ticket_status', event_id=event.id) }}", {
+                fetch("{{ url_for('wiki.toggle_ticket_status', event_id=event.id) }}", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -281,7 +281,7 @@
                 const ticketId = this.dataset.ticketId;
                 const modal = new bootstrap.Modal(document.getElementById('viewTicketModal'));
                 
-                fetch("{{ url_for('wiki_get_ticket_details', event_id=event.id) }}", {
+                fetch("{{ url_for('wiki.get_ticket_details', event_id=event.id) }}", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -320,7 +320,7 @@
                 modal.show();
                 
                 document.getElementById('confirmDelete').addEventListener('click', function() {
-                    fetch("{{ url_for('wiki_delete_ticket', event_id=event.id) }}", {
+                    fetch("{{ url_for('wiki.delete_ticket', event_id=event.id) }}", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

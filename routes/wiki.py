@@ -65,11 +65,36 @@ def dashboard():
         return redirect(url_for('auth.wiki_login'))
     
     # Get events created by this user
-    user_events = Event.query.filter_by(wiki_creator_id=wiki_user.id).all()
+    # Check both wiki_creator_id and creator field for backward compatibility
+    # Use db.or_ for proper OR condition
+    from sqlalchemy import or_
+    user_events = Event.query.filter(
+        or_(
+            Event.wiki_creator_id == wiki_user.id,
+            Event.creator == wiki_user.username
+        )
+    ).all()
     
-    # Update event status for all events
+    # Debug logging
+    logger.debug(f"Wiki user: {wiki_user.username} (ID: {wiki_user.id})")
+    logger.debug(f"Found {len(user_events)} events for user")
+    if len(user_events) == 0:
+        # Try to find any events with this username in creator field
+        all_events_with_creator = Event.query.filter(Event.creator.isnot(None)).all()
+        logger.debug(f"Total events with creator field: {len(all_events_with_creator)}")
+        for evt in all_events_with_creator[:5]:  # Log first 5
+            logger.debug(f"  Event {evt.id}: creator='{evt.creator}', wiki_creator_id={evt.wiki_creator_id}")
+    
+    # Update event status for all events and recalculate available_tickets
+    def recalculate_available_tickets(event):
+        """Recalculate and update available_tickets for an event based on actual ticket count"""
+        total_issued_tickets = Ticket.query.filter_by(event_id=event.id).count()
+        event.available_tickets = max(0, event.capacity - total_issued_tickets)
+        return event.available_tickets
+    
     for event in user_events:
         update_event_status(event)
+        recalculate_available_tickets(event)
     
     # Filter active and past events
     active_events = [event for event in user_events if event.is_active]
@@ -127,7 +152,8 @@ def edit_event(event_id):
         abort(404)
     
     # Check if this user created this event
-    if event.wiki_creator_id != wiki_user.id:
+    # Check both wiki_creator_id and creator field for backward compatibility
+    if event.wiki_creator_id != wiki_user.id and event.creator != wiki_user.username:
         flash(_('You do not have permission to edit this event.'), 'error')
         return redirect(url_for('wiki.dashboard'))
     
@@ -147,6 +173,13 @@ def edit_event(event_id):
     else:
         # Pre-populate form with event data
         populate_form_from_event(form, event)
+        # Recalculate available_tickets to ensure accuracy
+        def recalculate_available_tickets(event):
+            """Recalculate and update available_tickets for an event based on actual ticket count"""
+            total_issued_tickets = Ticket.query.filter_by(event_id=event.id).count()
+            event.available_tickets = max(0, event.capacity - total_issued_tickets)
+            return event.available_tickets
+        recalculate_available_tickets(event)
     
     return render_template('wiki/edit_event.html', form=form, event=event)
 
@@ -165,9 +198,19 @@ def manage_tickets(event_id):
         abort(404)
     
     # Check if this user created this event
-    if event.wiki_creator_id != wiki_user.id:
+    # Check both wiki_creator_id and creator field for backward compatibility
+    if event.wiki_creator_id != wiki_user.id and event.creator != wiki_user.username:
         flash(_('You do not have permission to manage tickets for this event.'), 'error')
         return redirect(url_for('wiki.dashboard'))
+    
+    # Recalculate available_tickets to ensure accuracy
+    def recalculate_available_tickets(event):
+        """Recalculate and update available_tickets for an event based on actual ticket count"""
+        total_issued_tickets = Ticket.query.filter_by(event_id=event.id).count()
+        event.available_tickets = max(0, event.capacity - total_issued_tickets)
+        return event.available_tickets
+    
+    recalculate_available_tickets(event)
     
     tickets = Ticket.query.filter_by(event_id=event_id).order_by(Ticket.issue_date.desc()).all()
     return render_template('wiki/manage_tickets.html', event=event, tickets=tickets)
@@ -440,7 +483,8 @@ def delete_event(event_id):
             return jsonify({'success': False, 'message': _('Event not found')}), 404
         
         # Check if the wiki user is the event creator
-        if event.wiki_creator_id != wiki_user.id:
+        # Check both wiki_creator_id and creator field for backward compatibility
+        if event.wiki_creator_id != wiki_user.id and event.creator != wiki_user.username:
             return jsonify({'success': False, 'message': _('You can only delete events you created')}), 403
         
         # Check for unused tickets

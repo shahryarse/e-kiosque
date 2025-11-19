@@ -20,6 +20,12 @@ from services.waiting_list_service import WaitingListService
 main_bp = Blueprint('main', __name__)
 
 
+def recalculate_available_tickets(event):
+    """Recalculate and update available_tickets for an event based on actual ticket count"""
+    total_issued_tickets = Ticket.query.filter_by(event_id=event.id).count()
+    event.available_tickets = max(0, event.capacity - total_issued_tickets)
+    return event.available_tickets
+
 @main_bp.route('/')
 def index():
     """Homepage with list of public events"""
@@ -31,6 +37,10 @@ def index():
     events = Event.query.filter_by(is_private=False).order_by(Event.date.asc()).paginate(
         page=page, per_page=10, error_out=False
     )
+    
+    # Recalculate available_tickets for each event to ensure accuracy
+    for event in events.items:
+        recalculate_available_tickets(event)
     
     return render_template('index.html', events=events)
 
@@ -98,6 +108,34 @@ def event_detail(event_id):
             'expires_at': int(time.time()) + 86400  # 24 hours in seconds
         }
     
+    # Check if user is in waiting list
+    user_waiting = None
+    if current_username:
+        # Check by username first
+        user_waiting = WaitingList.query.filter_by(
+            event_id=event_id,
+            username=current_username,
+            converted_to_ticket=False
+        ).first()
+    
+    # If not found by username, check by identifiers
+    if not user_waiting:
+        from app import verify_identifier
+        waiting_entries = WaitingList.query.filter_by(
+            event_id=event_id,
+            converted_to_ticket=False
+        ).all()
+        
+        for entry in waiting_entries:
+            if (verify_identifier(current_ip, entry.hashed_ip) or
+                verify_identifier(current_session_id, entry.hashed_session) or
+                verify_identifier(current_cookie, entry.hashed_cookie)):
+                user_waiting = entry
+                break
+    
+    # Recalculate available_tickets to ensure accuracy
+    recalculate_available_tickets(event)
+    
     ticket_form = TicketForm()
     display_form = EventDisplayForm()
     return render_template('event.html', 
@@ -107,7 +145,8 @@ def event_detail(event_id):
                           pytz=pytz, 
                           datetime=datetime,
                           user_ticket=user_ticket,
-                          ticket_token=ticket_token)
+                          ticket_token=ticket_token,
+                          user_waiting=user_waiting)
 
 
 @main_bp.route('/reserve/<int:event_id>', methods=['POST'])

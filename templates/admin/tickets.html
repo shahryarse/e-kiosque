@@ -42,10 +42,10 @@
                                 <tr>
                                     <td><input type="checkbox" class="ticket-checkbox" value="{{ ticket.id }}"></td>
                                     <td>{{ ticket.ticket_code }}</td>
-                                    <td>{{ ticket.event.title }}</td>
+                                    <td>{{ ticket.event.title if ticket.event else _('Event Deleted') }}</td>
                                     <td>{{ ticket.name or '-' }}</td>
                                     <td>{{ ticket.email or '-' }}</td>
-                                    <td>{{ ticket.issue_date.strftime('%Y-%m-%d %H:%M') }}</td>
+                                    <td>{{ ticket.issue_date.strftime('%Y-%m-%d %H:%M') if ticket.issue_date else '-' }}</td>
                                     <td>
                                         <span class="badge {% if ticket.is_used %}bg-success{% else %}bg-warning{% endif %}" onclick="toggleTicketStatus({{ ticket.id }})" style="cursor: pointer;">
                                             {% if ticket.is_used %}{{ _('Used') }}{% else %}{{ _('Unused') }}{% endif %}
@@ -104,7 +104,7 @@ function bulkDelete() {
     }
     
     if (confirm('{{ _("Are you sure you want to delete these tickets? This action cannot be undone.") }}')) {
-        fetch('{{ url_for("bulk_delete_tickets") }}', {
+        fetch('{{ url_for("admin.bulk_delete_tickets") }}', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ function bulkMarkUsed() {
         return;
     }
     
-    fetch('{{ url_for("bulk_mark_used") }}', {
+    fetch('{{ url_for("admin.bulk_mark_used") }}', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -163,7 +163,7 @@ function bulkMarkUnused() {
         return;
     }
     
-    fetch('{{ url_for("bulk_mark_unused") }}', {
+    fetch('{{ url_for("admin.bulk_mark_unused") }}', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

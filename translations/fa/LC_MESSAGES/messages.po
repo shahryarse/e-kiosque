@@ -703,3 +703,21 @@ msgstr "نفر"
 
 msgid "Required for notifications"
 msgstr "برای اطلاع‌رسانی الزامی است"
+
+msgid "Waiting List Settings"
+msgstr "تنظیمات لیست انتظار"
+
+msgid "Enable Waiting List"
+msgstr "فعال‌سازی لیست انتظار"
+
+msgid "Maximum Waiting List Size"
+msgstr "حداکثر تعداد لیست انتظار"
+
+msgid "Allow users to join waiting list when tickets are sold out"
+msgstr "اجازه دادن به کاربران برای عضویت در لیست انتظار وقتی بلیت‌ها تمام می‌شوند"
+
+msgid "Maximum number of people allowed in waiting list"
+msgstr "حداکثر تعداد افراد مجاز در لیست انتظار"
+
+msgid "Event Deleted"
+msgstr "رویداد حذف شده"
